@@ -81,7 +81,7 @@ const RecruiterView = {
       </div>
 
       <!-- 5 Metric Cards (Screen 2) - Dynamically calculated -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; margin-bottom: 24px;">
+      <div class="summary-grid summary-grid-5" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 24px;">
         <div class="summary-card" onclick="App.navigate('recruiter-manage-jobs')" style="cursor: pointer;">
           <div class="title">Open Jobs</div>
           <div class="value" style="color: #4F46E5;">${openJobsCount}</div>
@@ -414,7 +414,7 @@ const RecruiterView = {
           <!-- Structured Summary Card -->
           <div style="background: #F8FAFC; border-radius: 12px; border: 1px solid var(--border); padding: 20px; margin-bottom: 32px;">
             <h4 style="font-size: 14px; font-weight: 700; color: #64748B; text-transform: uppercase; margin-bottom: 16px;">Structured Summary</h4>
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; font-size: 14px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; font-size: 14px;">
               <div>
                 <span style="color: #64748B;">Job Title:</span>
                 <strong style="color: #111827; margin-left: 6px;">${extractedData.title}</strong>
@@ -674,7 +674,7 @@ const RecruiterView = {
             <span class="badge badge-shortlisted" style="font-size: 11px;">Deterministic</span>
           </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
             <div style="padding: 10px 12px; background: #F8FAFC; border-radius: 8px; border-left: 3px solid #16A34A;">
               <div style="font-size: 12px; font-weight: 700; color: #111827;">Gate 7: Auto-Advance</div>
               <div style="font-size: 11px; color: #64748B; margin-top: 2px;">Score &ge; 75.0 & all must-haves &rarr; <strong style="color: #16A34A;">SHORTLISTED</strong></div>
@@ -1317,7 +1317,7 @@ const RecruiterView = {
             </div>
           </div>
 
-          <div style="display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: 20px;">
+          <div class="responsive-split-grid">
             <!-- Left: Inline PDF Viewer -->
             <div class="card" style="padding: 16px; display: flex; flex-direction: column; height: 600px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">

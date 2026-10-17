@@ -550,7 +550,7 @@ const CandidateView = {
         </div>
 
         <!-- Candidate Information Fields -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 16px;">
           <div class="form-group" style="margin-bottom: 0;">
             <label class="form-label">Full Name *</label>
             <input type="text" id="applyCandName" class="form-control" value="${candidate.name || 'Akshada Kale'}" required>

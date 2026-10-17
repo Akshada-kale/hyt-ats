@@ -1,0 +1,34 @@
+{
+  "job_id": "custom_19423097",
+  "title": "full stack 1",
+  "company": "TechCorp",
+  "location": "On-Site / Office-Based",
+  "work_type": "Full-time",
+  "min_years_experience": 3.0,
+  "seniority_level": "mid",
+  "status": "Open",
+  "postedDate": "Oct 17, 2026",
+  "approx_must_haves": [
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Node.js",
+    "Python",
+    "MongoDB",
+    "PostgreSQL",
+    "SQL",
+    "REST APIs",
+    "AWS",
+    "Docker"
+  ],
+  "approx_nice_to_haves": [
+    "Git",
+    "CI/CD",
+    "HTML5",
+    "CSS3",
+    "Django",
+    "FastAPI"
+  ],
+  "education_requirement": "Bachelor's degree or equivalent",
+  "raw_description": "Page 1\nJOB DESCRIPTION\nFull Stack Developer\nDepartment: Engineering / Product Development | Employment: Full-time\nRole Overview\nWe are looking for a motivated Full Stack Developer to design, develop, test, and maintain responsive web applications. The\nideal candidate can work across frontend and backend systems, build reliable APIs, manage databases, collaborate with\ndesign and product teams, and contribute to secure, scalable software delivery.\nKey Responsibilities\n\u2022 Build and maintain responsive, accessible user interfaces using HTML, CSS, JavaScript, and a framework such as React.\n\u2022 Develop backend services and RESTful APIs using Node.js/Express, Python/Django or FastAPI, Java/Spring Boot, or an\nequivalent stack.\n\u2022 Design, query, and maintain relational or NoSQL databases such as PostgreSQL, MySQL, or MongoDB.\n\u2022 Implement authentication, authorization, input validation, error handling, and secure coding practices.\n\u2022 Integrate third-party APIs and services, and troubleshoot frontend/backend integration issues.\n\u2022 Write clean, maintainable, testable code; participate in code reviews and document technical decisions.\n\u2022 Use Git for version control and collaborate through branches, pull requests, and issue tracking.\n\u2022 Test, debug, optimize, and deploy applications; help monitor performance and resolve production issues.\nRequired Skills and Qualifications\n\u2022 Proficiency in HTML5, CSS3, JavaScript, and responsive web design.\n\u2022 Experience with at least one frontend framework or library, preferably React.\n\u2022 Experience developing backend applications and REST APIs.\n\u2022 Working knowledge of SQL and database design; familiarity with a NoSQL database is an advantage.\n\u2022 Understanding of authentication, authorization, web security fundamentals, and API integration.\n\u2022 Familiarity with Git, debugging tools, and basic software testing.\n\u2022 Clear communication, problem-solving skills, and ability to work effectively with a team.\nPreferred Qualifications\n\u2022 Experience with TypeScript, Next.js, Docker, CI/CD, or cloud platforms such as AWS, Azure, or Google Cloud.\n\u2022 Familiarity with automated testing frameworks and application performance optimization.\n\u2022 A portfolio, internship, academic project, or deployed application demonstrating full-stack development.\nEducation and Experience\nBachelor\u2019s degree in Computer Science, Information Technology, Engineering, or a related discipline, or equivalent practical\nexperience. Suitable for entry-level to mid-level applicants; relevant project experience may be considered in place of\nprofessional experience.\nEmployment Details\nExperience\n0\u20133 years (flexible)\nLocation\nTo be confirmed\nWork Mode\nOn-site / Hybrid / Remote\nCompensation\nAs per company policy\nReports To\nEngineering Lead / Manager\nType\nFull-time\nApplication Process\nSubmit a resume and links to relevant projects or portfolio. Shortlisted candidates may be invited for a technical discussion\nand interview.\nNote: This is a sample job description. Customize the company name, location, compensation, and work arrangements before publication.\n"
+}

@@ -49,3 +49,6 @@ recruiter_annotation_kit/
 # Golden Set Policy:
 # Canonical labels live inside data/golden/ (tracked)
 # No raw resumes or PII PDFs are ever committed
+
+job_description_data/postings.csv
+resume_data/Resume/Resume.csv

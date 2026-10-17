@@ -194,7 +194,7 @@ const LandingView = {
             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 24px;">
               <span class="badge badge-indigo">${Icons.briefcase()} For Recruiters</span>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
               <div style="text-align: center;">
                 <div style="width: 44px; height: 44px; border-radius: 50%; background: #4F46E5; color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-weight: 700;">1</div>
                 <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 6px;">Post a Job</h4>

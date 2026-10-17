@@ -1,5 +1,320 @@
 [
   {
+    "id": "APP-cust-C4961918",
+    "jobId": "custom_19423097",
+    "job_id": "custom_19423097",
+    "jobTitle": "full stack 1",
+    "company": "TechCorp",
+    "candidateId": "akshada_satish_kale",
+    "candidate_id": "akshada_satish_kale",
+    "candidateName": "Akshada Satish Kale",
+    "candidateDegree": "B.Tech in Computer Engineering",
+    "candidateEmail": "akshadask8483@gmail.com",
+    "candidatePhone": "+91 90223 54583",
+    "candidateLocation": "Pune, India",
+    "resumeFile": "Akshada_Kale(Resume).pdf",
+    "resume_file": "Akshada_Kale(Resume).pdf",
+    "appliedDate": "Oct 17, 2026",
+    "aiRecommendation": "SHORTLISTED",
+    "ai_recommendation": "SHORTLISTED",
+    "decision": "SHORTLISTED",
+    "finalStatus": "Shortlisted",
+    "final_status": "Shortlisted",
+    "status": "Shortlisted",
+    "statusLabel": "Shortlisted",
+    "fitScore": 93.7,
+    "fit_score": 93.7,
+    "decisionReason": "Deterministic Gates 0-8 PASSED: Score 93.7/100. Auto-Advance rule triggered (Score >= 75.0).",
+    "decision_reason": "Deterministic Gates 0-8 PASSED: Score 93.7/100. Auto-Advance rule triggered (Score >= 75.0).",
+    "matchedSkills": [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "Python",
+      "Java",
+      "Git",
+      "MongoDB",
+      "Minimum 0.0 years of relevant professional experience",
+      "Target role seniority: ENTRY"
+    ],
+    "missingSkills": [
+      "Candidate degree does not directly match specification; awarded baseline partial credit per non-fatal policy.",
+      "Location mismatch (Unknown vs To be confirmed); awarded baseline partial credit."
+    ],
+    "matchedRequirements": [
+      {
+        "req": "Must-Have: JavaScript (TECHNICAL)",
+        "evidence": "Developed full-stack features using React.js, Node.js, Express.js, and MongoDB for web applications.",
+        "conf": "100.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 100.0
+      },
+      {
+        "req": "Must-Have: React (TECHNICAL)",
+        "evidence": "Developed full-stack features using React.js, Node.js, Express.js, and MongoDB for web applications.",
+        "conf": "100.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 100.0
+      },
+      {
+        "req": "Must-Have: Node.js (TECHNICAL)",
+        "evidence": "Developed full-stack features using React.js, Node.js, Express.js, and MongoDB for web applications.",
+        "conf": "100.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 100.0
+      },
+      {
+        "req": "Must-Have: Python (TECHNICAL)",
+        "evidence": "Developed full-stack features using React.js, Node.js, Express.js, and MongoDB for web applications.",
+        "conf": "100.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 100.0
+      },
+      {
+        "req": "Must-Have: Java (TECHNICAL)",
+        "evidence": "Developed full-stack features using React.js, Node.js, Express.js, and MongoDB for web applications.",
+        "conf": "100.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 100.0
+      },
+      {
+        "req": "Must-Have: Git (TECHNICAL)",
+        "evidence": "Used Git/GitHub for version control and collaborative development.",
+        "conf": "100.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 100.0
+      },
+      {
+        "req": "[Nice-to-Have] MongoDB (TECHNICAL)",
+        "evidence": "Developed full-stack features using React.js, Node.js, Express.js, and MongoDB for web applications.",
+        "conf": "35.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 35.0
+      },
+      {
+        "req": "Minimum 0.0 years of relevant professional experience (EXPERIENCE)",
+        "evidence": "Candidate has 0.2 total years across 0 chronological positions.",
+        "conf": "100.0 pts",
+        "dimension": "EXPERIENCE",
+        "score": 100.0
+      },
+      {
+        "req": "Target role seniority: ENTRY (SENIORITY)",
+        "evidence": "Candidate evaluated at ENTRY level based on titles and career progression.",
+        "conf": "100.0 pts",
+        "dimension": "SENIORITY",
+        "score": 100.0
+      }
+    ],
+    "missingRequirements": [
+      {
+        "req": "Must-Have: HTML5 (TECHNICAL)",
+        "evidence": "Missing required skill/qualification in resume.",
+        "conf": "50.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 50.0
+      },
+      {
+        "req": "Must-Have: CSS3 (TECHNICAL)",
+        "evidence": "Missing required skill/qualification in resume.",
+        "conf": "50.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 50.0
+      },
+      {
+        "req": "Must-Have: SQL (TECHNICAL)",
+        "evidence": "Missing required skill/qualification in resume.",
+        "conf": "50.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 50.0
+      },
+      {
+        "req": "[Nice-to-Have] TypeScript (TECHNICAL)",
+        "evidence": "Missing required skill/qualification in resume.",
+        "conf": "35.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 35.0
+      },
+      {
+        "req": "Education baseline: Bachelor\u2019s degree in Computer Science, Information Technology, Engineering, or a related discipline, or equivalent practical experience (EDUCATION)",
+        "evidence": "Candidate degree does not directly match specification; awarded baseline partial credit per non-fatal policy.",
+        "conf": "75.0 pts",
+        "dimension": "EDUCATION",
+        "score": 75.0
+      },
+      {
+        "req": "Location requirement: To be confirmed (hybrid) (LOCATION)",
+        "evidence": "Location mismatch (Unknown vs To be confirmed); awarded baseline partial credit.",
+        "conf": "70.0 pts",
+        "dimension": "LOCATION",
+        "score": 70.0
+      }
+    ],
+    "evidenceLedger": [
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: HTML5",
+        "evidence": "Claimed in technical skills summary as 'JavaScript' (unverified, awarded 50% credit).",
+        "is_verified": false,
+        "score_contribution": 50.0,
+        "gap": "None"
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: CSS3",
+        "evidence": "Claimed in technical skills summary as 'JavaScript' (unverified, awarded 50% credit).",
+        "is_verified": false,
+        "score_contribution": 50.0,
+        "gap": "None"
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: JavaScript",
+        "evidence": "Developed full-stack features using React.js, Node.js, Express.js, and MongoDB for web applications.",
+        "is_verified": true,
+        "score_contribution": 100.0,
+        "gap": "None"
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: React",
+        "evidence": "Developed full-stack features using React.js, Node.js, Express.js, and MongoDB for web applications.",
+        "is_verified": true,
+        "score_contribution": 100.0,
+        "gap": "None"
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: Node.js",
+        "evidence": "Developed full-stack features using React.js, Node.js, Express.js, and MongoDB for web applications.",
+        "is_verified": true,
+        "score_contribution": 100.0,
+        "gap": "None"
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: Python",
+        "evidence": "Developed full-stack features using React.js, Node.js, Express.js, and MongoDB for web applications.",
+        "is_verified": true,
+        "score_contribution": 100.0,
+        "gap": "None"
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: Java",
+        "evidence": "Developed full-stack features using React.js, Node.js, Express.js, and MongoDB for web applications.",
+        "is_verified": true,
+        "score_contribution": 100.0,
+        "gap": "None"
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: SQL",
+        "evidence": "Claimed in technical skills summary as 'SQL' (unverified, awarded 50% credit).",
+        "is_verified": false,
+        "score_contribution": 50.0,
+        "gap": "None"
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: Git",
+        "evidence": "Used Git/GitHub for version control and collaborative development.",
+        "is_verified": true,
+        "score_contribution": 100.0,
+        "gap": "None"
+      },
+      {
+        "dimension": "technical",
+        "requirement": "[Nice-to-Have] TypeScript",
+        "evidence": "Demonstrated/listed as JavaScript.",
+        "is_verified": false,
+        "score_contribution": 35.0,
+        "gap": "None"
+      },
+      {
+        "dimension": "technical",
+        "requirement": "[Nice-to-Have] MongoDB",
+        "evidence": "Developed full-stack features using React.js, Node.js, Express.js, and MongoDB for web applications.",
+        "is_verified": true,
+        "score_contribution": 35.0,
+        "gap": "None"
+      },
+      {
+        "dimension": "experience",
+        "requirement": "Minimum 0.0 years of relevant professional experience",
+        "evidence": "Candidate has 0.2 total years across 0 chronological positions.",
+        "is_verified": true,
+        "score_contribution": 100.0,
+        "gap": "None"
+      },
+      {
+        "dimension": "seniority",
+        "requirement": "Target role seniority: ENTRY",
+        "evidence": "Candidate evaluated at ENTRY level based on titles and career progression.",
+        "is_verified": true,
+        "score_contribution": 100.0,
+        "gap": "None"
+      },
+      {
+        "dimension": "education",
+        "requirement": "Education baseline: Bachelor\u2019s degree in Computer Science, Information Technology, Engineering, or a related discipline, or equivalent practical experience",
+        "evidence": "No degree listed on resume.",
+        "is_verified": false,
+        "score_contribution": 75.0,
+        "gap": "Candidate degree does not directly match specification; awarded baseline partial credit per non-fatal policy."
+      },
+      {
+        "dimension": "location",
+        "requirement": "Location requirement: To be confirmed (hybrid)",
+        "evidence": "Candidate location: Not specified",
+        "is_verified": false,
+        "score_contribution": 70.0,
+        "gap": "Location mismatch (Unknown vs To be confirmed); awarded baseline partial credit."
+      }
+    ],
+    "breakdown": {
+      "technical": 91.1,
+      "experience": 100.0,
+      "seniority": 100.0,
+      "education": 75.0,
+      "location": 70.0,
+      "weightedTotal": 93.7,
+      "weighted_total": 93.7
+    },
+    "integrityFlags": [],
+    "verificationFlags": [],
+    "quarantineStatus": "CLEAN",
+    "overqualification": "BALANCED",
+    "screeningReport": "+==================================================================================+\n| HYT ATS CANDIDATE EVALUATION AUDIT REPORT -- AKSHADA_KALE(RESUME)                |\n+==================================================================================+\n\n+----------------------------------------------------------------------------------+\n| [SECTION 1] CANDIDATE AND JOB DETAILS                                            |\n+----------------------------------------------------------------------------------+\n  Target Role:             Full Stack Developer (Job ID: custom_19423097)\n  Screening Timestamp:     2026-10-17T23:25:52.171439\n  Final Decision:          [AUTO_ADVANCE]\n  Decision Justification:  Exceptional candidate fit: score 93.69 satisfies high threshold (75.0) with 9/9 must-haves (100%) (6 verified, tech score: 91.1) and zero integrity anomalies. Verified mastery: HTML5, CSS3, JavaScript.\n\n+----------------------------------------------------------------------------------+\n| [SECTION 2] PIPELINE GATES 0-8: INTEGRITY CHECKS & VERIFICATION                  |\n+----------------------------------------------------------------------------------+\n  Integrity Flags:         NONE (Passed all security checks)\n  Verification Flags:      NONE (Verified profile)\n  Quarantine Status:       CLEAN\n  Overqualification:       BALANCED\n\n+----------------------------------------------------------------------------------+\n| [SECTION 3] RECRUITER ASSESSMENT                                                 |\n+----------------------------------------------------------------------------------+\nGROUNDED RECRUITER ASSESSMENT (Gate 8 Audit):\n  [1. STRENGTHS] The candidate demonstrates verified mastery of JavaScript, React, Node.js, Python, Java, and Git, evidenced by the development of full-stack features using React.js, Node.js, Express.js, and MongoDB.\n  [2. GAPS]      Critical gaps exist regarding the education baseline, as the candidate's degree does not directly match the specified Computer Science or related discipline requirements, and an unconfirmed location mismatch prevents verification of the hybrid work requirement.\n  [3. INTERVIEW] The interview should focus on validating the candidate's practical experience to compensate for the degree mismatch and confirming their ability to meet the hybrid location requirement.\n\n+----------------------------------------------------------------------------------+\n| [SECTION 4] RESUME AND JOB REQUIREMENT EVIDENCE: TOP STRENGTHS & CRITICAL GAPS   |\n+----------------------------------------------------------------------------------+\nTOP STRENGTHS (Cited from Ledger):\n  * JavaScript\n  * React\n  * Node.js\n  * Python\n  * Java\n\nCRITICAL GAPS (Identified Gaps):\n  * Candidate degree does not directly match specification; awarded baseline partial credit per non-fatal policy.\n  * Location mismatch (Unknown vs To be confirmed); awarded baseline partial credit.\n\n+----------------------------------------------------------------------------------+\n| [SECTION 5] SCORE BREAKDOWN AND WEIGHTED CONTRIBUTIONS                           |\n+----------------------------------------------------------------------------------+\n5-DIMENSIONAL DETERMINISTIC SCORECARD (0-100 Scale):\n  1. Technical Alignment (40%):   91.11 / 100  (weighted contrib: 36.44)\n  2. Experience Depth    (30%):  100.00 / 100  (weighted contrib: 30.00)\n  3. Seniority Fit       (20%):  100.00 / 100  (weighted contrib: 20.00)\n  4. Education Baseline  ( 5%):   75.00 / 100  (weighted contrib:  3.75)\n  5. Location & Remote   ( 5%):   70.00 / 100  (weighted contrib:  3.50)\n  -------------------------------------------------------------------------\n  FINAL WEIGHTED SCORE:                   93.69 / 100\n\n+----------------------------------------------------------------------------------+\n| [SECTION 6] EVIDENCE LEDGER -- ALL 15 ENTRIES IN FULL                            |\n+----------------------------------------------------------------------------------+\nMANDATORY EVIDENCE LEDGER (15 Immutable Citation Entries):\n\n  ------------------------------------------------------------------------------\n   1. [UNVERIFIED / GAP] Must-Have: HTML5 (TECHNICAL)\n      Evidence: \"Claimed in technical skills summary as 'JavaScript' (unverified, awarded 50% credit).\"\n      Score Contribution: 50.0 pts\n  ------------------------------------------------------------------------------\n   2. [UNVERIFIED / GAP] Must-Have: CSS3 (TECHNICAL)\n      Evidence: \"Claimed in technical skills summary as 'JavaScript' (unverified, awarded 50% credit).\"\n      Score Contribution: 50.0 pts\n  ------------------------------------------------------------------------------\n   3. [VERIFIED] Must-Have: JavaScript (TECHNICAL)\n      Evidence: \"Developed full-stack features using React.js, Node.js, Express.js, and MongoDB for web applications.\"\n      Score Contribution: 100.0 pts\n  ------------------------------------------------------------------------------\n   4. [VERIFIED] Must-Have: React (TECHNICAL)\n      Evidence: \"Developed full-stack features using React.js, Node.js, Express.js, and MongoDB for web applications.\"\n      Score Contribution: 100.0 pts\n  ------------------------------------------------------------------------------\n   5. [VERIFIED] Must-Have: Node.js (TECHNICAL)\n      Evidence: \"Developed full-stack features using React.js, Node.js, Express.js, and MongoDB for web applications.\"\n      Score Contribution: 100.0 pts\n  ------------------------------------------------------------------------------\n   6. [VERIFIED] Must-Have: Python (TECHNICAL)\n      Evidence: \"Developed full-stack features using React.js, Node.js, Express.js, and MongoDB for web applications.\"\n      Score Contribution: 100.0 pts\n  ------------------------------------------------------------------------------\n   7. [VERIFIED] Must-Have: Java (TECHNICAL)\n      Evidence: \"Developed full-stack features using React.js, Node.js, Express.js, and MongoDB for web applications.\"\n      Score Contribution: 100.0 pts\n  ------------------------------------------------------------------------------\n   8. [UNVERIFIED / GAP] Must-Have: SQL (TECHNICAL)\n      Evidence: \"Claimed in technical skills summary as 'SQL' (unverified, awarded 50% credit).\"\n      Score Contribution: 50.0 pts\n  ------------------------------------------------------------------------------\n   9. [VERIFIED] Must-Have: Git (TECHNICAL)\n      Evidence: \"Used Git/GitHub for version control and collaborative development.\"\n      Score Contribution: 100.0 pts\n  ------------------------------------------------------------------------------\n  10. [UNVERIFIED / GAP] [Nice-to-Have] TypeScript (TECHNICAL)\n      Evidence: \"Demonstrated/listed as JavaScript.\"\n      Score Contribution: 35.0 pts\n  ------------------------------------------------------------------------------\n  11. [VERIFIED] [Nice-to-Have] MongoDB (TECHNICAL)\n      Evidence: \"Developed full-stack features using React.js, Node.js, Express.js, and MongoDB for web applications.\"\n      Score Contribution: 35.0 pts\n  ------------------------------------------------------------------------------\n  12. [VERIFIED] Minimum 0.0 years of relevant professional experience (EXPERIENCE)\n      Evidence: \"Candidate has 0.2 total years across 0 chronological positions.\"\n      Score Contribution: 100.0 pts\n  ------------------------------------------------------------------------------\n  13. [VERIFIED] Target role seniority: ENTRY (SENIORITY)\n      Evidence: \"Candidate evaluated at ENTRY level based on titles and career progression.\"\n      Score Contribution: 100.0 pts\n  ------------------------------------------------------------------------------\n  14. [UNVERIFIED / GAP] Education baseline: Bachelor\u2019s degree in Computer Science, Information Technology, Engineering, or a related discipline, or equivalent practical experience (EDUCATION)\n      Evidence: \"No degree listed on resume.\"\n      Gap:      Candidate degree does not directly match specification; awarded baseline partial credit per non-fatal policy.\n      Score Contribution: 75.0 pts\n  ------------------------------------------------------------------------------\n  15. [UNVERIFIED / GAP] Location requirement: To be confirmed (hybrid) (LOCATION)\n      Evidence: \"Candidate location: Not specified\"\n      Gap:      Location mismatch (Unknown vs To be confirmed); awarded baseline partial credit.\n      Score Contribution: 70.0 pts\n  ------------------------------------------------------------------------------\n\n+==================================================================================+\n| [SECTION 7] FINAL DECISION                                                       |\n+==================================================================================+\n  Final Decision:          [AUTO_ADVANCE]\n  Decision Justification:  Exceptional candidate fit: score 93.69 satisfies high threshold (75.0) with 9/9 must-haves (100%) (6 verified, tech score: 91.1) and zero integrity anomalies. Verified mastery: HTML5, CSS3, JavaScript.\n+==================================================================================+\n",
+    "recruiterNotes": "",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 11:25 PM",
+        "status": "completed",
+        "note": "Application received with resume (Akshada_Kale(Resume).pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 11:25 PM",
+        "status": "completed",
+        "note": "Deterministic Gates 0-8 executed: Score 93.7/100. AI Recommendation: SHORTLISTED."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Completed",
+        "status": "completed",
+        "note": "Candidate fast-tracked to shortlist by policy."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Congratulations! You have been shortlisted for technical interview."
+      }
+    ]
+  },
+  {
     "id": "APP-cust-252F46F7",
     "jobId": "custom_1b02b4a3",
     "job_id": "custom_1b02b4a3",
@@ -18,10 +333,10 @@
     "aiRecommendation": "REJECTED",
     "ai_recommendation": "REJECTED",
     "decision": "REJECTED",
-    "finalStatus": "Rejected",
-    "final_status": "Rejected",
-    "status": "Rejected",
-    "statusLabel": "Rejected",
+    "finalStatus": "Under Review",
+    "final_status": "Under Review",
+    "status": "Under Review",
+    "statusLabel": "Under Review",
     "fitScore": 22.2,
     "fit_score": 22.2,
     "decisionReason": "Deterministic Gates 0-8 executed: Score 22.2/100. Below threshold for role criteria.",
@@ -234,9 +549,9 @@
       },
       {
         "title": "Final Decision",
-        "timestamp": "Oct 17, 2026",
+        "timestamp": "Oct 17, 2026, 10:53 PM",
         "status": "completed",
-        "note": "Application closed. Role technical requirements not met."
+        "note": "Recruiter Rohan (HR) set status to Under Review: good profile"
       }
     ]
   },

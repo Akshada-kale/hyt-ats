@@ -663,7 +663,7 @@ const AdminView = {
           </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); gap: 20px;">
+        <div class="responsive-split-grid">
           <!-- Left: Live Embedded PDF Viewer -->
           <div class="card" style="padding: 16px; display: flex; flex-direction: column; height: 680px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
