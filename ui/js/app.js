@@ -8,12 +8,22 @@ const App = {
   currentParams: {},
 
   async init() {
-    // Sync state with backend on startup
-    await AppData.syncWithBackend();
-
-    // Check initial route from hash or default to landing
+    // 1. Immediately render initial route so the UI appears instantly (zero blank screen)
     const hash = window.location.hash.replace("#/", "") || "landing";
-    App.navigate(hash);
+    try {
+      App.navigate(hash);
+    } catch (e) {
+      console.error("Initial navigation error:", e);
+    }
+
+    // 2. Synchronize state with backend asynchronously in the background
+    try {
+      await AppData.syncWithBackend();
+      // Re-render current view with fresh synced backend data
+      App.navigate(App.currentRoute, App.currentParams);
+    } catch (e) {
+      console.warn("Background sync warning (using cached state):", e);
+    }
   },
 
   navigate(route, params = {}) {
@@ -263,10 +273,18 @@ const App = {
     else if (route === "admin-users") AdminView.renderUsers(cont);
   },
 
-  switchRole(newRole) {
+  async switchRole(newRole) {
     AppData.setRole(newRole);
     App.showToast(`Switched active workspace to ${newRole.toUpperCase()}`, "info");
     App.navigate("dashboard");
+    try {
+      await AppData.syncWithBackend();
+      if (App.currentRoute === "dashboard") {
+        App.renderRouteContent();
+      }
+    } catch (e) {
+      console.warn("Sync on role switch:", e);
+    }
   },
 
   toggleMobileSidebar() {
@@ -329,8 +347,8 @@ const App = {
     }
   },
 
-  openPdfModal(filename = "riya_sharma.pdf", title = "Document Preview") {
-    const cleanName = filename ? filename.split("/").pop().split("\\").pop() : "riya_sharma.pdf";
+  openPdfModal(filename = "10089434.pdf", title = "Document Preview") {
+    const cleanName = filename ? filename.split("/").pop().split("\\").pop() : "10089434.pdf";
     const pdfUrl = `/api/pdf/view?file=${encodeURIComponent(cleanName)}`;
     const downloadUrl = `/api/pdf/download?file=${encodeURIComponent(cleanName)}&download=1`;
 

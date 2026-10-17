@@ -1,302 +1,1202 @@
 {
-  "10624813": {
+  "30304575": {
     "citation_quality": 3,
-    "gap_specificity": 2,
-    "actionability": 3,
-    "composite_score": 2.67
-  },
-  "27152464": {
-    "citation_quality": 2,
     "gap_specificity": 3,
     "actionability": 2,
-    "composite_score": 2.33
+    "composite_score": 2.67
   },
-  "16186411": {
+  "26065877": {
     "citation_quality": 3,
-    "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 3.0
-  },
-  "26746496": {
-    "citation_quality": 2,
-    "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 2.67
-  },
-  "33381211": {
-    "citation_quality": 2,
-    "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 2.67
-  },
-  "12472574": {
-    "citation_quality": 2,
     "gap_specificity": 3,
     "actionability": 2,
-    "composite_score": 2.33
-  },
-  "51588273": {
-    "citation_quality": 3,
-    "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 3.0
-  },
-  "13385306": {
-    "citation_quality": 2,
-    "gap_specificity": 3,
-    "actionability": 2,
-    "composite_score": 2.33
-  },
-  "13405733": {
-    "citation_quality": 3,
-    "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 3.0
-  },
-  "20674668": {
-    "citation_quality": 3,
-    "gap_specificity": 2,
-    "actionability": 3,
     "composite_score": 2.67
   },
-  "20879311": {
+  "29050809": {
     "citation_quality": 3,
     "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 3.0
-  },
-  "28126340": {
-    "citation_quality": 3,
-    "gap_specificity": 2,
-    "actionability": 3,
+    "actionability": 2,
     "composite_score": 2.67
   },
-  "31111279": {
-    "citation_quality": 2,
+  "37997506": {
+    "citation_quality": 3,
     "gap_specificity": 3,
     "actionability": 2,
-    "composite_score": 2.33
-  },
-  "37242217": {
-    "citation_quality": 3,
-    "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 3.0
-  },
-  "70089206": {
-    "citation_quality": 3,
-    "gap_specificity": 2,
-    "actionability": 3,
     "composite_score": 2.67
   },
-  "11981094": {
-    "citation_quality": 2,
+  "23636277": {
+    "citation_quality": 3,
     "gap_specificity": 3,
     "actionability": 2,
-    "composite_score": 2.33
-  },
-  "28078163": {
-    "citation_quality": 3,
-    "gap_specificity": 2,
-    "actionability": 3,
     "composite_score": 2.67
   },
-  "28505854": {
-    "citation_quality": 3,
-    "gap_specificity": 2,
-    "actionability": 3,
-    "composite_score": 2.67
-  },
-  "28630325": {
-    "citation_quality": 3,
-    "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 3.0
-  },
-  "28762662": {
-    "citation_quality": 3,
-    "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 3.0
-  },
-  "31677347": {
-    "citation_quality": 3,
-    "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 3.0
-  },
-  "37335325": {
-    "citation_quality": 3,
-    "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 3.0
-  },
-  "12334140": {
-    "citation_quality": 2,
-    "gap_specificity": 3,
-    "actionability": 2,
-    "composite_score": 2.33
-  },
-  "13477922": {
-    "citation_quality": 3,
-    "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 3.0
-  },
-  "17681064": {
-    "citation_quality": 2,
-    "gap_specificity": 3,
-    "actionability": 2,
-    "composite_score": 2.33
-  },
-  "20237244": {
-    "citation_quality": 2,
-    "gap_specificity": 3,
-    "actionability": 2,
-    "composite_score": 2.33
-  },
-  "20408458": {
-    "citation_quality": 3,
-    "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 3.0
-  },
-  "21780877": {
-    "citation_quality": 2,
-    "gap_specificity": 3,
-    "actionability": 2,
-    "composite_score": 2.33
-  },
-  "24020470": {
-    "citation_quality": 3,
-    "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 3.0
-  },
-  "24038620": {
-    "citation_quality": 3,
-    "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 3.0
-  },
-  "10247517": {
+  "59403481": {
     "citation_quality": 2,
     "gap_specificity": 3,
     "actionability": 3,
     "composite_score": 2.67
   },
-  "32959732": {
-    "citation_quality": 2,
-    "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 2.67
-  },
-  "12011623": {
-    "citation_quality": 2,
-    "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 2.67
-  },
-  "86209934": {
-    "citation_quality": 2,
-    "gap_specificity": 3,
-    "actionability": 2,
-    "composite_score": 2.33
-  },
-  "10265057": {
+  "53640713": {
     "citation_quality": 3,
     "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "18132924": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "49204385": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "14126433": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "11877150": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
     "actionability": 3,
-    "composite_score": 3.0
+    "composite_score": 2.67
+  },
+  "86549455": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "26530575": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "23955183": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "24854026": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "15180322": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "24221960": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "24673903": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "19007667": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "30311202": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "21611637": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "34252537": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "34452806": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "23032276": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "23185829": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "21622444": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "21334981": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "11121498": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "23568731": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "27831220": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "17576030": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "24444525": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "10268614": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "29792535": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "15932017": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "15906625": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "30361788": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "21031285": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "25749150": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "12338274": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "14445309": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "34327438": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "18090899": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "35474904": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "37348041": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "89508407": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "25873425": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "31040875": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "11188218": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "73448369": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "27096471": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "43311839": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "15119529": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "88907739": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "31395742": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "32518109": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "26718039": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "14663897": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "21904897": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "23591247": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "10062724": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "49325370": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "33750209": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "23617240": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "34962725": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "25328428": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "56520872": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "64471954": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "13352113": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "20110597": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "23063986": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "10816645": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "11522068": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "10568350": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "18767449": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "33527446": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "12442909": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "37370455": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "10554236": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "31602598": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "15041689": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "18316239": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "30862904": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "34740556": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "17812897": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "32896934": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "24184357": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "73077810": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "12786012": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "34554248": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "65708020": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "36805025": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "13080868": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "20748929": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "26581830": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "14206561": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "15139979": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "44624796": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "54227873": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "28005884": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "26425074": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "13178604": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "15765660": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "36074301": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "12351749": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "10464113": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "26530696": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "38087844": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "33578873": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "17781039": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "38688388": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "25397102": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "12059198": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "10228751": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "61677751": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "23138078": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "51777546": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "69199666": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "93988900": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "41910253": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "90280583": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "28923650": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "17108676": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "96029688": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "10985403": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "24647794": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "21629057": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "13149176": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "28320387": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "47549345": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "11797122": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "16332293": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "28790806": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "91515108": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "32109048": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "19545827": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "14470533": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "43685045": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "18365791": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "14224370": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
   },
   "83816738": {
     "citation_quality": 3,
     "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 3.0
+    "actionability": 2,
+    "composite_score": 2.67
   },
-  "20824105": {
+  "13405733": {
     "citation_quality": 3,
     "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 3.0
+    "actionability": 2,
+    "composite_score": 2.67
   },
-  "29051656": {
+  "20674668": {
     "citation_quality": 3,
     "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 3.0
+    "actionability": 2,
+    "composite_score": 2.67
   },
-  "12635195": {
+  "33381211": {
     "citation_quality": 3,
-    "gap_specificity": 2,
-    "actionability": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "16186411": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "26746496": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
     "composite_score": 2.67
   },
   "12763627": {
-    "citation_quality": 2,
-    "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 2.67
-  },
-  "30223363": {
     "citation_quality": 3,
-    "gap_specificity": 2,
-    "actionability": 3,
-    "composite_score": 2.67
-  },
-  "50328713": {
-    "citation_quality": 2,
     "gap_specificity": 3,
-    "actionability": 3,
+    "actionability": 2,
     "composite_score": 2.67
   },
-  "10839851": {
-    "citation_quality": 2,
-    "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 2.67
-  },
-  "27485716": {
-    "citation_quality": 2,
-    "gap_specificity": 3,
-    "actionability": 3,
-    "composite_score": 2.67
-  },
-  "10553553": {
+  "18067556": {
     "citation_quality": 3,
-    "gap_specificity": 2,
-    "actionability": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
     "composite_score": 2.67
   },
-  "10641230": {
+  "41344156": {
     "citation_quality": 2,
     "gap_specificity": 3,
     "actionability": 3,
     "composite_score": 2.67
   },
-  "17111768": {
+  "12635195": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "13837784": {
     "citation_quality": 2,
     "gap_specificity": 3,
     "actionability": 3,
     "composite_score": 2.67
   },
-  "18176523": {
-    "citation_quality": 2,
-    "gap_specificity": 2,
-    "actionability": 3,
-    "composite_score": 2.33
-  },
-  "15651486": {
+  "16509761": {
     "citation_quality": 2,
     "gap_specificity": 3,
     "actionability": 3,
     "composite_score": 2.67
   },
-  "18159866": {
+  "29915354": {
     "citation_quality": 2,
     "gap_specificity": 3,
     "actionability": 3,
     "composite_score": 2.67
+  },
+  "82929064": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "10515955": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "16594812": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "19831366": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "16804396": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "92122785": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "13411858": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "19284293": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "69458502": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "10176815": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "87826037": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "18268860": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "19506295": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "27502951": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "24668861": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "42427521": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "11752500": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "82246962": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "12022566": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "20981299": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "25919149": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "86828820": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "25924968": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "81373857": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "92985983": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "13095891": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "12717345": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "26496059": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "91153752": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "18198627": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "13014900": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "29147100": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "25061645": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "25422388": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "26676567": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "26046064": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "21916744": {
+    "citation_quality": 3,
+    "gap_specificity": 3,
+    "actionability": 2,
+    "composite_score": 2.67
+  },
+  "31273413": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "12386670": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "93576192": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "15306049": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "31114531": {
+    "citation_quality": 2,
+    "gap_specificity": 3,
+    "actionability": 3,
+    "composite_score": 2.67
+  },
+  "21794875": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "23734441": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "39115899": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "23139819": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
+  },
+  "42487883": {
+    "citation_quality": 1,
+    "gap_specificity": 3,
+    "actionability": 1,
+    "composite_score": 1.67
   }
 }

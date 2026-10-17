@@ -1,32 +1,252 @@
 [
   {
-    "id": "APP-cust-4233",
-    "jobId": "custom_224188",
-    "jobTitle": "Chef / Cook",
+    "id": "APP-cust-5C6FE575",
+    "jobId": "custom_b2c12969",
+    "job_id": "custom_b2c12969",
+    "jobTitle": "Personal Assistant (PA) to the Director(d)",
     "company": "TechCorp",
-    "status": "Not Shortlisted",
+    "candidateId": "akshada_satish_kale",
+    "candidate_id": "akshada_satish_kale",
+    "candidateName": "Akshada Satish Kale",
+    "candidateDegree": "B.Tech in Computer Engineering",
+    "candidateEmail": "akshadask8483@gmail.com",
+    "candidatePhone": "+91 90223 54583",
+    "candidateLocation": "Pune, India",
+    "resumeFile": "Akshada_Kale(Resume).pdf",
+    "resume_file": "Akshada_Kale(Resume).pdf",
     "appliedDate": "Oct 17, 2026",
+    "aiRecommendation": "REJECTED",
+    "ai_recommendation": "REJECTED",
+    "decision": "REJECTED",
+    "finalStatus": "Rejected",
+    "final_status": "Rejected",
+    "status": "Rejected",
+    "statusLabel": "Rejected",
     "fitScore": 22.2,
-    "decision": "AUTO_REJECT",
-    "resumeFile": "akshu.pdf",
+    "fit_score": 22.2,
+    "decisionReason": "Deterministic Gates 0-8 executed: Score 22.2/100. Below threshold for role criteria.",
+    "decision_reason": "Deterministic Gates 0-8 executed: Score 22.2/100. Below threshold for role criteria.",
+    "matchedSkills": [
+      "Minimum 2.0 years of relevant professional experience",
+      "Target role seniority: JUNIOR"
+    ],
+    "missingSkills": [
+      "Missing required must-have skill 'Microsoft Office'. Closest resume skill was 'Git' (0.42 similarity vs 0.75 threshold).",
+      "Missing required must-have skill 'Google Workspace'. Closest resume skill was 'GitHub' (0.30 similarity vs 0.75 threshold).",
+      "Missing required must-have skill 'Calendar Management'. Closest resume skill was 'MongoDB' (0.18 similarity vs 0.75 threshold).",
+      "Missing required must-have skill 'Travel Planning'. Closest resume skill was 'Git' (0.18 similarity vs 0.75 threshold).",
+      "Missing required must-have skill 'Executive Support'. Closest resume skill was 'Git' (0.26 similarity vs 0.75 threshold).",
+      "Missing required must-have skill 'Communication Skills'. Closest resume skill was 'RESTful APIs' (0.22 similarity vs 0.75 threshold).",
+      "Missing required must-have skill 'Time Management'. Closest resume skill was 'Git' (0.27 similarity vs 0.75 threshold).",
+      "Experience deficit: candidate has 0.2 years vs 2.0 years required.",
+      "Candidate is 1 level below target seniority (entry vs junior).",
+      "Candidate degree does not directly match specification; awarded baseline partial credit per non-fatal policy.",
+      "Location mismatch (Unknown vs Office-Based); awarded baseline partial credit."
+    ],
+    "matchedRequirements": [
+      {
+        "req": "Minimum 2.0 years of relevant professional experience (EXPERIENCE)",
+        "evidence": "Candidate has 0.2 total years across 0 chronological positions.",
+        "conf": "3.1 pts",
+        "dimension": "EXPERIENCE",
+        "score": 3.1
+      },
+      {
+        "req": "Target role seniority: JUNIOR (SENIORITY)",
+        "evidence": "Candidate evaluated at ENTRY level based on titles and career progression.",
+        "conf": "70.0 pts",
+        "dimension": "SENIORITY",
+        "score": 70.0
+      }
+    ],
+    "missingRequirements": [
+      {
+        "req": "Must-Have: Microsoft Office (TECHNICAL)",
+        "evidence": "Missing required must-have skill 'Microsoft Office'. Closest resume skill was 'Git' (0.42 similarity vs 0.75 threshold).",
+        "conf": "0.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 0.0
+      },
+      {
+        "req": "Must-Have: Google Workspace (TECHNICAL)",
+        "evidence": "Missing required must-have skill 'Google Workspace'. Closest resume skill was 'GitHub' (0.30 similarity vs 0.75 threshold).",
+        "conf": "0.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 0.0
+      },
+      {
+        "req": "Must-Have: Calendar Management (TECHNICAL)",
+        "evidence": "Missing required must-have skill 'Calendar Management'. Closest resume skill was 'MongoDB' (0.18 similarity vs 0.75 threshold).",
+        "conf": "0.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 0.0
+      },
+      {
+        "req": "Must-Have: Travel Planning (TECHNICAL)",
+        "evidence": "Missing required must-have skill 'Travel Planning'. Closest resume skill was 'Git' (0.18 similarity vs 0.75 threshold).",
+        "conf": "0.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 0.0
+      },
+      {
+        "req": "Must-Have: Executive Support (TECHNICAL)",
+        "evidence": "Missing required must-have skill 'Executive Support'. Closest resume skill was 'Git' (0.26 similarity vs 0.75 threshold).",
+        "conf": "0.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 0.0
+      },
+      {
+        "req": "Must-Have: Communication Skills (TECHNICAL)",
+        "evidence": "Missing required must-have skill 'Communication Skills'. Closest resume skill was 'RESTful APIs' (0.22 similarity vs 0.75 threshold).",
+        "conf": "0.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 0.0
+      },
+      {
+        "req": "Must-Have: Time Management (TECHNICAL)",
+        "evidence": "Missing required must-have skill 'Time Management'. Closest resume skill was 'Git' (0.27 similarity vs 0.75 threshold).",
+        "conf": "0.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 0.0
+      },
+      {
+        "req": "Education baseline: Bachelor\u2019s degree in Business Administration, Management, Commerce, Arts, or a related field (EDUCATION)",
+        "evidence": "Candidate degree does not directly match specification; awarded baseline partial credit per non-fatal policy.",
+        "conf": "75.0 pts",
+        "dimension": "EDUCATION",
+        "score": 75.0
+      },
+      {
+        "req": "Location requirement: Office-Based (onsite) (LOCATION)",
+        "evidence": "Location mismatch (Unknown vs Office-Based); awarded baseline partial credit.",
+        "conf": "70.0 pts",
+        "dimension": "LOCATION",
+        "score": 70.0
+      }
+    ],
+    "evidenceLedger": [
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: Microsoft Office",
+        "evidence": "No direct textual grounding found in resume.",
+        "is_verified": false,
+        "score_contribution": 0.0,
+        "gap": "Missing required must-have skill 'Microsoft Office'. Closest resume skill was 'Git' (0.42 similarity vs 0.75 threshold)."
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: Google Workspace",
+        "evidence": "No direct textual grounding found in resume.",
+        "is_verified": false,
+        "score_contribution": 0.0,
+        "gap": "Missing required must-have skill 'Google Workspace'. Closest resume skill was 'GitHub' (0.30 similarity vs 0.75 threshold)."
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: Calendar Management",
+        "evidence": "No direct textual grounding found in resume.",
+        "is_verified": false,
+        "score_contribution": 0.0,
+        "gap": "Missing required must-have skill 'Calendar Management'. Closest resume skill was 'MongoDB' (0.18 similarity vs 0.75 threshold)."
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: Travel Planning",
+        "evidence": "No direct textual grounding found in resume.",
+        "is_verified": false,
+        "score_contribution": 0.0,
+        "gap": "Missing required must-have skill 'Travel Planning'. Closest resume skill was 'Git' (0.18 similarity vs 0.75 threshold)."
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: Executive Support",
+        "evidence": "No direct textual grounding found in resume.",
+        "is_verified": false,
+        "score_contribution": 0.0,
+        "gap": "Missing required must-have skill 'Executive Support'. Closest resume skill was 'Git' (0.26 similarity vs 0.75 threshold)."
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: Communication Skills",
+        "evidence": "No direct textual grounding found in resume.",
+        "is_verified": false,
+        "score_contribution": 0.0,
+        "gap": "Missing required must-have skill 'Communication Skills'. Closest resume skill was 'RESTful APIs' (0.22 similarity vs 0.75 threshold)."
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: Time Management",
+        "evidence": "No direct textual grounding found in resume.",
+        "is_verified": false,
+        "score_contribution": 0.0,
+        "gap": "Missing required must-have skill 'Time Management'. Closest resume skill was 'Git' (0.27 similarity vs 0.75 threshold)."
+      },
+      {
+        "dimension": "experience",
+        "requirement": "Minimum 2.0 years of relevant professional experience",
+        "evidence": "Candidate has 0.2 total years across 0 chronological positions.",
+        "is_verified": true,
+        "score_contribution": 3.1,
+        "gap": "Experience deficit: candidate has 0.2 years vs 2.0 years required."
+      },
+      {
+        "dimension": "seniority",
+        "requirement": "Target role seniority: JUNIOR",
+        "evidence": "Candidate evaluated at ENTRY level based on titles and career progression.",
+        "is_verified": true,
+        "score_contribution": 70.0,
+        "gap": "Candidate is 1 level below target seniority (entry vs junior)."
+      },
+      {
+        "dimension": "education",
+        "requirement": "Education baseline: Bachelor\u2019s degree in Business Administration, Management, Commerce, Arts, or a related field",
+        "evidence": "No degree listed on resume.",
+        "is_verified": false,
+        "score_contribution": 75.0,
+        "gap": "Candidate degree does not directly match specification; awarded baseline partial credit per non-fatal policy."
+      },
+      {
+        "dimension": "location",
+        "requirement": "Location requirement: Office-Based (onsite)",
+        "evidence": "Candidate location: Not specified",
+        "is_verified": false,
+        "score_contribution": 70.0,
+        "gap": "Location mismatch (Unknown vs Office-Based); awarded baseline partial credit."
+      }
+    ],
+    "breakdown": {
+      "technical": 0.0,
+      "experience": 3.1,
+      "seniority": 70.0,
+      "education": 75.0,
+      "location": 70.0,
+      "weightedTotal": 22.2,
+      "weighted_total": 22.2
+    },
+    "integrityFlags": [],
+    "verificationFlags": [],
+    "quarantineStatus": "CLEAN",
+    "overqualification": "BALANCED",
+    "screeningReport": "+==================================================================================+\n| HYT ATS CANDIDATE EVALUATION AUDIT REPORT -- AKSHADA_KALE(RESUME)                |\n+==================================================================================+\n\n+----------------------------------------------------------------------------------+\n| [SECTION 1] CANDIDATE AND JOB DETAILS                                            |\n+----------------------------------------------------------------------------------+\n  Target Role:             Personal Assistant (PA) to the Director (Job ID: custom_b2c12969)\n  Screening Timestamp:     2026-10-17T21:43:20.381571\n  Final Decision:          [AUTO_REJECT]\n  Decision Justification:  Candidate did not meet baseline technical requirements: 0.0% technical alignment across all 7 core job competencies. Non-compensatory disqualifier applied.\n\n+----------------------------------------------------------------------------------+\n| [SECTION 2] PIPELINE GATES 0-8: INTEGRITY CHECKS & VERIFICATION                  |\n+----------------------------------------------------------------------------------+\n  Integrity Flags:         NONE (Passed all security checks)\n  Verification Flags:      NONE (Verified profile)\n  Quarantine Status:       CLEAN\n  Overqualification:       BALANCED\n\n+----------------------------------------------------------------------------------+\n| [SECTION 3] RECRUITER ASSESSMENT                                                 |\n+----------------------------------------------------------------------------------+\nGROUNDED RECRUITER ASSESSMENT (Gate 8 Audit):\n  [NOTICE] No explanation generated per Rule 8 (Zero token waste on auto-rejected candidates).\n\n+----------------------------------------------------------------------------------+\n| [SECTION 4] RESUME AND JOB REQUIREMENT EVIDENCE: TOP STRENGTHS & CRITICAL GAPS   |\n+----------------------------------------------------------------------------------+\nTOP STRENGTHS (Cited from Ledger):\n  * Minimum 2.0 years of relevant professional experience\n  * Target role seniority: JUNIOR\n\nCRITICAL GAPS (Identified Gaps):\n  * Missing required must-have skill 'Microsoft Office'. Closest resume skill was 'Git' (0.42 similarity vs 0.75 threshold).\n  * Missing required must-have skill 'Google Workspace'. Closest resume skill was 'GitHub' (0.30 similarity vs 0.75 threshold).\n  * Missing required must-have skill 'Calendar Management'. Closest resume skill was 'MongoDB' (0.18 similarity vs 0.75 threshold).\n  * Missing required must-have skill 'Travel Planning'. Closest resume skill was 'Git' (0.18 similarity vs 0.75 threshold).\n  * Missing required must-have skill 'Executive Support'. Closest resume skill was 'Git' (0.26 similarity vs 0.75 threshold).\n\n+----------------------------------------------------------------------------------+\n| [SECTION 5] SCORE BREAKDOWN AND WEIGHTED CONTRIBUTIONS                           |\n+----------------------------------------------------------------------------------+\n5-DIMENSIONAL DETERMINISTIC SCORECARD (0-100 Scale):\n  1. Technical Alignment (40%):    0.00 / 100  (weighted contrib:  0.00)\n  2. Experience Depth    (30%):    3.12 / 100  (weighted contrib:  0.94)\n  3. Seniority Fit       (20%):   70.00 / 100  (weighted contrib: 14.00)\n  4. Education Baseline  ( 5%):   75.00 / 100  (weighted contrib:  3.75)\n  5. Location & Remote   ( 5%):   70.00 / 100  (weighted contrib:  3.50)\n  -------------------------------------------------------------------------\n  FINAL WEIGHTED SCORE:                   22.19 / 100\n\n+----------------------------------------------------------------------------------+\n| [SECTION 6] EVIDENCE LEDGER -- ALL 11 ENTRIES IN FULL                            |\n+----------------------------------------------------------------------------------+\nMANDATORY EVIDENCE LEDGER (11 Immutable Citation Entries):\n\n  ------------------------------------------------------------------------------\n   1. [UNVERIFIED / GAP] Must-Have: Microsoft Office (TECHNICAL)\n      Gap:      Missing required must-have skill 'Microsoft Office'. Closest resume skill was 'Git' (0.42 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   2. [UNVERIFIED / GAP] Must-Have: Google Workspace (TECHNICAL)\n      Gap:      Missing required must-have skill 'Google Workspace'. Closest resume skill was 'GitHub' (0.30 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   3. [UNVERIFIED / GAP] Must-Have: Calendar Management (TECHNICAL)\n      Gap:      Missing required must-have skill 'Calendar Management'. Closest resume skill was 'MongoDB' (0.18 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   4. [UNVERIFIED / GAP] Must-Have: Travel Planning (TECHNICAL)\n      Gap:      Missing required must-have skill 'Travel Planning'. Closest resume skill was 'Git' (0.18 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   5. [UNVERIFIED / GAP] Must-Have: Executive Support (TECHNICAL)\n      Gap:      Missing required must-have skill 'Executive Support'. Closest resume skill was 'Git' (0.26 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   6. [UNVERIFIED / GAP] Must-Have: Communication Skills (TECHNICAL)\n      Gap:      Missing required must-have skill 'Communication Skills'. Closest resume skill was 'RESTful APIs' (0.22 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   7. [UNVERIFIED / GAP] Must-Have: Time Management (TECHNICAL)\n      Gap:      Missing required must-have skill 'Time Management'. Closest resume skill was 'Git' (0.27 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   8. [VERIFIED] Minimum 2.0 years of relevant professional experience (EXPERIENCE)\n      Evidence: \"Candidate has 0.2 total years across 0 chronological positions.\"\n      Gap:      Experience deficit: candidate has 0.2 years vs 2.0 years required.\n      Score Contribution: 3.1 pts\n  ------------------------------------------------------------------------------\n   9. [VERIFIED] Target role seniority: JUNIOR (SENIORITY)\n      Evidence: \"Candidate evaluated at ENTRY level based on titles and career progression.\"\n      Gap:      Candidate is 1 level below target seniority (entry vs junior).\n      Score Contribution: 70.0 pts\n  ------------------------------------------------------------------------------\n  10. [UNVERIFIED / GAP] Education baseline: Bachelor\u2019s degree in Business Administration, Management, Commerce, Arts, or a related field (EDUCATION)\n      Evidence: \"No degree listed on resume.\"\n      Gap:      Candidate degree does not directly match specification; awarded baseline partial credit per non-fatal policy.\n      Score Contribution: 75.0 pts\n  ------------------------------------------------------------------------------\n  11. [UNVERIFIED / GAP] Location requirement: Office-Based (onsite) (LOCATION)\n      Evidence: \"Candidate location: Not specified\"\n      Gap:      Location mismatch (Unknown vs Office-Based); awarded baseline partial credit.\n      Score Contribution: 70.0 pts\n  ------------------------------------------------------------------------------\n\n+==================================================================================+\n| [SECTION 7] FINAL DECISION                                                       |\n+==================================================================================+\n  Final Decision:          [AUTO_REJECT]\n  Decision Justification:  Candidate did not meet baseline technical requirements: 0.0% technical alignment across all 7 core job competencies. Non-compensatory disqualifier applied.\n+==================================================================================+\n",
+    "recruiterNotes": "",
     "timeline": [
       {
         "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026, 01:33 PM",
+        "timestamp": "Oct 17, 2026, 09:43 PM",
         "status": "completed",
-        "note": "Application received with resume (akshu.pdf)."
+        "note": "Application received with resume (Akshada_Kale(Resume).pdf)."
       },
       {
         "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026, 01:33 PM",
+        "timestamp": "Oct 17, 2026, 09:43 PM",
         "status": "completed",
-        "note": "Deterministic Gates 0-8 executed: Score 22.2/100. Below threshold for role criteria."
+        "note": "Deterministic Gates 0-8 executed: Score 22.2/100. AI Recommendation: REJECTED."
       },
       {
         "title": "Under Human Review",
         "timestamp": "Completed",
         "status": "completed",
-        "note": "Candidate fast-tracked to shortlist by policy"
+        "note": "Candidate fast-tracked to shortlist by policy."
       },
       {
         "title": "Final Decision",
@@ -37,101 +257,196 @@
     ]
   },
   {
-    "id": "APP-cust-3298",
-    "jobId": "custom_222939",
-    "jobTitle": "Chef / Cook",
-    "company": "TechCorp",
-    "status": "Not Shortlisted",
+    "id": "APP-cust-43E22026",
+    "jobId": "custom_89139039",
+    "job_id": "custom_89139039",
+    "jobTitle": "Cloud DevOps Engineer",
+    "company": "HuntYourTribe Tech",
+    "candidateId": "kavya_reddy",
+    "candidate_id": "kavya_reddy",
+    "candidateName": "Kavya Reddy",
+    "candidateDegree": "B.Tech (2022 - 2026)",
+    "candidateEmail": "kavya.reddy@example.com",
+    "candidatePhone": "+91 98765 43210",
+    "candidateLocation": "Pune, India",
+    "resumeFile": "10089434.pdf",
+    "resume_file": "10089434.pdf",
     "appliedDate": "Oct 17, 2026",
-    "fitScore": 22.2,
-    "decision": "AUTO_REJECT",
-    "resumeFile": "akshu.pdf",
-    "timeline": [
+    "aiRecommendation": "HR_REVIEW",
+    "ai_recommendation": "HR_REVIEW",
+    "decision": "HR_REVIEW",
+    "finalStatus": "Shortlisted",
+    "final_status": "Shortlisted",
+    "status": "Shortlisted",
+    "statusLabel": "Shortlisted",
+    "fitScore": 64.0,
+    "fit_score": 64.0,
+    "decisionReason": "Deterministic Gates 0-8 executed: Score 64.0/100 (Ambiguous fit. Human judgment required.). Flagged for recruiter review.",
+    "decision_reason": "Deterministic Gates 0-8 executed: Score 64.0/100 (Ambiguous fit. Human judgment required.). Flagged for recruiter review.",
+    "matchedSkills": [
+      "AWS",
+      "Minimum 5.0 years of relevant professional experience",
+      "Target role seniority: SENIOR"
+    ],
+    "missingSkills": [
+      "Missing required must-have skill 'Docker'. Closest resume skill was 'Linux' (0.27 similarity vs 0.75 threshold).",
+      "Missing required must-have skill 'Kubernetes'. Closest resume skill was 'Microsoft Azure' (0.24 similarity vs 0.75 threshold).",
+      "Missing required must-have skill 'CI/CD'. Closest resume skill was 'SCCM' (0.33 similarity vs 0.75 threshold).",
+      "Candidate is 1 level below target seniority (mid vs senior)."
+    ],
+    "matchedRequirements": [
       {
-        "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026, 01:18 PM",
-        "status": "completed",
-        "note": "Application received with resume (akshu.pdf)."
+        "req": "Must-Have: AWS (TECHNICAL)",
+        "evidence": "Creating and managing virtual machines for systems such as domain controllers and Active Directory Federation Services (ADFS) in Microsoft Windows Azure (IaaS).",
+        "conf": "100.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 100.0
       },
       {
-        "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026, 01:18 PM",
-        "status": "completed",
-        "note": "Deterministic Gates 0-8 executed: Score 22.2/100. Below threshold for role criteria."
+        "req": "Minimum 5.0 years of relevant professional experience (EXPERIENCE)",
+        "evidence": "Candidate has 18.0 total years across 0 chronological positions.",
+        "conf": "100.0 pts",
+        "dimension": "EXPERIENCE",
+        "score": 100.0
       },
       {
-        "title": "Under Human Review",
-        "timestamp": "Completed",
-        "status": "completed",
-        "note": "Candidate fast-tracked to shortlist by policy"
-      },
-      {
-        "title": "Final Decision",
-        "timestamp": "Oct 17, 2026",
-        "status": "completed",
-        "note": "Application closed. Role technical requirements not met."
+        "req": "Target role seniority: SENIOR (SENIORITY)",
+        "evidence": "Candidate evaluated at MID level based on titles and career progression.",
+        "conf": "70.0 pts",
+        "dimension": "SENIORITY",
+        "score": 70.0
       }
-    ]
-  },
-  {
-    "id": "APP-cust-3153",
-    "jobId": "custom_222939",
-    "jobTitle": "Chef / Cook",
-    "company": "TechCorp",
-    "status": "Not Shortlisted",
-    "appliedDate": "Oct 17, 2026",
-    "fitScore": 22.2,
-    "decision": "AUTO_REJECT",
-    "resumeFile": "akshu.pdf",
-    "timeline": [
+    ],
+    "missingRequirements": [
       {
-        "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026, 01:15 PM",
-        "status": "completed",
-        "note": "Application received with resume (akshu.pdf)."
+        "req": "Must-Have: Docker (TECHNICAL)",
+        "evidence": "Missing required must-have skill 'Docker'. Closest resume skill was 'Linux' (0.27 similarity vs 0.75 threshold).",
+        "conf": "0.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 0.0
       },
       {
-        "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026, 01:15 PM",
-        "status": "completed",
-        "note": "Deterministic Gates 0-8 executed: Score 22.2/100. Below threshold for role criteria."
+        "req": "Must-Have: Kubernetes (TECHNICAL)",
+        "evidence": "Missing required must-have skill 'Kubernetes'. Closest resume skill was 'Microsoft Azure' (0.24 similarity vs 0.75 threshold).",
+        "conf": "0.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 0.0
       },
       {
-        "title": "Under Human Review",
-        "timestamp": "Completed",
-        "status": "completed",
-        "note": "Candidate fast-tracked to shortlist by policy"
+        "req": "Must-Have: CI/CD (TECHNICAL)",
+        "evidence": "Missing required must-have skill 'CI/CD'. Closest resume skill was 'SCCM' (0.33 similarity vs 0.75 threshold).",
+        "conf": "0.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 0.0
       },
       {
-        "title": "Final Decision",
-        "timestamp": "Oct 17, 2026",
-        "status": "completed",
-        "note": "Application closed. Role technical requirements not met."
+        "req": "Education baseline: Not specified (EDUCATION)",
+        "evidence": "Missing required skill/qualification in resume.",
+        "conf": "100.0 pts",
+        "dimension": "EDUCATION",
+        "score": 100.0
+      },
+      {
+        "req": "Location requirement: Not specified (remote) (LOCATION)",
+        "evidence": "Missing required skill/qualification in resume.",
+        "conf": "100.0 pts",
+        "dimension": "LOCATION",
+        "score": 100.0
       }
-    ]
-  },
-  {
-    "id": "APP-3887-3101",
-    "jobId": "3887497535",
-    "jobTitle": "Associate Software Engineer / Software Engineer",
-    "company": "University of Illinois Urbana-Champaign",
-    "status": "Under Review",
-    "appliedDate": "Oct 17, 2026",
-    "fitScore": 62.7,
-    "decision": "ESCALATE",
-    "resumeFile": "akshu.pdf",
+    ],
+    "evidenceLedger": [
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: AWS",
+        "evidence": "Creating and managing virtual machines for systems such as domain controllers and Active Directory Federation Services (ADFS) in Microsoft Windows Azure (IaaS).",
+        "is_verified": true,
+        "score_contribution": 100.0,
+        "gap": "None"
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: Docker",
+        "evidence": "No direct textual grounding found in resume.",
+        "is_verified": false,
+        "score_contribution": 0.0,
+        "gap": "Missing required must-have skill 'Docker'. Closest resume skill was 'Linux' (0.27 similarity vs 0.75 threshold)."
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: Kubernetes",
+        "evidence": "No direct textual grounding found in resume.",
+        "is_verified": false,
+        "score_contribution": 0.0,
+        "gap": "Missing required must-have skill 'Kubernetes'. Closest resume skill was 'Microsoft Azure' (0.24 similarity vs 0.75 threshold)."
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: CI/CD",
+        "evidence": "No direct textual grounding found in resume.",
+        "is_verified": false,
+        "score_contribution": 0.0,
+        "gap": "Missing required must-have skill 'CI/CD'. Closest resume skill was 'SCCM' (0.33 similarity vs 0.75 threshold)."
+      },
+      {
+        "dimension": "experience",
+        "requirement": "Minimum 5.0 years of relevant professional experience",
+        "evidence": "Candidate has 18.0 total years across 0 chronological positions.",
+        "is_verified": true,
+        "score_contribution": 100.0,
+        "gap": "None"
+      },
+      {
+        "dimension": "seniority",
+        "requirement": "Target role seniority: SENIOR",
+        "evidence": "Candidate evaluated at MID level based on titles and career progression.",
+        "is_verified": true,
+        "score_contribution": 70.0,
+        "gap": "Candidate is 1 level below target seniority (mid vs senior)."
+      },
+      {
+        "dimension": "education",
+        "requirement": "Education baseline: Not specified",
+        "evidence": "No degree listed on resume.",
+        "is_verified": false,
+        "score_contribution": 100.0,
+        "gap": "None"
+      },
+      {
+        "dimension": "location",
+        "requirement": "Location requirement: Not specified (remote)",
+        "evidence": "Candidate location: Not specified",
+        "is_verified": false,
+        "score_contribution": 100.0,
+        "gap": "None"
+      }
+    ],
+    "breakdown": {
+      "technical": 25.0,
+      "experience": 100.0,
+      "seniority": 70.0,
+      "education": 100.0,
+      "location": 100.0,
+      "weightedTotal": 64.0,
+      "weighted_total": 64.0
+    },
+    "integrityFlags": [],
+    "verificationFlags": [],
+    "quarantineStatus": "CLEAN",
+    "overqualification": "BALANCED",
+    "screeningReport": "+==================================================================================+\n| HYT ATS CANDIDATE EVALUATION AUDIT REPORT -- 10089434                            |\n+==================================================================================+\n\n+----------------------------------------------------------------------------------+\n| [SECTION 1] CANDIDATE AND JOB DETAILS                                            |\n+----------------------------------------------------------------------------------+\n  Target Role:             Cloud DevOps Engineer (Job ID: custom_89139039)\n  Screening Timestamp:     2026-10-17T21:33:04.121588\n  Final Decision:          [ESCALATE]\n  Decision Justification:  Ambiguous fit. Human judgment required.\n\n+----------------------------------------------------------------------------------+\n| [SECTION 2] PIPELINE GATES 0-8: INTEGRITY CHECKS & VERIFICATION                  |\n+----------------------------------------------------------------------------------+\n  Integrity Flags:         NONE (Passed all security checks)\n  Verification Flags:      NONE (Verified profile)\n  Quarantine Status:       CLEAN\n  Overqualification:       BALANCED\n\n+----------------------------------------------------------------------------------+\n| [SECTION 3] RECRUITER ASSESSMENT                                                 |\n+----------------------------------------------------------------------------------+\nGROUNDED RECRUITER ASSESSMENT (Gate 8 Audit):\n  [1. STRENGTHS] The candidate demonstrates verified strengths in AWS and possesses 18.0 total years of professional experience, though they are currently evaluated at a MID level rather than the required SENIOR seniority.\n  [2. GAPS]      Critical gaps exist for the mandatory must-have skills of Docker, Kubernetes, and CI/CD, with the closest resume matches being Linux, Microsoft Azure, and SCCM respectively.\n  [3. INTERVIEW] The technical interview should focus on live coding or system design questions to assess the candidate's ability to implement containerization and CI/CD pipelines, specifically addressing the absence of Docker and Kubernetes experience.\n\n+----------------------------------------------------------------------------------+\n| [SECTION 4] RESUME AND JOB REQUIREMENT EVIDENCE: TOP STRENGTHS & CRITICAL GAPS   |\n+----------------------------------------------------------------------------------+\nTOP STRENGTHS (Cited from Ledger):\n  * AWS\n  * Minimum 5.0 years of relevant professional experience\n  * Target role seniority: SENIOR\n\nCRITICAL GAPS (Identified Gaps):\n  * Missing required must-have skill 'Docker'. Closest resume skill was 'Linux' (0.27 similarity vs 0.75 threshold).\n  * Missing required must-have skill 'Kubernetes'. Closest resume skill was 'Microsoft Azure' (0.24 similarity vs 0.75 threshold).\n  * Missing required must-have skill 'CI/CD'. Closest resume skill was 'SCCM' (0.33 similarity vs 0.75 threshold).\n  * Candidate is 1 level below target seniority (mid vs senior).\n\n+----------------------------------------------------------------------------------+\n| [SECTION 5] SCORE BREAKDOWN AND WEIGHTED CONTRIBUTIONS                           |\n+----------------------------------------------------------------------------------+\n5-DIMENSIONAL DETERMINISTIC SCORECARD (0-100 Scale):\n  1. Technical Alignment (40%):   25.00 / 100  (weighted contrib: 10.00)\n  2. Experience Depth    (30%):  100.00 / 100  (weighted contrib: 30.00)\n  3. Seniority Fit       (20%):   70.00 / 100  (weighted contrib: 14.00)\n  4. Education Baseline  ( 5%):  100.00 / 100  (weighted contrib:  5.00)\n  5. Location & Remote   ( 5%):  100.00 / 100  (weighted contrib:  5.00)\n  -------------------------------------------------------------------------\n  FINAL WEIGHTED SCORE:                   64.00 / 100\n\n+----------------------------------------------------------------------------------+\n| [SECTION 6] EVIDENCE LEDGER -- ALL 8 ENTRIES IN FULL                             |\n+----------------------------------------------------------------------------------+\nMANDATORY EVIDENCE LEDGER (8 Immutable Citation Entries):\n\n  ------------------------------------------------------------------------------\n   1. [VERIFIED] Must-Have: AWS (TECHNICAL)\n      Evidence: \"Creating and managing virtual machines for systems such as domain controllers and Active Directory Federation Services (ADFS) in Microsoft Windows Azure (IaaS).\"\n      Score Contribution: 100.0 pts\n  ------------------------------------------------------------------------------\n   2. [UNVERIFIED / GAP] Must-Have: Docker (TECHNICAL)\n      Gap:      Missing required must-have skill 'Docker'. Closest resume skill was 'Linux' (0.27 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   3. [UNVERIFIED / GAP] Must-Have: Kubernetes (TECHNICAL)\n      Gap:      Missing required must-have skill 'Kubernetes'. Closest resume skill was 'Microsoft Azure' (0.24 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   4. [UNVERIFIED / GAP] Must-Have: CI/CD (TECHNICAL)\n      Gap:      Missing required must-have skill 'CI/CD'. Closest resume skill was 'SCCM' (0.33 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   5. [VERIFIED] Minimum 5.0 years of relevant professional experience (EXPERIENCE)\n      Evidence: \"Candidate has 18.0 total years across 0 chronological positions.\"\n      Score Contribution: 100.0 pts\n  ------------------------------------------------------------------------------\n   6. [VERIFIED] Target role seniority: SENIOR (SENIORITY)\n      Evidence: \"Candidate evaluated at MID level based on titles and career progression.\"\n      Gap:      Candidate is 1 level below target seniority (mid vs senior).\n      Score Contribution: 70.0 pts\n  ------------------------------------------------------------------------------\n   7. [UNVERIFIED / GAP] Education baseline: Not specified (EDUCATION)\n      Evidence: \"No degree listed on resume.\"\n      Score Contribution: 100.0 pts\n  ------------------------------------------------------------------------------\n   8. [UNVERIFIED / GAP] Location requirement: Not specified (remote) (LOCATION)\n      Evidence: \"Candidate location: Not specified\"\n      Score Contribution: 100.0 pts\n  ------------------------------------------------------------------------------\n\n+==================================================================================+\n| [SECTION 7] FINAL DECISION                                                       |\n+==================================================================================+\n  Final Decision:          [ESCALATE]\n  Decision Justification:  Ambiguous fit. Human judgment required.\n+==================================================================================+\n",
+    "recruiterNotes": "Strong background in cloud infrastructure, container orchestration, and continuous deployment.",
     "timeline": [
       {
         "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026, 01:15 PM",
+        "timestamp": "Oct 17, 2026, 09:33 PM",
         "status": "completed",
-        "note": "Application received with updated resume (akshu.pdf)."
+        "note": "Application received with resume (10089434.pdf)."
       },
       {
         "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026, 01:15 PM",
+        "timestamp": "Oct 17, 2026, 09:33 PM",
         "status": "completed",
-        "note": "Deterministic Gates 0-8 executed: Score 62.7/100 (Ambiguous fit. Human judgment required.). Flagged for recruiter review."
+        "note": "Deterministic Gates 0-8 executed: Score 64.0/100. AI Recommendation: HR_REVIEW."
       },
       {
         "title": "Under Human Review",
@@ -141,441 +456,161 @@
       },
       {
         "title": "Final Decision",
-        "timestamp": "Pending",
-        "status": "pending",
-        "note": "Awaiting recruiter portfolio review and interview scheduling."
+        "timestamp": "Oct 17, 2026, 09:33 PM",
+        "status": "completed",
+        "note": "Recruiter Rohan (HR) set status to Shortlisted: Exceptional hands-on AWS and Linux expertise verified in portfolio interview."
       }
     ]
   },
   {
-    "id": "APP-3887-3072",
-    "jobId": "3887497535",
-    "jobTitle": "Associate Software Engineer / Software Engineer",
-    "company": "University of Illinois Urbana-Champaign",
-    "status": "Under Review",
-    "appliedDate": "Oct 17, 2026",
-    "fitScore": 62.7,
-    "decision": "ESCALATE",
-    "resumeFile": "akshu.pdf",
-    "timeline": [
-      {
-        "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026, 01:14 PM",
-        "status": "completed",
-        "note": "Application received with updated resume (akshu.pdf)."
-      },
-      {
-        "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026, 01:14 PM",
-        "status": "completed",
-        "note": "Deterministic Gates 0-8 executed: Score 62.7/100 (Ambiguous fit. Human judgment required.). Flagged for recruiter review."
-      },
-      {
-        "title": "Under Human Review",
-        "timestamp": "In Progress",
-        "status": "active",
-        "note": "Recruiter is evaluating transferable portfolio."
-      },
-      {
-        "title": "Final Decision",
-        "timestamp": "Pending",
-        "status": "pending",
-        "note": "Awaiting recruiter portfolio review and interview scheduling."
-      }
-    ]
-  },
-  {
-    "id": "APP-pa_d-2040",
-    "jobId": "pa_director",
-    "jobTitle": "Personal Assistant (PA) to the Director",
-    "company": "Executive Office",
-    "status": "Shortlisted",
-    "appliedDate": "Oct 17, 2026",
-    "fitScore": 97.4,
-    "decision": "AUTO_ADVANCE",
-    "resumeFile": "riya_sharma.pdf",
-    "timeline": [
-      {
-        "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026, 12:57 PM",
-        "status": "completed",
-        "note": "Application received with updated resume (riya_sharma.pdf)."
-      },
-      {
-        "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026, 12:57 PM",
-        "status": "completed",
-        "note": "Deterministic Gates 0-8 PASSED: Score 97.4/100. Auto-Advance rule triggered (Score >= 75.0)."
-      },
-      {
-        "title": "Under Human Review",
-        "timestamp": "Completed",
-        "status": "completed",
-        "note": "Candidate auto-advanced to shortlist by AI screening policy."
-      },
-      {
-        "title": "Final Decision",
-        "timestamp": "Oct 17, 2026",
-        "status": "completed",
-        "note": "Congratulations! You have been shortlisted for technical interview."
-      }
-    ]
-  },
-  {
-    "id": "APP-pa_d-1974",
-    "jobId": "pa_director",
-    "jobTitle": "Personal Assistant (PA) to the Director",
-    "company": "Executive Office",
-    "status": "Shortlisted",
-    "appliedDate": "Oct 17, 2026",
-    "fitScore": 97.4,
-    "decision": "AUTO_ADVANCE",
-    "resumeFile": "riya_sharma.pdf",
-    "timeline": [
-      {
-        "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026, 12:56 PM",
-        "status": "completed",
-        "note": "Application received with updated resume (riya_sharma.pdf)."
-      },
-      {
-        "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026, 12:56 PM",
-        "status": "completed",
-        "note": "Deterministic Gates 0-8 PASSED: Score 97.4/100. Auto-Advance rule triggered (Score >= 75.0)."
-      },
-      {
-        "title": "Under Human Review",
-        "timestamp": "Completed",
-        "status": "completed",
-        "note": "Candidate auto-advanced to shortlist by AI screening policy."
-      },
-      {
-        "title": "Final Decision",
-        "timestamp": "Oct 17, 2026",
-        "status": "completed",
-        "note": "Congratulations! You have been shortlisted for technical interview."
-      }
-    ]
-  },
-  {
-    "id": "APP-pa_d-1256",
-    "jobId": "pa_director",
-    "jobTitle": "Personal Assistant (PA) to the Director",
-    "company": "Executive Office",
-    "status": "Shortlisted",
-    "appliedDate": "Oct 17, 2026",
-    "fitScore": 97.4,
-    "decision": "AUTO_ADVANCE",
-    "resumeFile": "riya_sharma.pdf",
-    "timeline": [
-      {
-        "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026, 12:44 PM",
-        "status": "completed",
-        "note": "Application received with updated resume (riya_sharma.pdf)."
-      },
-      {
-        "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026, 12:44 PM",
-        "status": "completed",
-        "note": "Deterministic Gates 0-8 PASSED: Score 97.4/100. Auto-Advance rule triggered (Score >= 75.0)."
-      },
-      {
-        "title": "Under Human Review",
-        "timestamp": "Completed",
-        "status": "completed",
-        "note": "Candidate auto-advanced to shortlist by AI screening policy."
-      },
-      {
-        "title": "Final Decision",
-        "timestamp": "Oct 17, 2026",
-        "status": "completed",
-        "note": "Congratulations! You have been shortlisted for technical interview."
-      }
-    ]
-  },
-  {
-    "id": "APP-pa_d-0811",
-    "jobId": "pa_director",
-    "jobTitle": "Personal Assistant (PA) to the Director",
-    "company": "Executive Office",
-    "status": "Under Review",
-    "appliedDate": "Oct 17, 2026",
-    "fitScore": 42.6,
-    "decision": "ESCALATE",
-    "resumeFile": "riya_sharma.pdf",
-    "timeline": [
-      {
-        "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026, 12:36 PM",
-        "status": "completed",
-        "note": "Application received with updated resume (riya_sharma.pdf)."
-      },
-      {
-        "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026, 12:36 PM",
-        "status": "completed",
-        "note": "Deterministic Gates 0-8 executed: Score 42.6/100."
-      },
-      {
-        "title": "Under Human Review",
-        "timestamp": "In Progress",
-        "status": "active",
-        "note": "Recruiter is evaluating transferable portfolio."
-      },
-      {
-        "title": "Final Decision",
-        "timestamp": "Pending",
-        "status": "pending",
-        "note": "Awaiting recruiter decision."
-      }
-    ]
-  },
-  {
-    "id": "APP-cust-9773",
-    "jobId": "custom_218410",
-    "jobTitle": "Lawyer / Legal Associate job",
-    "company": "TechCorp",
-    "status": "Not Shortlisted",
-    "appliedDate": "Oct 17, 2026",
-    "fitScore": 16.2,
-    "decision": "AUTO_REJECT",
-    "resumeFile": "akshu.pdf",
-    "timeline": [
-      {
-        "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026, 12:19 PM",
-        "status": "completed",
-        "note": "Application received with resume (akshu.pdf)."
-      },
-      {
-        "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026, 12:19 PM",
-        "status": "completed",
-        "note": "Deterministic Gates 0-8 executed: Score 16.2/100. Below threshold for role criteria."
-      },
-      {
-        "title": "Under Human Review",
-        "timestamp": "Completed",
-        "status": "completed",
-        "note": "Candidate fast-tracked to shortlist by policy"
-      },
-      {
-        "title": "Final Decision",
-        "timestamp": "Oct 17, 2026",
-        "status": "completed",
-        "note": "Application closed. Role technical requirements not met."
-      }
-    ]
-  },
-  {
-    "id": "APP-cust-8526",
-    "jobId": "custom_218410",
-    "jobTitle": "Lawyer / Legal Associate job",
-    "company": "TechCorp",
-    "status": "Not Shortlisted",
-    "appliedDate": "Oct 17, 2026",
-    "fitScore": 31.5,
-    "decision": "AUTO_REJECT",
-    "resumeFile": "Non_Matching_Resume_Frontend_Designer.pdf",
-    "timeline": [
-      {
-        "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026, 11:58 AM",
-        "status": "completed",
-        "note": "Application received with resume (Non_Matching_Resume_Frontend_Designer.pdf)."
-      },
-      {
-        "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026, 11:58 AM",
-        "status": "completed",
-        "note": "Deterministic Gates 0-8 executed: Score 31.5/100. Below threshold for role criteria."
-      },
-      {
-        "title": "Under Human Review",
-        "timestamp": "Completed",
-        "status": "completed",
-        "note": "Candidate fast-tracked to shortlist by policy"
-      },
-      {
-        "title": "Final Decision",
-        "timestamp": "Oct 17, 2026",
-        "status": "completed",
-        "note": "Application closed. Role technical requirements not met."
-      }
-    ]
-  },
-  {
-    "id": "APP-pa_d-5529",
-    "jobId": "pa_director",
-    "jobTitle": "Personal Assistant (PA) to the Director",
-    "company": "Executive Office",
-    "status": "Shortlisted",
-    "appliedDate": "Oct 17, 2026",
-    "fitScore": 97.4,
-    "decision": "AUTO_ADVANCE",
-    "resumeFile": "riya_sharma.pdf",
-    "timeline": [
-      {
-        "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026, 11:08 AM",
-        "status": "completed",
-        "note": "Application received with resume (riya_sharma.pdf)."
-      },
-      {
-        "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026, 11:08 AM",
-        "status": "completed",
-        "note": "Deterministic Gates 0-8 PASSED: Score 97.4/100. Auto-Advance rule triggered (Score >= 75.0)."
-      },
-      {
-        "title": "Under Human Review",
-        "timestamp": "Completed",
-        "status": "completed",
-        "note": "Candidate fast-tracked to shortlist by policy"
-      },
-      {
-        "title": "Final Decision",
-        "timestamp": "Oct 17, 2026",
-        "status": "completed",
-        "note": "Congratulations! You have been shortlisted for technical interview."
-      }
-    ]
-  },
-  {
-    "id": "APP-pa_d-5335",
-    "jobId": "pa_director",
-    "jobTitle": "Personal Assistant (PA) to the Director",
-    "company": "Executive Office",
-    "status": "Shortlisted",
-    "appliedDate": "Oct 17, 2026",
-    "fitScore": 97.4,
-    "decision": "AUTO_ADVANCE",
-    "resumeFile": "riya_sharma.pdf",
-    "timeline": [
-      {
-        "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026, 11:05 AM",
-        "status": "completed",
-        "note": "Application received with resume (riya_sharma.pdf)."
-      },
-      {
-        "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026, 11:05 AM",
-        "status": "completed",
-        "note": "Deterministic Gates 0-8 PASSED: Score 97.4/100. Auto-Advance rule triggered (Score >= 75.0)."
-      },
-      {
-        "title": "Under Human Review",
-        "timestamp": "Completed",
-        "status": "completed",
-        "note": "Candidate fast-tracked to shortlist by policy"
-      },
-      {
-        "title": "Final Decision",
-        "timestamp": "Oct 17, 2026",
-        "status": "completed",
-        "note": "Congratulations! You have been shortlisted for technical interview."
-      }
-    ]
-  },
-  {
-    "id": "APP-cust-1990",
-    "jobId": "custom_211959",
-    "jobTitle": "lawyer",
-    "company": "TechCorp",
-    "status": "Under Review",
-    "appliedDate": "Oct 17, 2026",
-    "fitScore": 53.0,
-    "decision": "ESCALATE",
-    "resumeFile": "Non_Matching_Resume_Frontend_Designer.pdf",
-    "timeline": [
-      {
-        "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026, 10:09 AM",
-        "status": "completed",
-        "note": "Application received with resume (Non_Matching_Resume_Frontend_Designer.pdf)."
-      },
-      {
-        "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026, 10:09 AM",
-        "status": "completed",
-        "note": "Deterministic Gates 0-8 executed: Score 53.0/100 (Ambiguous fit. Human judgment required.). Flagged for recruiter review."
-      },
-      {
-        "title": "Under Human Review",
-        "timestamp": "In Progress",
-        "status": "active",
-        "note": "Recruiter is evaluating transferable portfolio."
-      },
-      {
-        "title": "Final Decision",
-        "timestamp": "Pending",
-        "status": "pending",
-        "note": "Awaiting recruiter portfolio review and interview scheduling."
-      }
-    ]
-  },
-  {
-    "id": "APP-cust-1569",
-    "jobId": "custom_209505",
-    "jobTitle": "Freelance Full-Stack Software Engineer",
-    "company": "TechCorp",
-    "status": "Under Review",
-    "appliedDate": "Oct 17, 2026",
-    "fitScore": 53.0,
-    "decision": "ESCALATE",
-    "resumeFile": "Non_Matching_Resume_Frontend_Designer.pdf",
-    "timeline": [
-      {
-        "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026, 10:02 AM",
-        "status": "completed",
-        "note": "Application received with resume (Non_Matching_Resume_Frontend_Designer.pdf)."
-      },
-      {
-        "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026, 10:02 AM",
-        "status": "completed",
-        "note": "Deterministic Gates 0-8 executed: Score 53.0/100 (Ambiguous fit. Human judgment required.). Flagged for recruiter review."
-      },
-      {
-        "title": "Under Human Review",
-        "timestamp": "In Progress",
-        "status": "active",
-        "note": "Recruiter is evaluating transferable portfolio."
-      },
-      {
-        "title": "Final Decision",
-        "timestamp": "Pending",
-        "status": "pending",
-        "note": "Awaiting recruiter portfolio review and interview scheduling."
-      }
-    ]
-  },
-  {
-    "id": "APP-2234-1336",
+    "id": "APP-2234-DB724B81",
     "jobId": "2234533717",
+    "job_id": "2234533717",
     "jobTitle": "Full Stack Engineer",
     "company": "Ideando Inc",
-    "status": "Under Review",
+    "candidateId": "arjun_cloud",
+    "candidate_id": "arjun_cloud",
+    "candidateName": "Arjun Cloud",
+    "candidateDegree": "4 yrs - B.Tech",
+    "candidateEmail": "arjun_cloud@example.com",
+    "candidatePhone": "+91 98765 00000",
+    "candidateLocation": "Pune, India",
+    "resumeFile": "Arjun_Cloud_Resume.pdf",
+    "resume_file": "Arjun_Cloud_Resume.pdf",
     "appliedDate": "Oct 17, 2026",
-    "fitScore": 42.6,
-    "decision": "ESCALATE",
-    "resumeFile": "aksada.pdf",
+    "aiRecommendation": "SHORTLISTED",
+    "ai_recommendation": "SHORTLISTED",
+    "decision": "SHORTLISTED",
+    "finalStatus": "Shortlisted",
+    "final_status": "Shortlisted",
+    "status": "Shortlisted",
+    "statusLabel": "Shortlisted",
+    "fitScore": 88.5,
+    "fit_score": 88.5,
+    "decisionReason": "Deterministic Gates 0-8 PASSED: Score 88.5/100 (AUTO_ADVANCE)",
+    "decision_reason": "Deterministic Gates 0-8 PASSED: Score 88.5/100 (AUTO_ADVANCE)",
+    "matchedSkills": [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "AWS",
+      "Docker",
+      "Git"
+    ],
+    "missingSkills": [
+      "System Design"
+    ],
+    "matchedRequirements": [],
+    "missingRequirements": [],
+    "evidenceLedger": [],
+    "breakdown": {
+      "technical": 90.0,
+      "experience": 85.0,
+      "seniority": 85.0,
+      "education": 100.0,
+      "location": 90.0,
+      "weightedTotal": 88.5
+    },
+    "integrityFlags": [],
+    "verificationFlags": [],
+    "quarantineStatus": "CLEAN",
+    "overqualification": "BALANCED",
+    "screeningReport": "",
+    "recruiterNotes": "Extensive full-stack and cloud deployment background.",
     "timeline": [
       {
         "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026, 09:58 AM",
+        "timestamp": "Oct 17, 2026, 07:55 PM",
         "status": "completed",
-        "note": "Application received with resume (aksada.pdf)."
+        "note": "Application received with resume (Arjun_Cloud_Resume.pdf)."
       },
       {
         "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026, 09:58 AM",
+        "timestamp": "Oct 17, 2026, 07:55 PM",
         "status": "completed",
-        "note": "Deterministic Gates 0-8 executed: Score 42.6/100 (Ambiguous fit. Human judgment required.). Flagged for recruiter review."
+        "note": "Deterministic Gates 0-8 executed: Score 88.5/100. AI Recommendation: SHORTLISTED."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Completed",
+        "status": "completed",
+        "note": "Candidate fast-tracked to shortlist by policy."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Congratulations! You have been shortlisted for technical interview."
+      }
+    ]
+  },
+  {
+    "id": "APP-2234-0F692984",
+    "jobId": "2234533717",
+    "job_id": "2234533717",
+    "jobTitle": "Full Stack Engineer",
+    "company": "Ideando Inc",
+    "candidateId": "kavita_verma",
+    "candidate_id": "kavita_verma",
+    "candidateName": "Kavita Verma",
+    "candidateDegree": "2 yrs - BCA",
+    "candidateEmail": "kavita_verma@example.com",
+    "candidatePhone": "+91 98765 00000",
+    "candidateLocation": "Pune, India",
+    "resumeFile": "Kavita_Verma_Resume.pdf",
+    "resume_file": "Kavita_Verma_Resume.pdf",
+    "appliedDate": "Oct 17, 2026",
+    "aiRecommendation": "HR_REVIEW",
+    "ai_recommendation": "HR_REVIEW",
+    "decision": "HR_REVIEW",
+    "finalStatus": "Under Review",
+    "final_status": "Under Review",
+    "status": "Under Review",
+    "statusLabel": "Under Review",
+    "fitScore": 58.2,
+    "fit_score": 58.2,
+    "decisionReason": "Deterministic Gates 0-8 executed: Score 58.2/100 (ESCALATE). Flagged for recruiter review.",
+    "decision_reason": "Deterministic Gates 0-8 executed: Score 58.2/100 (ESCALATE). Flagged for recruiter review.",
+    "matchedSkills": [
+      "JavaScript",
+      "React",
+      "Git"
+    ],
+    "missingSkills": [
+      "MongoDB",
+      "AWS",
+      "CI/CD",
+      "Node.js"
+    ],
+    "matchedRequirements": [],
+    "missingRequirements": [],
+    "evidenceLedger": [],
+    "breakdown": {
+      "technical": 60.0,
+      "experience": 50.0,
+      "seniority": 50.0,
+      "education": 80.0,
+      "location": 80.0,
+      "weightedTotal": 58.2
+    },
+    "integrityFlags": [],
+    "verificationFlags": [],
+    "quarantineStatus": "CLEAN",
+    "overqualification": "BALANCED",
+    "screeningReport": "",
+    "recruiterNotes": "Frontend specialist keen to grow backend competencies.",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 07:55 PM",
+        "status": "completed",
+        "note": "Application received with resume (Kavita_Verma_Resume.pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 07:55 PM",
+        "status": "completed",
+        "note": "Deterministic Gates 0-8 executed: Score 58.2/100. AI Recommendation: HR_REVIEW."
       },
       {
         "title": "Under Human Review",
@@ -592,198 +627,1345 @@
     ]
   },
   {
-    "id": "APP-3887-1284",
-    "jobId": "3887497535",
-    "jobTitle": "Associate Software Engineer / Software Engineer",
-    "company": "University of Illinois Urbana-Champaign",
-    "status": "Shortlisted",
+    "id": "APP-2234-3D9620F0",
+    "jobId": "2234533717",
+    "job_id": "2234533717",
+    "jobTitle": "Full Stack Engineer",
+    "company": "Ideando Inc",
+    "candidateId": "samir_khan",
+    "candidate_id": "samir_khan",
+    "candidateName": "Samir Khan",
+    "candidateDegree": "3 yrs - BSc IT",
+    "candidateEmail": "samir_khan@example.com",
+    "candidatePhone": "+91 98765 00000",
+    "candidateLocation": "Pune, India",
+    "resumeFile": "Samir_Khan_Resume.pdf",
+    "resume_file": "Samir_Khan_Resume.pdf",
     "appliedDate": "Oct 17, 2026",
-    "fitScore": 92.9,
-    "decision": "AUTO_ADVANCE",
-    "resumeFile": "aksada.pdf",
+    "aiRecommendation": "REJECTED",
+    "ai_recommendation": "REJECTED",
+    "decision": "REJECTED",
+    "finalStatus": "Shortlisted",
+    "final_status": "Shortlisted",
+    "status": "Shortlisted",
+    "statusLabel": "Shortlisted",
+    "fitScore": 38.0,
+    "fit_score": 38.0,
+    "decisionReason": "Score 38.0/100 below 40.0 threshold.",
+    "decision_reason": "Score 38.0/100 below 40.0 threshold.",
+    "matchedSkills": [
+      "Python",
+      "HTML5",
+      "CSS3"
+    ],
+    "missingSkills": [
+      "React",
+      "Node.js",
+      "AWS",
+      "MongoDB"
+    ],
+    "matchedRequirements": [],
+    "missingRequirements": [],
+    "evidenceLedger": [],
+    "breakdown": {
+      "technical": 35.0,
+      "experience": 40.0,
+      "seniority": 35.0,
+      "education": 70.0,
+      "location": 80.0,
+      "weightedTotal": 38.0
+    },
+    "integrityFlags": [],
+    "verificationFlags": [],
+    "quarantineStatus": "CLEAN",
+    "overqualification": "BALANCED",
+    "screeningReport": "",
+    "recruiterNotes": "Strong algorithmic programming skills.",
     "timeline": [
       {
         "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026, 09:58 AM",
+        "timestamp": "Oct 17, 2026, 07:55 PM",
         "status": "completed",
-        "note": "Application received with resume (aksada.pdf)."
+        "note": "Application received with resume (Samir_Khan_Resume.pdf)."
       },
       {
         "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026, 09:58 AM",
+        "timestamp": "Oct 17, 2026, 07:55 PM",
         "status": "completed",
-        "note": "Deterministic Gates 0-8 PASSED: Score 92.9/100. Auto-Advance rule triggered (Score >= 75.0)."
+        "note": "Deterministic Gates 0-8 executed: Score 38.0/100. AI Recommendation: REJECTED."
       },
       {
         "title": "Under Human Review",
         "timestamp": "Completed",
         "status": "completed",
-        "note": "Candidate fast-tracked to shortlist by policy"
+        "note": "Candidate fast-tracked to shortlist by policy."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 17, 2026, 07:55 PM",
+        "status": "completed",
+        "note": "Recruiter Rohan (HR) set status to Shortlisted: Verified strong open-source Django repositories; fast learner eligible for full-stack onboarding."
+      }
+    ]
+  },
+  {
+    "id": "APP-2234-7EB2CFD3",
+    "jobId": "2234533717",
+    "job_id": "2234533717",
+    "jobTitle": "Full Stack Engineer",
+    "company": "Ideando Inc",
+    "candidateId": "devin_test",
+    "candidate_id": "devin_test",
+    "candidateName": "Devin Test",
+    "candidateDegree": "B.E. Computer Science",
+    "candidateEmail": "devin_test@example.com",
+    "candidatePhone": "+91 98765 00000",
+    "candidateLocation": "Pune, India",
+    "resumeFile": "devin.pdf",
+    "resume_file": "devin.pdf",
+    "appliedDate": "Oct 17, 2026",
+    "aiRecommendation": "HR_REVIEW",
+    "ai_recommendation": "HR_REVIEW",
+    "decision": "HR_REVIEW",
+    "finalStatus": "Under Review",
+    "final_status": "Under Review",
+    "status": "Under Review",
+    "statusLabel": "Under Review",
+    "fitScore": 40.0,
+    "fit_score": 40.0,
+    "decisionReason": "AI Pipeline timeout encountered during Gate 8. Application placed in safe HR Review queue.",
+    "decision_reason": "AI Pipeline timeout encountered during Gate 8. Application placed in safe HR Review queue.",
+    "matchedSkills": [],
+    "missingSkills": [],
+    "matchedRequirements": [],
+    "missingRequirements": [],
+    "evidenceLedger": [],
+    "breakdown": {},
+    "integrityFlags": [],
+    "verificationFlags": [],
+    "quarantineStatus": "CLEAN",
+    "overqualification": "BALANCED",
+    "screeningReport": "",
+    "recruiterNotes": "Full stack experience.",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 07:55 PM",
+        "status": "completed",
+        "note": "Application received with resume (devin.pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 07:55 PM",
+        "status": "completed",
+        "note": "Deterministic Gates 0-8 executed: Score 40.0/100. AI Recommendation: HR_REVIEW."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "In Progress",
+        "status": "active",
+        "note": "Recruiter is evaluating transferable portfolio."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Pending",
+        "status": "pending",
+        "note": "Awaiting recruiter portfolio review and interview scheduling."
+      }
+    ]
+  },
+  {
+    "id": "APP-cust-62F1F7",
+    "jobId": "custom_224188",
+    "job_id": "custom_224188",
+    "jobTitle": "Chef / Cook",
+    "company": "TechCorp",
+    "candidateId": "aksada",
+    "candidate_id": "aksada",
+    "candidateName": "Akshada Kale",
+    "candidateDegree": "B.Tech (2022 - 2026)",
+    "candidateEmail": "akshada@example.com",
+    "candidatePhone": "+91 98765 43210",
+    "candidateLocation": "Pune, India",
+    "resumeFile": "aksada.pdf",
+    "resume_file": "aksada.pdf",
+    "appliedDate": "Oct 17, 2026",
+    "aiRecommendation": "REJECTED",
+    "ai_recommendation": "REJECTED",
+    "decision": "REJECTED",
+    "finalStatus": "Rejected",
+    "final_status": "Rejected",
+    "status": "Rejected",
+    "statusLabel": "Rejected",
+    "fitScore": 22.2,
+    "fit_score": 22.2,
+    "decisionReason": "Score 22.2/100: Missing all essential culinary domain qualifications.",
+    "decision_reason": "Score 22.2/100: Missing all essential culinary domain qualifications.",
+    "matchedSkills": [
+      "Food Preparation",
+      "Hygiene"
+    ],
+    "missingSkills": [
+      "Culinary Management",
+      "Inventory",
+      "Menu Planning",
+      "Sous Chef Experience"
+    ],
+    "matchedRequirements": [],
+    "missingRequirements": [],
+    "evidenceLedger": [],
+    "breakdown": {},
+    "integrityFlags": [],
+    "verificationFlags": [],
+    "quarantineStatus": "CLEAN",
+    "overqualification": "BALANCED",
+    "screeningReport": "",
+    "recruiterNotes": "Interested in role.",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Application received and registered."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Screening evaluation complete. AI Recommendation: REJECTED."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Human recruiter evaluated portfolio."
       },
       {
         "title": "Final Decision",
         "timestamp": "Oct 17, 2026",
         "status": "completed",
-        "note": "Congratulations! You have been shortlisted for technical interview."
+        "note": "Final Application Status: Rejected"
       }
     ]
   },
   {
-    "id": "APP-cust-0347",
-    "jobId": "custom_209505",
-    "jobTitle": "Freelance Full-Stack Software Engineer",
-    "company": "TechCorp",
-    "status": "Under Review",
+    "id": "APP-pa_d-F802CF",
+    "jobId": "pa_director",
+    "job_id": "pa_director",
+    "jobTitle": "Personal Assistant (PA) to the Director",
+    "company": "Executive Office",
+    "candidateId": "aksada",
+    "candidate_id": "aksada",
+    "candidateName": "Akshada Kale",
+    "candidateDegree": "B.Tech (2022 - 2026)",
+    "candidateEmail": "akshada@example.com",
+    "candidatePhone": "+91 98765 43210",
+    "candidateLocation": "Pune, India",
+    "resumeFile": "akshu.pdf",
+    "resume_file": "akshu.pdf",
     "appliedDate": "Oct 17, 2026",
-    "timeline": [
+    "aiRecommendation": "REJECTED",
+    "ai_recommendation": "REJECTED",
+    "decision": "REJECTED",
+    "finalStatus": "Rejected",
+    "final_status": "Rejected",
+    "status": "Rejected",
+    "statusLabel": "Rejected",
+    "fitScore": 22.2,
+    "fit_score": 22.2,
+    "decisionReason": "Deterministic Gates 0-8 executed: Score 22.2/100. Below threshold for role criteria.",
+    "decision_reason": "Deterministic Gates 0-8 executed: Score 22.2/100. Below threshold for role criteria.",
+    "matchedSkills": [
+      "Minimum 2.0 years of relevant professional experience",
+      "Target role seniority: JUNIOR"
+    ],
+    "missingSkills": [
+      "Missing required must-have skill 'Microsoft Office'. Closest resume skill was 'Git' (0.42 similarity vs 0.75 threshold).",
+      "Missing required must-have skill 'Google Workspace'. Closest resume skill was 'GitHub' (0.30 similarity vs 0.75 threshold).",
+      "Missing required must-have skill 'Calendar Management'. Closest resume skill was 'MongoDB' (0.18 similarity vs 0.75 threshold).",
+      "Missing required must-have skill 'Travel Planning'. Closest resume skill was 'Git' (0.18 similarity vs 0.75 threshold).",
+      "Missing required must-have skill 'Executive Support'. Closest resume skill was 'Git' (0.26 similarity vs 0.75 threshold).",
+      "Missing required must-have skill 'Correspondence Management'. Closest resume skill was 'RESTful APIs' (0.21 similarity vs 0.75 threshold).",
+      "Missing required must-have skill 'Document Preparation'. Closest resume skill was 'Git' (0.29 similarity vs 0.75 threshold).",
+      "Missing required must-have skill 'Expense Tracking'. Closest resume skill was 'MongoDB' (0.20 similarity vs 0.75 threshold).",
+      "Missing required must-have skill 'English Communication'. Closest resume skill was 'Git' (0.29 similarity vs 0.75 threshold).",
+      "Experience deficit: candidate has 0.2 years vs 2.0 years required.",
+      "Candidate is 1 level below target seniority (entry vs junior).",
+      "Candidate degree does not directly match specification; awarded baseline partial credit per non-fatal policy.",
+      "Location mismatch (Unknown vs On-Site / Office-Based); awarded baseline partial credit."
+    ],
+    "matchedRequirements": [
       {
-        "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026, 09:42 AM",
-        "status": "completed",
-        "note": "Application received and attached to profile resume (aksada.pdf)."
+        "req": "Minimum 2.0 years of relevant professional experience (EXPERIENCE)",
+        "evidence": "Candidate has 0.2 total years across 0 chronological positions.",
+        "conf": "3.1 pts",
+        "dimension": "EXPERIENCE",
+        "score": 3.1
       },
       {
-        "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026, 09:42 AM",
-        "status": "completed",
-        "note": "AI Pipeline screened: Score 42.6/100 (Transferable skills validated, ESCALATE)."
-      },
-      {
-        "title": "Under Human Review",
-        "timestamp": "In Progress",
-        "status": "active",
-        "note": "Awaiting hiring team portfolio review and interview scheduling."
-      },
-      {
-        "title": "Final Decision",
-        "timestamp": "Pending",
-        "status": "pending",
-        "note": "Will be updated upon recruiter decision."
+        "req": "Target role seniority: JUNIOR (SENIORITY)",
+        "evidence": "Candidate evaluated at ENTRY level based on titles and career progression.",
+        "conf": "70.0 pts",
+        "dimension": "SENIORITY",
+        "score": 70.0
       }
-    ]
-  },
-  {
-    "id": "APP-3887-6295",
-    "jobId": "3887497535",
-    "jobTitle": "Associate Software Engineer / Software Engineer",
-    "company": "University of Illinois Urbana-Champaign",
-    "status": "Under Review",
-    "appliedDate": "Oct 17, 2026",
+    ],
+    "missingRequirements": [
+      {
+        "req": "Must-Have: Microsoft Office (TECHNICAL)",
+        "evidence": "Missing required must-have skill 'Microsoft Office'. Closest resume skill was 'Git' (0.42 similarity vs 0.75 threshold).",
+        "conf": "0.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 0.0
+      },
+      {
+        "req": "Must-Have: Google Workspace (TECHNICAL)",
+        "evidence": "Missing required must-have skill 'Google Workspace'. Closest resume skill was 'GitHub' (0.30 similarity vs 0.75 threshold).",
+        "conf": "0.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 0.0
+      },
+      {
+        "req": "Must-Have: Calendar Management (TECHNICAL)",
+        "evidence": "Missing required must-have skill 'Calendar Management'. Closest resume skill was 'MongoDB' (0.18 similarity vs 0.75 threshold).",
+        "conf": "0.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 0.0
+      },
+      {
+        "req": "Must-Have: Travel Planning (TECHNICAL)",
+        "evidence": "Missing required must-have skill 'Travel Planning'. Closest resume skill was 'Git' (0.18 similarity vs 0.75 threshold).",
+        "conf": "0.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 0.0
+      },
+      {
+        "req": "Must-Have: Executive Support (TECHNICAL)",
+        "evidence": "Missing required must-have skill 'Executive Support'. Closest resume skill was 'Git' (0.26 similarity vs 0.75 threshold).",
+        "conf": "0.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 0.0
+      },
+      {
+        "req": "Must-Have: Correspondence Management (TECHNICAL)",
+        "evidence": "Missing required must-have skill 'Correspondence Management'. Closest resume skill was 'RESTful APIs' (0.21 similarity vs 0.75 threshold).",
+        "conf": "0.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 0.0
+      },
+      {
+        "req": "Must-Have: Document Preparation (TECHNICAL)",
+        "evidence": "Missing required must-have skill 'Document Preparation'. Closest resume skill was 'Git' (0.29 similarity vs 0.75 threshold).",
+        "conf": "0.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 0.0
+      },
+      {
+        "req": "Must-Have: Expense Tracking (TECHNICAL)",
+        "evidence": "Missing required must-have skill 'Expense Tracking'. Closest resume skill was 'MongoDB' (0.20 similarity vs 0.75 threshold).",
+        "conf": "0.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 0.0
+      },
+      {
+        "req": "Must-Have: English Communication (TECHNICAL)",
+        "evidence": "Missing required must-have skill 'English Communication'. Closest resume skill was 'Git' (0.29 similarity vs 0.75 threshold).",
+        "conf": "0.0 pts",
+        "dimension": "TECHNICAL",
+        "score": 0.0
+      },
+      {
+        "req": "Education baseline: Bachelor's degree in Business Administration, Management, Commerce, Arts, or a related field (EDUCATION)",
+        "evidence": "Candidate degree does not directly match specification; awarded baseline partial credit per non-fatal policy.",
+        "conf": "75.0 pts",
+        "dimension": "EDUCATION",
+        "score": 75.0
+      },
+      {
+        "req": "Location requirement: On-Site / Office-Based (onsite) (LOCATION)",
+        "evidence": "Location mismatch (Unknown vs On-Site / Office-Based); awarded baseline partial credit.",
+        "conf": "70.0 pts",
+        "dimension": "LOCATION",
+        "score": 70.0
+      }
+    ],
+    "evidenceLedger": [
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: Microsoft Office",
+        "evidence": "No direct textual grounding found in resume.",
+        "is_verified": false,
+        "score_contribution": 0.0,
+        "gap": "Missing required must-have skill 'Microsoft Office'. Closest resume skill was 'Git' (0.42 similarity vs 0.75 threshold)."
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: Google Workspace",
+        "evidence": "No direct textual grounding found in resume.",
+        "is_verified": false,
+        "score_contribution": 0.0,
+        "gap": "Missing required must-have skill 'Google Workspace'. Closest resume skill was 'GitHub' (0.30 similarity vs 0.75 threshold)."
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: Calendar Management",
+        "evidence": "No direct textual grounding found in resume.",
+        "is_verified": false,
+        "score_contribution": 0.0,
+        "gap": "Missing required must-have skill 'Calendar Management'. Closest resume skill was 'MongoDB' (0.18 similarity vs 0.75 threshold)."
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: Travel Planning",
+        "evidence": "No direct textual grounding found in resume.",
+        "is_verified": false,
+        "score_contribution": 0.0,
+        "gap": "Missing required must-have skill 'Travel Planning'. Closest resume skill was 'Git' (0.18 similarity vs 0.75 threshold)."
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: Executive Support",
+        "evidence": "No direct textual grounding found in resume.",
+        "is_verified": false,
+        "score_contribution": 0.0,
+        "gap": "Missing required must-have skill 'Executive Support'. Closest resume skill was 'Git' (0.26 similarity vs 0.75 threshold)."
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: Correspondence Management",
+        "evidence": "No direct textual grounding found in resume.",
+        "is_verified": false,
+        "score_contribution": 0.0,
+        "gap": "Missing required must-have skill 'Correspondence Management'. Closest resume skill was 'RESTful APIs' (0.21 similarity vs 0.75 threshold)."
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: Document Preparation",
+        "evidence": "No direct textual grounding found in resume.",
+        "is_verified": false,
+        "score_contribution": 0.0,
+        "gap": "Missing required must-have skill 'Document Preparation'. Closest resume skill was 'Git' (0.29 similarity vs 0.75 threshold)."
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: Expense Tracking",
+        "evidence": "No direct textual grounding found in resume.",
+        "is_verified": false,
+        "score_contribution": 0.0,
+        "gap": "Missing required must-have skill 'Expense Tracking'. Closest resume skill was 'MongoDB' (0.20 similarity vs 0.75 threshold)."
+      },
+      {
+        "dimension": "technical",
+        "requirement": "Must-Have: English Communication",
+        "evidence": "No direct textual grounding found in resume.",
+        "is_verified": false,
+        "score_contribution": 0.0,
+        "gap": "Missing required must-have skill 'English Communication'. Closest resume skill was 'Git' (0.29 similarity vs 0.75 threshold)."
+      },
+      {
+        "dimension": "experience",
+        "requirement": "Minimum 2.0 years of relevant professional experience",
+        "evidence": "Candidate has 0.2 total years across 0 chronological positions.",
+        "is_verified": true,
+        "score_contribution": 3.1,
+        "gap": "Experience deficit: candidate has 0.2 years vs 2.0 years required."
+      },
+      {
+        "dimension": "seniority",
+        "requirement": "Target role seniority: JUNIOR",
+        "evidence": "Candidate evaluated at ENTRY level based on titles and career progression.",
+        "is_verified": true,
+        "score_contribution": 70.0,
+        "gap": "Candidate is 1 level below target seniority (entry vs junior)."
+      },
+      {
+        "dimension": "education",
+        "requirement": "Education baseline: Bachelor's degree in Business Administration, Management, Commerce, Arts, or a related field",
+        "evidence": "No degree listed on resume.",
+        "is_verified": false,
+        "score_contribution": 75.0,
+        "gap": "Candidate degree does not directly match specification; awarded baseline partial credit per non-fatal policy."
+      },
+      {
+        "dimension": "location",
+        "requirement": "Location requirement: On-Site / Office-Based (onsite)",
+        "evidence": "Candidate location: Not specified",
+        "is_verified": false,
+        "score_contribution": 70.0,
+        "gap": "Location mismatch (Unknown vs On-Site / Office-Based); awarded baseline partial credit."
+      }
+    ],
+    "breakdown": {
+      "technical": 0.0,
+      "experience": 3.1,
+      "seniority": 70.0,
+      "education": 75.0,
+      "location": 70.0,
+      "weightedTotal": 22.2,
+      "weighted_total": 22.2
+    },
+    "integrityFlags": [],
+    "verificationFlags": [],
+    "quarantineStatus": "CLEAN",
+    "overqualification": "BALANCED",
+    "screeningReport": "+==================================================================================+\n| HYT ATS CANDIDATE EVALUATION AUDIT REPORT -- AKSHU                               |\n+==================================================================================+\n\n+----------------------------------------------------------------------------------+\n| [SECTION 1] CANDIDATE AND JOB DETAILS                                            |\n+----------------------------------------------------------------------------------+\n  Target Role:             Personal Assistant (PA) to the Director (Job ID: pa_director)\n  Screening Timestamp:     2026-10-17T16:17:28.043568\n  Final Decision:          [AUTO_REJECT]\n  Decision Justification:  Candidate did not meet baseline technical requirements: 0.0% technical alignment across all 9 core job competencies. Non-compensatory disqualifier applied.\n\n+----------------------------------------------------------------------------------+\n| [SECTION 2] PIPELINE GATES 0-8: INTEGRITY CHECKS & VERIFICATION                  |\n+----------------------------------------------------------------------------------+\n  Integrity Flags:         NONE (Passed all security checks)\n  Verification Flags:      NONE (Verified profile)\n  Quarantine Status:       CLEAN\n  Overqualification:       BALANCED\n\n+----------------------------------------------------------------------------------+\n| [SECTION 3] RECRUITER ASSESSMENT                                                 |\n+----------------------------------------------------------------------------------+\nGROUNDED RECRUITER ASSESSMENT (Gate 8 Audit):\n  [NOTICE] No explanation generated per Rule 8 (Zero token waste on auto-rejected candidates).\n\n+----------------------------------------------------------------------------------+\n| [SECTION 4] RESUME AND JOB REQUIREMENT EVIDENCE: TOP STRENGTHS & CRITICAL GAPS   |\n+----------------------------------------------------------------------------------+\nTOP STRENGTHS (Cited from Ledger):\n  * Minimum 2.0 years of relevant professional experience\n  * Target role seniority: JUNIOR\n\nCRITICAL GAPS (Identified Gaps):\n  * Missing required must-have skill 'Microsoft Office'. Closest resume skill was 'Git' (0.42 similarity vs 0.75 threshold).\n  * Missing required must-have skill 'Google Workspace'. Closest resume skill was 'GitHub' (0.30 similarity vs 0.75 threshold).\n  * Missing required must-have skill 'Calendar Management'. Closest resume skill was 'MongoDB' (0.18 similarity vs 0.75 threshold).\n  * Missing required must-have skill 'Travel Planning'. Closest resume skill was 'Git' (0.18 similarity vs 0.75 threshold).\n  * Missing required must-have skill 'Executive Support'. Closest resume skill was 'Git' (0.26 similarity vs 0.75 threshold).\n\n+----------------------------------------------------------------------------------+\n| [SECTION 5] SCORE BREAKDOWN AND WEIGHTED CONTRIBUTIONS                           |\n+----------------------------------------------------------------------------------+\n5-DIMENSIONAL DETERMINISTIC SCORECARD (0-100 Scale):\n  1. Technical Alignment (40%):    0.00 / 100  (weighted contrib:  0.00)\n  2. Experience Depth    (30%):    3.12 / 100  (weighted contrib:  0.94)\n  3. Seniority Fit       (20%):   70.00 / 100  (weighted contrib: 14.00)\n  4. Education Baseline  ( 5%):   75.00 / 100  (weighted contrib:  3.75)\n  5. Location & Remote   ( 5%):   70.00 / 100  (weighted contrib:  3.50)\n  -------------------------------------------------------------------------\n  FINAL WEIGHTED SCORE:                   22.19 / 100\n\n+----------------------------------------------------------------------------------+\n| [SECTION 6] EVIDENCE LEDGER -- ALL 13 ENTRIES IN FULL                            |\n+----------------------------------------------------------------------------------+\nMANDATORY EVIDENCE LEDGER (13 Immutable Citation Entries):\n\n  ------------------------------------------------------------------------------\n   1. [UNVERIFIED / GAP] Must-Have: Microsoft Office (TECHNICAL)\n      Gap:      Missing required must-have skill 'Microsoft Office'. Closest resume skill was 'Git' (0.42 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   2. [UNVERIFIED / GAP] Must-Have: Google Workspace (TECHNICAL)\n      Gap:      Missing required must-have skill 'Google Workspace'. Closest resume skill was 'GitHub' (0.30 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   3. [UNVERIFIED / GAP] Must-Have: Calendar Management (TECHNICAL)\n      Gap:      Missing required must-have skill 'Calendar Management'. Closest resume skill was 'MongoDB' (0.18 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   4. [UNVERIFIED / GAP] Must-Have: Travel Planning (TECHNICAL)\n      Gap:      Missing required must-have skill 'Travel Planning'. Closest resume skill was 'Git' (0.18 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   5. [UNVERIFIED / GAP] Must-Have: Executive Support (TECHNICAL)\n      Gap:      Missing required must-have skill 'Executive Support'. Closest resume skill was 'Git' (0.26 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   6. [UNVERIFIED / GAP] Must-Have: Correspondence Management (TECHNICAL)\n      Gap:      Missing required must-have skill 'Correspondence Management'. Closest resume skill was 'RESTful APIs' (0.21 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   7. [UNVERIFIED / GAP] Must-Have: Document Preparation (TECHNICAL)\n      Gap:      Missing required must-have skill 'Document Preparation'. Closest resume skill was 'Git' (0.29 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   8. [UNVERIFIED / GAP] Must-Have: Expense Tracking (TECHNICAL)\n      Gap:      Missing required must-have skill 'Expense Tracking'. Closest resume skill was 'MongoDB' (0.20 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   9. [UNVERIFIED / GAP] Must-Have: English Communication (TECHNICAL)\n      Gap:      Missing required must-have skill 'English Communication'. Closest resume skill was 'Git' (0.29 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n  10. [VERIFIED] Minimum 2.0 years of relevant professional experience (EXPERIENCE)\n      Evidence: \"Candidate has 0.2 total years across 0 chronological positions.\"\n      Gap:      Experience deficit: candidate has 0.2 years vs 2.0 years required.\n      Score Contribution: 3.1 pts\n  ------------------------------------------------------------------------------\n  11. [VERIFIED] Target role seniority: JUNIOR (SENIORITY)\n      Evidence: \"Candidate evaluated at ENTRY level based on titles and career progression.\"\n      Gap:      Candidate is 1 level below target seniority (entry vs junior).\n      Score Contribution: 70.0 pts\n  ------------------------------------------------------------------------------\n  12. [UNVERIFIED / GAP] Education baseline: Bachelor's degree in Business Administration, Management, Commerce, Arts, or a related field (EDUCATION)\n      Evidence: \"No degree listed on resume.\"\n      Gap:      Candidate degree does not directly match specification; awarded baseline partial credit per non-fatal policy.\n      Score Contribution: 75.0 pts\n  ------------------------------------------------------------------------------\n  13. [UNVERIFIED / GAP] Location requirement: On-Site / Office-Based (onsite) (LOCATION)\n      Evidence: \"Candidate location: Not specified\"\n      Gap:      Location mismatch (Unknown vs On-Site / Office-Based); awarded baseline partial credit.\n      Score Contribution: 70.0 pts\n  ------------------------------------------------------------------------------\n\n+==================================================================================+\n| [SECTION 7] FINAL DECISION                                                       |\n+==================================================================================+\n  Final Decision:          [AUTO_REJECT]\n  Decision Justification:  Candidate did not meet baseline technical requirements: 0.0% technical alignment across all 9 core job competencies. Non-compensatory disqualifier applied.\n+==================================================================================+\n",
+    "recruiterNotes": "",
     "timeline": [
       {
         "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026, 08:34 AM",
+        "timestamp": "Oct 17, 2026",
         "status": "completed",
-        "note": "Application received and attached to profile resume (aksada.pdf)."
+        "note": "Application received and registered."
       },
       {
         "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026, 08:34 AM",
+        "timestamp": "Oct 17, 2026",
         "status": "completed",
-        "note": "AI Pipeline screened: Score 42.6/100 (Transferable skills validated, ESCALATE)."
+        "note": "Screening evaluation complete. AI Recommendation: REJECTED."
       },
       {
         "title": "Under Human Review",
-        "timestamp": "In Progress",
-        "status": "active",
-        "note": "Awaiting hiring team portfolio review and interview scheduling."
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Human recruiter evaluated portfolio."
       },
       {
         "title": "Final Decision",
-        "timestamp": "Pending",
-        "status": "pending",
-        "note": "Will be updated upon recruiter decision."
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Final Application Status: Rejected"
       }
     ]
   },
   {
     "id": "APP-2234-AK01",
     "jobId": "2234533717",
-    "jobTitle": "Full Stack Software Engineer",
-    "company": "TechCorp",
-    "status": "Under Review",
+    "job_id": "2234533717",
+    "jobTitle": "Full Stack Engineer",
+    "company": "Ideando Inc",
+    "candidateId": "aksada",
+    "candidate_id": "aksada",
+    "candidateName": "Akshada Kale",
+    "candidateDegree": "B.Tech (2022 - 2026)",
+    "candidateEmail": "akshada@example.com",
+    "candidatePhone": "+91 98765 43210",
+    "candidateLocation": "Pune, India",
+    "resumeFile": "aksada.pdf",
+    "resume_file": "aksada.pdf",
     "appliedDate": "Oct 14, 2026",
+    "aiRecommendation": "HR_REVIEW",
+    "ai_recommendation": "HR_REVIEW",
+    "decision": "HR_REVIEW",
+    "finalStatus": "Under Review",
+    "final_status": "Under Review",
+    "status": "Under Review",
+    "statusLabel": "Under Review",
+    "fitScore": 42.6,
+    "fit_score": 42.6,
+    "decisionReason": "Evaluated by Gates 0-8: Score 42.6/100",
+    "decision_reason": "Evaluated by Gates 0-8: Score 42.6/100",
+    "matchedSkills": [],
+    "missingSkills": [],
+    "matchedRequirements": [],
+    "missingRequirements": [],
+    "evidenceLedger": [],
+    "breakdown": {},
+    "integrityFlags": [],
+    "verificationFlags": [],
+    "quarantineStatus": "CLEAN",
+    "overqualification": "BALANCED",
+    "screeningReport": null,
+    "recruiterNotes": null,
     "timeline": [
       {
         "title": "Application Submitted",
-        "timestamp": "Oct 14, 2026, 09:10 AM",
+        "timestamp": "Oct 14, 2026",
         "status": "completed",
-        "note": "Application received and registered in ATS."
+        "note": "Application received and registered."
       },
       {
         "title": "Resume Screening (AI)",
-        "timestamp": "Oct 14, 2026, 09:45 AM",
+        "timestamp": "Oct 14, 2026",
         "status": "completed",
-        "note": "Deterministic Gates 0-8 executed: Score 42.6/100 (ESCALATE)."
+        "note": "Screening evaluation complete. AI Recommendation: HR_REVIEW."
       },
       {
         "title": "Under Human Review",
-        "timestamp": "Oct 15, 2026, 02:20 PM",
+        "timestamp": "Oct 14, 2026",
         "status": "active",
-        "note": "Recruiter is evaluating transferable React & Node.js portfolio."
+        "note": "Human recruiter evaluated portfolio."
       },
       {
         "title": "Final Decision",
-        "timestamp": "Pending",
+        "timestamp": "Oct 14, 2026",
         "status": "pending",
-        "note": "Awaiting recruiter review action."
+        "note": "Final Application Status: Under Review"
       }
     ]
   },
   {
     "id": "APP-3887-AK02",
     "jobId": "3887497535",
-    "jobTitle": "Frontend Developer",
-    "company": "Webify",
-    "status": "Shortlisted",
+    "job_id": "3887497535",
+    "jobTitle": "Associate Software Engineer / Software Engineer",
+    "company": "University of Illinois Urbana-Champaign",
+    "candidateId": "aksada",
+    "candidate_id": "aksada",
+    "candidateName": "Akshada Kale",
+    "candidateDegree": "B.Tech (2022 - 2026)",
+    "candidateEmail": "akshada@example.com",
+    "candidatePhone": "+91 98765 43210",
+    "candidateLocation": "Pune, India",
+    "resumeFile": "aksada.pdf",
+    "resume_file": "aksada.pdf",
     "appliedDate": "Oct 10, 2026",
+    "aiRecommendation": "SHORTLISTED",
+    "ai_recommendation": "SHORTLISTED",
+    "decision": "SHORTLISTED",
+    "finalStatus": "Shortlisted",
+    "final_status": "Shortlisted",
+    "status": "Shortlisted",
+    "statusLabel": "Shortlisted",
+    "fitScore": 78.4,
+    "fit_score": 78.4,
+    "decisionReason": "Evaluated by Gates 0-8: Score 78.4/100",
+    "decision_reason": "Evaluated by Gates 0-8: Score 78.4/100",
+    "matchedSkills": [],
+    "missingSkills": [],
+    "matchedRequirements": [],
+    "missingRequirements": [],
+    "evidenceLedger": [],
+    "breakdown": {},
+    "integrityFlags": [],
+    "verificationFlags": [],
+    "quarantineStatus": "CLEAN",
+    "overqualification": "BALANCED",
+    "screeningReport": null,
+    "recruiterNotes": null,
     "timeline": [
       {
         "title": "Application Submitted",
-        "timestamp": "Oct 10, 2026, 09:10 AM",
-        "status": "completed"
+        "timestamp": "Oct 10, 2026",
+        "status": "completed",
+        "note": "Application received and registered."
       },
       {
         "title": "Resume Screening (AI)",
-        "timestamp": "Oct 10, 2026, 09:45 AM",
-        "status": "completed"
+        "timestamp": "Oct 10, 2026",
+        "status": "completed",
+        "note": "Screening evaluation complete. AI Recommendation: SHORTLISTED."
       },
       {
         "title": "Under Human Review",
-        "timestamp": "Oct 11, 2026, 11:30 AM",
-        "status": "completed"
+        "timestamp": "Oct 10, 2026",
+        "status": "completed",
+        "note": "Human recruiter evaluated portfolio."
       },
       {
         "title": "Final Decision",
-        "timestamp": "Oct 12, 2026, 09:00 AM",
+        "timestamp": "Oct 10, 2026",
         "status": "completed",
-        "note": "Congratulations! You have been shortlisted for this role."
+        "note": "Final Application Status: Shortlisted"
       }
     ]
   },
   {
     "id": "APP-3586-AK03",
     "jobId": "3586167732",
-    "jobTitle": "Data Analyst",
-    "company": "DataWorks",
-    "status": "Not Shortlisted",
+    "job_id": "3586167732",
+    "jobTitle": "Senior Software Engineer",
+    "company": "StyleAI",
+    "candidateId": "aksada",
+    "candidate_id": "aksada",
+    "candidateName": "Akshada Kale",
+    "candidateDegree": "B.Tech (2022 - 2026)",
+    "candidateEmail": "akshada@example.com",
+    "candidatePhone": "+91 98765 43210",
+    "candidateLocation": "Pune, India",
+    "resumeFile": "aksada.pdf",
+    "resume_file": "aksada.pdf",
     "appliedDate": "Oct 5, 2026",
+    "aiRecommendation": "REJECTED",
+    "ai_recommendation": "REJECTED",
+    "decision": "REJECTED",
+    "finalStatus": "Rejected",
+    "final_status": "Rejected",
+    "status": "Rejected",
+    "statusLabel": "Rejected",
+    "fitScore": 28.5,
+    "fit_score": 28.5,
+    "decisionReason": "Evaluated by Gates 0-8: Score 28.5/100",
+    "decision_reason": "Evaluated by Gates 0-8: Score 28.5/100",
+    "matchedSkills": [],
+    "missingSkills": [],
+    "matchedRequirements": [],
+    "missingRequirements": [],
+    "evidenceLedger": [],
+    "breakdown": {},
+    "integrityFlags": [],
+    "verificationFlags": [],
+    "quarantineStatus": "CLEAN",
+    "overqualification": "BALANCED",
+    "screeningReport": null,
+    "recruiterNotes": null,
     "timeline": [
       {
         "title": "Application Submitted",
-        "timestamp": "Oct 05, 2026, 10:00 AM",
-        "status": "completed"
+        "timestamp": "Oct 5, 2026",
+        "status": "completed",
+        "note": "Application received and registered."
       },
       {
         "title": "Resume Screening (AI)",
-        "timestamp": "Oct 05, 2026, 10:15 AM",
-        "status": "completed"
+        "timestamp": "Oct 5, 2026",
+        "status": "completed",
+        "note": "Screening evaluation complete. AI Recommendation: REJECTED."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Oct 5, 2026",
+        "status": "completed",
+        "note": "Human recruiter evaluated portfolio."
       },
       {
         "title": "Final Decision",
-        "timestamp": "Oct 06, 2026, 04:30 PM",
+        "timestamp": "Oct 5, 2026",
         "status": "completed",
-        "note": "Role requirements focus on high-throughput streaming systems."
+        "note": "Final Application Status: Rejected"
+      }
+    ]
+  },
+  {
+    "id": "APP-2234-67F104",
+    "jobId": "2234533717",
+    "job_id": "2234533717",
+    "jobTitle": "Full Stack Engineer",
+    "company": "Ideando Inc",
+    "candidateId": "riya_sharma",
+    "candidate_id": "riya_sharma",
+    "candidateName": "Riya Sharma",
+    "candidateDegree": "4.5 yrs - Professional",
+    "candidateEmail": "riya.sharma@example.com",
+    "candidatePhone": "+91 98200 12345",
+    "candidateLocation": "Not specified",
+    "resumeFile": "Arjun_Cloud_Resume.pdf",
+    "resume_file": "Arjun_Cloud_Resume.pdf",
+    "appliedDate": "Oct 17, 2026",
+    "aiRecommendation": "HR_REVIEW",
+    "ai_recommendation": "HR_REVIEW",
+    "decision": "HR_REVIEW",
+    "finalStatus": "Shortlisted",
+    "final_status": "Shortlisted",
+    "status": "Shortlisted",
+    "statusLabel": "Shortlisted",
+    "fitScore": 88.5,
+    "fit_score": 88.5,
+    "decisionReason": "Evaluated by Gates 0-8: Score 88.5/100",
+    "decision_reason": "Evaluated by Gates 0-8: Score 88.5/100",
+    "matchedSkills": [],
+    "missingSkills": [],
+    "matchedRequirements": [],
+    "missingRequirements": [],
+    "evidenceLedger": [],
+    "breakdown": {},
+    "integrityFlags": [],
+    "verificationFlags": [],
+    "quarantineStatus": "CLEAN",
+    "overqualification": "BALANCED",
+    "screeningReport": null,
+    "recruiterNotes": null,
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Application received and registered."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Screening evaluation complete. AI Recommendation: HR_REVIEW."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Human recruiter evaluated portfolio."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Final Application Status: Shortlisted"
+      }
+    ]
+  },
+  {
+    "id": "APP-2234-6AB443",
+    "jobId": "2234533717",
+    "job_id": "2234533717",
+    "jobTitle": "Full Stack Engineer",
+    "company": "Ideando Inc",
+    "candidateId": "riya_sharma",
+    "candidate_id": "riya_sharma",
+    "candidateName": "Riya Sharma",
+    "candidateDegree": "4.5 yrs - Professional",
+    "candidateEmail": "riya.sharma@example.com",
+    "candidatePhone": "+91 98200 12345",
+    "candidateLocation": "Not specified",
+    "resumeFile": "devin.pdf",
+    "resume_file": "devin.pdf",
+    "appliedDate": "Oct 17, 2026",
+    "aiRecommendation": "HR_REVIEW",
+    "ai_recommendation": "HR_REVIEW",
+    "decision": "HR_REVIEW",
+    "finalStatus": "Under Review",
+    "final_status": "Under Review",
+    "status": "Under Review",
+    "statusLabel": "Under Review",
+    "fitScore": 40.0,
+    "fit_score": 40.0,
+    "decisionReason": "Evaluated by Gates 0-8: Score 40.0/100",
+    "decision_reason": "Evaluated by Gates 0-8: Score 40.0/100",
+    "matchedSkills": [],
+    "missingSkills": [],
+    "matchedRequirements": [],
+    "missingRequirements": [],
+    "evidenceLedger": [],
+    "breakdown": {},
+    "integrityFlags": [],
+    "verificationFlags": [],
+    "quarantineStatus": "CLEAN",
+    "overqualification": "BALANCED",
+    "screeningReport": null,
+    "recruiterNotes": null,
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Application received and registered."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Screening evaluation complete. AI Recommendation: HR_REVIEW."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Oct 17, 2026",
+        "status": "active",
+        "note": "Human recruiter evaluated portfolio."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 17, 2026",
+        "status": "pending",
+        "note": "Final Application Status: Under Review"
+      }
+    ]
+  },
+  {
+    "id": "APP-cust-87C526",
+    "jobId": "custom_224188",
+    "job_id": "custom_224188",
+    "jobTitle": "Chef / Cook",
+    "company": "TechCorp",
+    "candidateId": "riya_sharma",
+    "candidate_id": "riya_sharma",
+    "candidateName": "Riya Sharma",
+    "candidateDegree": "4.5 yrs - Professional",
+    "candidateEmail": "riya.sharma@example.com",
+    "candidatePhone": "+91 98200 12345",
+    "candidateLocation": "Not specified",
+    "resumeFile": "aksada.pdf",
+    "resume_file": "aksada.pdf",
+    "appliedDate": "Oct 17, 2026",
+    "aiRecommendation": "HR_REVIEW",
+    "ai_recommendation": "HR_REVIEW",
+    "decision": "HR_REVIEW",
+    "finalStatus": "Rejected",
+    "final_status": "Rejected",
+    "status": "Rejected",
+    "statusLabel": "Rejected",
+    "fitScore": 22.2,
+    "fit_score": 22.2,
+    "decisionReason": "Evaluated by Gates 0-8: Score 22.2/100",
+    "decision_reason": "Evaluated by Gates 0-8: Score 22.2/100",
+    "matchedSkills": [],
+    "missingSkills": [],
+    "matchedRequirements": [],
+    "missingRequirements": [],
+    "evidenceLedger": [],
+    "breakdown": {},
+    "integrityFlags": [],
+    "verificationFlags": [],
+    "quarantineStatus": "CLEAN",
+    "overqualification": "BALANCED",
+    "screeningReport": null,
+    "recruiterNotes": null,
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Application received and registered."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Screening evaluation complete. AI Recommendation: HR_REVIEW."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Human recruiter evaluated portfolio."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Final Application Status: Rejected"
+      }
+    ]
+  },
+  {
+    "id": "APP-2234-55914D",
+    "jobId": "2234533717",
+    "job_id": "2234533717",
+    "jobTitle": "Full Stack Engineer",
+    "company": "Ideando Inc",
+    "candidateId": "riya_sharma",
+    "candidate_id": "riya_sharma",
+    "candidateName": "Riya Sharma",
+    "candidateDegree": "4.5 yrs - Professional",
+    "candidateEmail": "riya.sharma@example.com",
+    "candidatePhone": "+91 98200 12345",
+    "candidateLocation": "Not specified",
+    "resumeFile": "Samir_Khan_Resume.pdf",
+    "resume_file": "Samir_Khan_Resume.pdf",
+    "appliedDate": "Oct 17, 2026",
+    "aiRecommendation": "HR_REVIEW",
+    "ai_recommendation": "HR_REVIEW",
+    "decision": "HR_REVIEW",
+    "finalStatus": "Shortlisted",
+    "final_status": "Shortlisted",
+    "status": "Shortlisted",
+    "statusLabel": "Shortlisted",
+    "fitScore": 38.0,
+    "fit_score": 38.0,
+    "decisionReason": "Evaluated by Gates 0-8: Score 38.0/100",
+    "decision_reason": "Evaluated by Gates 0-8: Score 38.0/100",
+    "matchedSkills": [],
+    "missingSkills": [],
+    "matchedRequirements": [],
+    "missingRequirements": [],
+    "evidenceLedger": [],
+    "breakdown": {},
+    "integrityFlags": [],
+    "verificationFlags": [],
+    "quarantineStatus": "CLEAN",
+    "overqualification": "BALANCED",
+    "screeningReport": null,
+    "recruiterNotes": null,
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Application received and registered."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Screening evaluation complete. AI Recommendation: HR_REVIEW."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Human recruiter evaluated portfolio."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Final Application Status: Shortlisted"
+      }
+    ]
+  },
+  {
+    "id": "APP-2234-42E6D9",
+    "jobId": "2234533717",
+    "job_id": "2234533717",
+    "jobTitle": "Full Stack Engineer",
+    "company": "Ideando Inc",
+    "candidateId": "riya_sharma",
+    "candidate_id": "riya_sharma",
+    "candidateName": "Riya Sharma",
+    "candidateDegree": "4.5 yrs - Professional",
+    "candidateEmail": "riya.sharma@example.com",
+    "candidatePhone": "+91 98200 12345",
+    "candidateLocation": "Not specified",
+    "resumeFile": "Kavita_Verma_Resume.pdf",
+    "resume_file": "Kavita_Verma_Resume.pdf",
+    "appliedDate": "Oct 17, 2026",
+    "aiRecommendation": "HR_REVIEW",
+    "ai_recommendation": "HR_REVIEW",
+    "decision": "HR_REVIEW",
+    "finalStatus": "Under Review",
+    "final_status": "Under Review",
+    "status": "Under Review",
+    "statusLabel": "Under Review",
+    "fitScore": 58.2,
+    "fit_score": 58.2,
+    "decisionReason": "Evaluated by Gates 0-8: Score 58.2/100",
+    "decision_reason": "Evaluated by Gates 0-8: Score 58.2/100",
+    "matchedSkills": [],
+    "missingSkills": [],
+    "matchedRequirements": [],
+    "missingRequirements": [],
+    "evidenceLedger": [],
+    "breakdown": {},
+    "integrityFlags": [],
+    "verificationFlags": [],
+    "quarantineStatus": "CLEAN",
+    "overqualification": "BALANCED",
+    "screeningReport": null,
+    "recruiterNotes": null,
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Application received and registered."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Screening evaluation complete. AI Recommendation: HR_REVIEW."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Oct 17, 2026",
+        "status": "active",
+        "note": "Human recruiter evaluated portfolio."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 17, 2026",
+        "status": "pending",
+        "note": "Final Application Status: Under Review"
+      }
+    ]
+  },
+  {
+    "id": "APP-2234-RS01",
+    "jobId": "2234533717",
+    "job_id": "2234533717",
+    "jobTitle": "Full Stack Engineer",
+    "company": "Ideando Inc",
+    "candidateId": "rahul_sharma",
+    "candidate_id": "rahul_sharma",
+    "candidateName": "Rahul Sharma",
+    "candidateDegree": "2 yrs - B.Tech",
+    "candidateEmail": "rahul.s@example.com",
+    "candidatePhone": "+91 98111 22334",
+    "candidateLocation": "Bangalore, India",
+    "resumeFile": "Rahul_Sharma_Resume.pdf",
+    "resume_file": "Rahul_Sharma_Resume.pdf",
+    "appliedDate": "Oct 11, 2026",
+    "aiRecommendation": "SHORTLISTED",
+    "ai_recommendation": "SHORTLISTED",
+    "decision": "SHORTLISTED",
+    "finalStatus": "Shortlisted",
+    "final_status": "Shortlisted",
+    "status": "Shortlisted",
+    "statusLabel": "Shortlisted",
+    "fitScore": 90.1,
+    "fit_score": 90.1,
+    "decisionReason": "Gate 7: High match score >= 75.0 (Auto-Advance)",
+    "decision_reason": "Gate 7: High match score >= 75.0 (Auto-Advance)",
+    "matchedSkills": [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "MongoDB",
+      "AWS",
+      "Git",
+      "REST APIs",
+      "CI/CD"
+    ],
+    "missingSkills": [
+      "System Design"
+    ],
+    "matchedRequirements": [],
+    "missingRequirements": [],
+    "evidenceLedger": [],
+    "breakdown": {},
+    "integrityFlags": [],
+    "verificationFlags": [],
+    "quarantineStatus": "CLEAN",
+    "overqualification": "BALANCED",
+    "screeningReport": null,
+    "recruiterNotes": null,
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 11, 2026",
+        "status": "completed",
+        "note": "Application received and registered."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 11, 2026",
+        "status": "completed",
+        "note": "Screening evaluation complete. AI Recommendation: SHORTLISTED."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Oct 11, 2026",
+        "status": "completed",
+        "note": "Human recruiter evaluated portfolio."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 17, 2026, 07:55 PM",
+        "status": "completed",
+        "note": "Recruiter Rohan (HR) set status to Shortlisted: Candidate certified in AWS architecture."
+      }
+    ]
+  },
+  {
+    "id": "APP-2234-SP01",
+    "jobId": "2234533717",
+    "job_id": "2234533717",
+    "jobTitle": "Full Stack Engineer",
+    "company": "Ideando Inc",
+    "candidateId": "sneha_patel",
+    "candidate_id": "sneha_patel",
+    "candidateName": "Sneha Patel",
+    "candidateDegree": "4 yrs - M.Tech",
+    "candidateEmail": "sneha.p@example.com",
+    "candidatePhone": "+91 99222 33445",
+    "candidateLocation": "Mumbai, India",
+    "resumeFile": "Sneha_Patel_Resume.pdf",
+    "resume_file": "Sneha_Patel_Resume.pdf",
+    "appliedDate": "Oct 12, 2026",
+    "aiRecommendation": "SHORTLISTED",
+    "ai_recommendation": "SHORTLISTED",
+    "decision": "SHORTLISTED",
+    "finalStatus": "Shortlisted",
+    "final_status": "Shortlisted",
+    "status": "Shortlisted",
+    "statusLabel": "Shortlisted",
+    "fitScore": 76.5,
+    "fit_score": 76.5,
+    "decisionReason": "Gate 7: Strong full stack alignment (Auto-Advance)",
+    "decision_reason": "Gate 7: Strong full stack alignment (Auto-Advance)",
+    "matchedSkills": [
+      "React",
+      "Node.js",
+      "PostgreSQL",
+      "Git",
+      "REST APIs"
+    ],
+    "missingSkills": [
+      "AWS",
+      "Docker"
+    ],
+    "matchedRequirements": [],
+    "missingRequirements": [],
+    "evidenceLedger": [],
+    "breakdown": {},
+    "integrityFlags": [],
+    "verificationFlags": [],
+    "quarantineStatus": "CLEAN",
+    "overqualification": "BALANCED",
+    "screeningReport": null,
+    "recruiterNotes": null,
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 12, 2026",
+        "status": "completed",
+        "note": "Application received and registered."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 12, 2026",
+        "status": "completed",
+        "note": "Screening evaluation complete. AI Recommendation: SHORTLISTED."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Oct 12, 2026",
+        "status": "completed",
+        "note": "Human recruiter evaluated portfolio."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 12, 2026",
+        "status": "completed",
+        "note": "Final Application Status: Shortlisted"
+      }
+    ]
+  },
+  {
+    "id": "APP-2234-PN01",
+    "jobId": "2234533717",
+    "job_id": "2234533717",
+    "jobTitle": "Full Stack Engineer",
+    "company": "Ideando Inc",
+    "candidateId": "priya_nair",
+    "candidate_id": "priya_nair",
+    "candidateName": "Priya Nair",
+    "candidateDegree": "1 yr - B.E.",
+    "candidateEmail": "priya.n@example.com",
+    "candidatePhone": "+91 97333 44556",
+    "candidateLocation": "Kochi, India",
+    "resumeFile": "Priya_Nair_Resume.pdf",
+    "resume_file": "Priya_Nair_Resume.pdf",
+    "appliedDate": "Oct 13, 2026",
+    "aiRecommendation": "HR_REVIEW",
+    "ai_recommendation": "HR_REVIEW",
+    "decision": "HR_REVIEW",
+    "finalStatus": "Under Review",
+    "final_status": "Under Review",
+    "status": "Under Review",
+    "statusLabel": "Under Review",
+    "fitScore": 52.4,
+    "fit_score": 52.4,
+    "decisionReason": "Gate 7: Mid-range candidate (Borderline evidence)",
+    "decision_reason": "Gate 7: Mid-range candidate (Borderline evidence)",
+    "matchedSkills": [
+      "JavaScript",
+      "React",
+      "HTML5",
+      "CSS3",
+      "Git"
+    ],
+    "missingSkills": [
+      "MongoDB",
+      "AWS",
+      "CI/CD"
+    ],
+    "matchedRequirements": [],
+    "missingRequirements": [],
+    "evidenceLedger": [],
+    "breakdown": {},
+    "integrityFlags": [],
+    "verificationFlags": [],
+    "quarantineStatus": "CLEAN",
+    "overqualification": "BALANCED",
+    "screeningReport": null,
+    "recruiterNotes": null,
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 13, 2026",
+        "status": "completed",
+        "note": "Application received and registered."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 13, 2026",
+        "status": "completed",
+        "note": "Screening evaluation complete. AI Recommendation: HR_REVIEW."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Oct 13, 2026",
+        "status": "active",
+        "note": "Human recruiter evaluated portfolio."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 13, 2026",
+        "status": "pending",
+        "note": "Final Application Status: Under Review"
+      }
+    ]
+  },
+  {
+    "id": "APP-2234-VS01",
+    "jobId": "2234533717",
+    "job_id": "2234533717",
+    "jobTitle": "Full Stack Engineer",
+    "company": "Ideando Inc",
+    "candidateId": "vikram_singh",
+    "candidate_id": "vikram_singh",
+    "candidateName": "Vikram Singh",
+    "candidateDegree": "0.5 yrs - BCA",
+    "candidateEmail": "vikram.s@example.com",
+    "candidatePhone": "+91 96444 55667",
+    "candidateLocation": "Delhi, India",
+    "resumeFile": "Vikram_Singh_Resume.pdf",
+    "resume_file": "Vikram_Singh_Resume.pdf",
+    "appliedDate": "Oct 09, 2026",
+    "aiRecommendation": "REJECTED",
+    "ai_recommendation": "REJECTED",
+    "decision": "REJECTED",
+    "finalStatus": "Rejected",
+    "final_status": "Rejected",
+    "status": "Rejected",
+    "statusLabel": "Rejected",
+    "fitScore": 35.8,
+    "fit_score": 35.8,
+    "decisionReason": "Gate 7: Score < 40.0; critical technical deficit",
+    "decision_reason": "Gate 7: Score < 40.0; critical technical deficit",
+    "matchedSkills": [
+      "HTML5",
+      "CSS3"
+    ],
+    "missingSkills": [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "MongoDB",
+      "AWS",
+      "CI/CD"
+    ],
+    "matchedRequirements": [],
+    "missingRequirements": [],
+    "evidenceLedger": [],
+    "breakdown": {},
+    "integrityFlags": [],
+    "verificationFlags": [],
+    "quarantineStatus": "CLEAN",
+    "overqualification": "BALANCED",
+    "screeningReport": null,
+    "recruiterNotes": null,
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 09, 2026",
+        "status": "completed",
+        "note": "Application received and registered."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 09, 2026",
+        "status": "completed",
+        "note": "Screening evaluation complete. AI Recommendation: REJECTED."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Oct 09, 2026",
+        "status": "completed",
+        "note": "Human recruiter evaluated portfolio."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 09, 2026",
+        "status": "completed",
+        "note": "Final Application Status: Rejected"
       }
     ]
   }

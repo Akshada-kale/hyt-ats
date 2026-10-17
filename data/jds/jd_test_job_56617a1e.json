@@ -1,0 +1,22 @@
+{
+  "job_id": "test_job_56617a1e",
+  "title": "Senior Cloud Infrastructure Engineer",
+  "company": "SkyNet Inc",
+  "location": "Remote",
+  "work_type": "Full-time",
+  "min_years_experience": 5.0,
+  "seniority_level": "mid",
+  "status": "Open",
+  "postedDate": "Oct 17, 2026",
+  "approx_must_haves": [
+    "AWS",
+    "Terraform",
+    "Kubernetes"
+  ],
+  "approx_nice_to_haves": [
+    "Go",
+    "Kafka"
+  ],
+  "education_requirement": "Bachelor's degree or equivalent",
+  "raw_description": "Lead infrastructure scalability across multi-region AWS environments."
+}

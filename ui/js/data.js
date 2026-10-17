@@ -4,25 +4,25 @@
  * Supports persistent localStorage state with graceful server API sync.
  */
 
-const STORAGE_KEY = "HYT_ATS_STATE_V5";
+const STORAGE_KEY = "HYT_ATS_STATE_V6";
 
 const DEFAULT_STATE = {
   activeRole: "candidate", // candidate | recruiter | admin
   currentUser: {
     candidate: {
-      id: "aksada",
-      name: "Akshada Kale",
-      email: "akshada@example.com",
-      avatar: "A",
+      id: "10089434",
+      name: "Rahul Sharma",
+      email: "rahul.sharma@example.com",
+      avatar: "R",
       phone: "+91 98765 43210",
-      education: "B.Tech in Computer Science, XYZ University (2022 - 2026)",
+      education: "B.Tech in Computer Science (2022 - 2026)",
       location: "Pune, India",
-      github: "https://github.com/Akshada-kale",
+      github: "https://github.com/rahul-dev",
       about: "Passionate software engineer with hands-on experience in full-stack web development, React, Node.js, and MongoDB. Enthusiastic about creating clean user interfaces and scalable APIs.",
       skills: ["JavaScript", "React", "Node.js", "Python", "MongoDB", "Express.js", "HTML5", "CSS3", "Git"],
-      resumeFile: "Akshada_Kale_Resume.pdf",
+      resumeFile: "10089434.pdf",
       resumeSize: "450 KB",
-      lastUpdated: "Oct 14, 2026"
+      lastUpdated: "Oct 17, 2026"
     },
     recruiter: {
       id: "rohan_hr",
@@ -227,11 +227,11 @@ const DEFAULT_STATE = {
   // Candidates roster for Recruiter & Admin
   candidates: [
     {
-      id: "c_riya_sharma",
-      candidateId: "riya_sharma",
-      name: "Riya Sharma",
-      degree: "4.5 yrs - Professional",
-      resumeFile: "riya_sharma.pdf",
+      id: "c_ananya_deshmukh",
+      candidateId: "PA_to_Director_Matching_Resume",
+      name: "Ananya Deshmukh",
+      degree: "4.5 yrs - Executive PA",
+      resumeFile: "PA_to_Director_Matching_Resume.pdf",
       appliedJobId: "pa_director",
       appliedJobTitle: "Personal Assistant (PA) to the Director",
       appliedDate: "Today",
@@ -416,9 +416,9 @@ const DEFAULT_STATE = {
       missingSkills: ["AWS", "Docker"]
     },
     {
-      id: "c_aksada",
-      candidateId: "aksada",
-      name: "Akshada Kale",
+      id: "c_10089434",
+      candidateId: "10089434",
+      name: "Rahul Sharma",
       degree: "2 yrs - B.Tech",
       appliedJobId: "2234533717",
       appliedJobTitle: "Full Stack Software Engineer",
@@ -697,7 +697,7 @@ const DEFAULT_STATE = {
 
   // Audit Log Entries
   auditLogs: [
-    { id: "LOG-01", timestamp: "2026-10-16 11:42:01", actor: "System Pipeline", action: "Executed Screening Gate 0-8", target: "Candidate: aksada (Akshada Kale)", status: "Completed (42.62/100)" },
+    { id: "LOG-01", timestamp: "2026-10-16 11:42:01", actor: "System Pipeline", action: "Executed Screening Gate 0-8", target: "Candidate: 10089434 (Rahul Sharma)", status: "Completed (42.62/100)" },
     { id: "LOG-02", timestamp: "2026-10-16 11:30:15", actor: "Rohan (HR)", action: "Shortlisted Candidate", target: "Candidate: Neha Gupta", status: "Status -> Shortlisted" },
     { id: "LOG-03", timestamp: "2026-10-16 10:15:22", actor: "System Pipeline", action: "Adversarial Prompt Injection Blocked", target: "Resume: payload_test.pdf", status: "Quarantined" },
     { id: "LOG-04", timestamp: "2026-10-16 09:12:00", actor: "Candidate: Akshada Kale", action: "Submitted Job Application", target: "Job: 2234533717 (Full Stack)", status: "Success" },
@@ -774,16 +774,20 @@ class DataStore {
   async syncWithBackend() {
     try {
       // 1. Health check
-      const statusRes = await this.apiCall("/api/status");
-      if (statusRes && statusRes.status === "online") {
-        this.isBackendConnected = true;
-        this.backendInfo = statusRes;
+      try {
+        const statusRes = await this.apiCall("/api/status");
+        if (statusRes && statusRes.status === "online") {
+          this.isBackendConnected = true;
+          this.backendInfo = statusRes;
+        }
+      } catch (e) {
+        console.warn("Could not fetch /api/status:", e);
       }
 
       // 2. Fetch Jobs Catalog
       try {
         const jobsRes = await this.apiCall("/api/jobs");
-        if (jobsRes && jobsRes.jobs && jobsRes.jobs.length > 0) {
+        if (jobsRes && Array.isArray(jobsRes.jobs)) {
           this.state.jobs = jobsRes.jobs;
         }
       } catch (e) {
@@ -793,7 +797,7 @@ class DataStore {
       // 3. Fetch Candidates Roster
       try {
         const candsRes = await this.apiCall("/api/candidates");
-        if (candsRes && candsRes.candidates && candsRes.candidates.length > 0) {
+        if (candsRes && Array.isArray(candsRes.candidates)) {
           this.state.candidates = candsRes.candidates;
         }
       } catch (e) {
@@ -803,7 +807,7 @@ class DataStore {
       // 4. Fetch Applications List
       try {
         const appsRes = await this.apiCall("/api/applications");
-        if (appsRes && appsRes.applications && appsRes.applications.length > 0) {
+        if (appsRes && Array.isArray(appsRes.applications)) {
           this.state.candidateApplications = appsRes.applications;
         }
       } catch (e) {
@@ -828,7 +832,7 @@ class DataStore {
       // 6. Fetch Audit Logs
       try {
         const logsRes = await this.apiCall("/api/logs");
-        if (logsRes && logsRes.logs && logsRes.logs.length > 0) {
+        if (logsRes && Array.isArray(logsRes.logs)) {
           this.state.auditLogs = logsRes.logs;
         }
       } catch (e) {
@@ -902,7 +906,8 @@ class DataStore {
   }
 
   getJobById(id) {
-    return this.state.jobs.find(j => String(j.id) === String(id)) || this.state.jobs[0];
+    if (!id) return null;
+    return this.state.jobs.find(j => String(j.id) === String(id)) || null;
   }
 
   getCandidateApplications() {
@@ -915,7 +920,8 @@ class DataStore {
   }
 
   getCandidateById(id) {
-    const cand = this.state.candidates.find(c => c.id === id || c.candidateId === id) || this.state.candidates[2];
+    if (!id) return null;
+    const cand = this.state.candidates.find(c => String(c.id) === String(id) || String(c.candidateId) === String(id)) || null;
     if (cand) {
       this.ensureCandidateLedgerAndRequirements(cand);
     }
@@ -925,20 +931,10 @@ class DataStore {
   ensureCandidateLedgerAndRequirements(cand) {
     if (!cand) return;
 
-    const isRiya = cand.candidateId === "riya_sharma" || (cand.name && cand.name.toLowerCase().includes("riya")) || (cand.id && cand.id.includes("riya"));
-
     // Guarantee full 7-entry ledger if missing or incomplete
     if (!cand.evidenceLedger || cand.evidenceLedger.length < 7) {
-      if (isRiya) {
-        cand.evidenceLedger = [
-          { requirement: "Must-Have: Legal Practice", dimension: "TECHNICAL", is_verified: false, gap: "Missing required must-have skill 'Legal Practice'. Closest resume skill was 'Records management' (0.33 similarity vs 0.75 threshold).", score_contribution: 0.0, points: "0.0 pts" },
-          { requirement: "Must-Have: Contract Law", dimension: "TECHNICAL", is_verified: false, gap: "Missing required must-have skill 'Contract Law'. Closest resume skill was 'Records management' (0.24 similarity vs 0.75 threshold).", score_contribution: 0.0, points: "0.0 pts" },
-          { requirement: "Must-Have: Litigation", dimension: "TECHNICAL", is_verified: false, gap: "Missing required must-have skill 'Litigation'. Closest resume skill was 'Stakeholder communication' (0.30 similarity vs 0.75 threshold).", score_contribution: 0.0, points: "0.0 pts" },
-          { requirement: "Minimum 3.0 years of relevant professional experience", dimension: "EXPERIENCE", is_verified: true, evidence: "Candidate has 4.5 total years across 0 chronological positions.", gap: "Candidate experience (4.5 years) lacks demonstrated technical alignment with target domain.", score_contribution: 37.5, points: "37.5 pts" },
-          { requirement: "Target role seniority: MID", dimension: "SENIORITY", is_verified: true, evidence: "Candidate evaluated at MID level based on titles and career progression.", gap: "Seniority title lacks demonstrated technical competency in target engineering domain.", score_contribution: 40.0, points: "40.0 pts" },
-          { requirement: "Education baseline: Juris Doctor (JD) or equivalent law degree", dimension: "EDUCATION", is_verified: false, evidence: "No degree listed on resume.", gap: "No degree listed on resume.", score_contribution: 100.0, points: "100.0 pts" },
-          { requirement: "Location requirement: Unknown (onsite)", dimension: "LOCATION", is_verified: false, evidence: "Candidate location: Not specified", gap: "Location mismatch (Unknown vs Unknown); awarded baseline partial credit.", score_contribution: 70.0, points: "70.0 pts" }
-        ];
+      if (cand.evidenceLedger && cand.evidenceLedger.length > 0) {
+        // Keep existing non-empty ledger
       } else {
         cand.evidenceLedger = [
           { requirement: "Must-Have: JavaScript & ES6+", dimension: "TECHNICAL", is_verified: true, evidence: "Demonstrated full-stack development using modern ES6+ features across LearnMate and HEALIS web apps.", gap: "None", score_contribution: 15.0, points: "15.0 pts" },
@@ -985,15 +981,16 @@ class DataStore {
   // --- Asynchronous Backend Integrated Operations ---
 
   async addJob(newJob) {
-    this.state.jobs.unshift(newJob);
-    this.saveState();
-
     if (this.isBackendConnected) {
       try {
         const res = await this.apiCall("/api/jobs", "POST", newJob);
         if (res && res.job) {
-          const idx = this.state.jobs.findIndex(j => j.id === newJob.id);
-          if (idx !== -1) this.state.jobs[idx] = res.job;
+          const idx = this.state.jobs.findIndex(j => String(j.id) === String(res.job.id) || (newJob.id && String(j.id) === String(newJob.id)));
+          if (idx !== -1) {
+            this.state.jobs[idx] = res.job;
+          } else {
+            this.state.jobs.unshift(res.job);
+          }
           this.saveState();
           return res.job;
         }
@@ -1001,6 +998,8 @@ class DataStore {
         console.warn("Backend addJob failed, saved locally:", err);
       }
     }
+    this.state.jobs.unshift(newJob);
+    this.saveState();
     return newJob;
   }
 
@@ -1045,17 +1044,68 @@ class DataStore {
     };
   }
 
-  async submitApplication(jobId, whyFit = "", resumeName = "aksada.pdf") {
+  async submitApplication(jobId, whyFit = "", resumeName = "10089434.pdf", customName = null, customEmail = null) {
     const job = this.getJobById(jobId);
+    const currentUser = (this.getCurrentUser && this.getCurrentUser()) || (this.state.currentUser && this.state.currentUser.candidate) || {};
+    const candidateName = customName || currentUser.name || "Rahul Sharma";
+    const candidateId = customName ? customName.toLowerCase().replace(/[^a-z0-9]/g, "_") : (currentUser.id || "10089434");
+    const candidateEmail = customEmail || currentUser.email || "candidate@example.com";
+    const resumeFile = resumeName || currentUser.resumeFile || "10089434.pdf";
+
+    if (this.isBackendConnected) {
+      try {
+        const res = await this.apiCall("/api/applications/submit", "POST", {
+          job_id: String(jobId),
+          candidate_id: candidateId,
+          candidate_name: candidateName,
+          candidate_email: candidateEmail,
+          why_fit: whyFit,
+          resume_name: resumeFile
+        });
+        if (res && res.application) {
+          const app = res.application;
+          const idx = this.state.candidateApplications.findIndex(a => a.id === app.id);
+          if (idx !== -1) {
+            this.state.candidateApplications[idx] = app;
+          } else {
+            this.state.candidateApplications.unshift(app);
+          }
+
+          if (res.candidate) {
+            const existingIdx = this.state.candidates.findIndex(c => String(c.candidateId) === String(candidateId) && String(c.appliedJobId) === String(jobId));
+            if (existingIdx >= 0) {
+              this.state.candidates[existingIdx] = res.candidate;
+            } else {
+              this.state.candidates.unshift(res.candidate);
+            }
+          }
+          if (job) {
+            job.applicantsCount = (job.applicantsCount || 0) + 1;
+            if (app.finalStatus === "Shortlisted") {
+              job.shortlistedCount = (job.shortlistedCount || 0) + 1;
+            } else if (app.finalStatus === "Rejected") {
+              job.rejectedCount = (job.rejectedCount || 0) + 1;
+            } else {
+              job.reviewCount = (job.reviewCount || 0) + 1;
+            }
+          }
+          this.saveState();
+          return app;
+        }
+      } catch (err) {
+        console.warn("Backend submit application failed, stored locally:", err);
+      }
+    }
+
     const newApp = {
       id: `APP-${String(jobId).slice(0, 4)}-${Date.now().toString().slice(-4)}`,
       jobId: String(jobId),
-      jobTitle: job.title,
-      company: job.company,
+      jobTitle: job ? job.title : "Role",
+      company: job ? job.company : "Company",
       status: "Under Review",
       appliedDate: "Today",
       timeline: [
-        { title: "Application Submitted", timestamp: "Just Now", status: "completed", note: `Application registered with resume (${resumeName}).` },
+        { title: "Application Submitted", timestamp: "Just Now", status: "completed", note: `Application registered with resume (${resumeFile}).` },
         { title: "Resume Screening (AI)", timestamp: "In Progress", status: "active", note: "Deterministic Gates 0-8 running..." },
         { title: "Under Human Review", timestamp: "Pending", status: "pending" },
         { title: "Final Decision", timestamp: "Pending", status: "pending" }
@@ -1063,50 +1113,35 @@ class DataStore {
     };
 
     this.state.candidateApplications.unshift(newApp);
-    job.applicantsCount = (job.applicantsCount || 0) + 1;
-    job.reviewCount = (job.reviewCount || 0) + 1;
-
-    this.saveState();
-
-    if (this.isBackendConnected) {
-      try {
-        const res = await this.apiCall("/api/applications/submit", "POST", {
-          job_id: String(jobId),
-          candidate_id: "aksada",
-          why_fit: whyFit,
-          resume_name: resumeName
-        });
-        if (res && res.application) {
-          Object.assign(newApp, res.application);
-          if (res.candidate) {
-            const existingIdx = this.state.candidates.findIndex(c => c.candidateId === "aksada" && String(c.appliedJobId) === String(jobId));
-            if (existingIdx >= 0) {
-              this.state.candidates[existingIdx] = res.candidate;
-            } else {
-              this.state.candidates.unshift(res.candidate);
-            }
-          }
-          this.saveState();
-        }
-      } catch (err) {
-        console.warn("Backend submit application failed, stored locally:", err);
-      }
+    if (job) {
+      job.applicantsCount = (job.applicantsCount || 0) + 1;
+      job.reviewCount = (job.reviewCount || 0) + 1;
     }
-
+    this.saveState();
     return newApp;
   }
 
-  async updateCandidateDecision(candidateId, newDecision, comment = "") {
+  async updateCandidateDecision(candidateId, newDecision, comment = "", jobId = null) {
     const cand = this.getCandidateById(candidateId);
     if (cand) {
-      cand.decision = newDecision;
-      cand.statusLabel = newDecision === "AUTO_ADVANCE" ? "Shortlisted" : (newDecision === "AUTO_REJECT" ? "Rejected" : "Human Review");
+      const cleanStatus = (newDecision === "AUTO_ADVANCE" || newDecision === "SHORTLISTED") ? "Shortlisted" : (
+        (newDecision === "AUTO_REJECT" || newDecision === "REJECTED") ? "Rejected" : "Under Review"
+      );
+
+      cand.finalStatus = cleanStatus;
+      cand.statusLabel = cleanStatus;
+      cand.isOverridden = true;
+      cand.overrideReason = comment || "Manual recruiter review decision";
+
+      if (!cand.aiRecommendation) {
+        cand.aiRecommendation = cand.decision === "AUTO_ADVANCE" ? "SHORTLISTED" : (cand.decision === "AUTO_REJECT" ? "REJECTED" : "HR_REVIEW");
+      }
 
       const logEntry = {
         id: `LOG-${Date.now().toString().slice(-4)}`,
         timestamp: new Date().toISOString().replace("T", " ").slice(0, 19),
         actor: "Rohan (HR)",
-        action: `Decision override: ${newDecision}`,
+        action: `Decision override: ${cleanStatus}`,
         target: `Candidate: ${cand.name}`,
         status: comment || "Manual recruiter review decision"
       };
@@ -1119,7 +1154,7 @@ class DataStore {
             candidate_id: cand.candidateId || candidateId,
             decision: newDecision,
             reason: comment || "Manual recruiter review decision",
-            job_id: cand.appliedJobId || "2234533717"
+            job_id: cand.appliedJobId || jobId || "2234533717"
           });
         } catch (err) {
           console.warn("Backend override call failed:", err);
@@ -1172,23 +1207,6 @@ class DataStore {
             cand.skills = res.detectedSkills;
           }
           cand.lastUpdated = "Just Now";
-
-          // If backend generated live application update, sync into top of applications
-          if (res.application) {
-            this.state.candidateApplications = [res.application].concat(
-              this.state.candidateApplications.filter(a => a.id !== res.application.id)
-            );
-          }
-          // If backend provided live screening candidate card, sync into candidates list
-          if (res.screening) {
-            const cid = res.candidateId || res.id;
-            const existingIdx = this.state.candidates.findIndex(c => c.candidateId === cid || c.id === cid);
-            if (existingIdx >= 0) {
-              this.state.candidates[existingIdx] = res.screening;
-            } else {
-              this.state.candidates.unshift(res.screening);
-            }
-          }
           this.saveState();
         }
         return res;
@@ -1199,7 +1217,7 @@ class DataStore {
     return { success: true, filename: fileName, detectedSkills: newSkills };
   }
 
-  async runPipeline(resumeName = "aksada.pdf", jdId = "2234533717") {
+  async runPipeline(resumeName = "10089434.pdf", jdId = "2234533717") {
     if (this.isBackendConnected) {
       try {
         const res = await this.apiCall("/api/pipeline/run", "POST", {
@@ -1208,7 +1226,7 @@ class DataStore {
         });
         if (res && res.success) {
           // Update candidate in state
-          const cand = this.getCandidateById("c_aksada");
+          const cand = this.getCandidateById("c_10089434") || (this.getCandidates() || [])[0];
           if (cand) {
             cand.fitScore = res.final_score;
             cand.decision = res.decision;
@@ -1301,7 +1319,7 @@ class DataStore {
     ];
   }
 
-  getCandidateResumeContent(candidateId = "aksada") {
+  getCandidateResumeContent(candidateId = "10089434") {
     // 1. If active uploaded resume content exists in candidate user state
     const cand = this.state.currentUser && this.state.currentUser.candidate;
     if (cand && cand.resumeContent) {

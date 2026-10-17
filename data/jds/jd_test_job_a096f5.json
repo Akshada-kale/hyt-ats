@@ -1,0 +1,20 @@
+{
+  "job_id": "test_job_a096f5",
+  "title": "Security Lead",
+  "company": "CyberOps",
+  "location": "Remote",
+  "work_type": "Full-time",
+  "min_years_experience": 2.0,
+  "seniority_level": "mid",
+  "status": "Open",
+  "postedDate": "Oct 17, 2026",
+  "approx_must_haves": [
+    "Problem Solving",
+    "Collaboration"
+  ],
+  "approx_nice_to_haves": [
+    "Communication"
+  ],
+  "education_requirement": "Bachelor's degree or equivalent",
+  "raw_description": ""
+}

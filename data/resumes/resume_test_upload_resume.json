@@ -1,0 +1,16 @@
+{
+  "candidate_id": "test_candidate",
+  "filename": "test_upload_resume.pdf",
+  "file_size": "1 KB",
+  "sha256": "e708d7f6eaa7bf934d7fd5badfde2d3aa27bdd58bb495dcd17ac4cef2a7444de",
+  "uploaded_at": "2026-10-17T19:55:49.724320",
+  "extracted_text_preview": "Python, React, Node.js, PostgreSQL",
+  "skills_detected": [],
+  "candidate_info": {
+    "name": "",
+    "email": "",
+    "phone": "",
+    "degree": "",
+    "location": ""
+  }
+}

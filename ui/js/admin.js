@@ -10,13 +10,21 @@
  */
 
 const AdminView = {
-  selectedCandidateId: "c_aksada",
+  selectedCandidateId: "c_10089434",
+  selectedJdId: "ALL",
   selectedTab: "overview",
 
   // 1. Main Admin Dashboard (Screen 4)
   renderDashboard(container) {
-    const candidates = AppData.getCandidates();
-    const selectedCand = AppData.getCandidateById(AdminView.selectedCandidateId) || candidates[2];
+    const allCandidates = AppData.getCandidates() || [];
+    const jdId = AdminView.selectedJdId || "ALL";
+    const candidates = (jdId === "ALL") ? allCandidates : allCandidates.filter(c => String(c.appliedJobId) === String(jdId));
+    const selectedCand = AppData.getCandidateById(AdminView.selectedCandidateId) || candidates[0] || allCandidates[0] || {
+      id: "c_10089434", candidateId: "10089434", name: "Rahul Sharma", degree: "2 yrs - B.Tech", fitScore: 42.6, statusLabel: "Under Review", finalStatus: "Under Review", appliedJobTitle: "Full Stack Engineer", appliedJobId: "2234533717", email: "rahul@example.com", phone: "+91 98765 43210", location: "Pune, India", github: "@rahul-dev", breakdown: { technical: 55.3, experience: 8.3, seniority: 40.0, education: 100.0, location: 100.0 }
+    };
+    if (selectedCand) {
+      AdminView.selectedCandidateId = selectedCand.id;
+    }
 
     container.innerHTML = `
       <!-- Mobile Quick Toggle Bar -->
@@ -38,7 +46,8 @@ const AdminView = {
             <div style="font-size: 13px; color: #64748B; margin-bottom: 14px;">
               Applicants for:
               <select id="adminJdSelect" class="form-control" style="font-size: 12px; padding: 6px 10px; margin-top: 4px;" onchange="AdminView.handleJdChange(this.value)">
-                ${AppData.getJobs().map(j => `<option value="${j.id}" ${j.id === (AdminView.selectedJdId || '2234533717') ? 'selected' : ''}>${j.title} (${j.id})</option>`).join('')}
+                <option value="ALL" ${jdId === 'ALL' ? 'selected' : ''}>-- All Requisitions (Global) (${allCandidates.length}) --</option>
+                ${AppData.getJobs().map(j => `<option value="${j.id}" ${String(j.id) === String(jdId) ? 'selected' : ''}>${j.title} (${j.applicantsCount || 0} applicants)</option>`).join('')}
               </select>
             </div>
 
@@ -74,7 +83,7 @@ const AdminView = {
             <span style="width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;">2</span>
             <span style="width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;">3</span>
             <span>...</span>
-            <span style="width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center;">24</span>
+            <span style="width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center;">${Math.max(1, Math.ceil(candidates.length / 5))}</span>
             <button class="btn btn-outline btn-sm" style="padding: 4px 8px;">${Icons.chevronRight(14)}</button>
           </div>
         </div>
@@ -106,7 +115,7 @@ const AdminView = {
     return candidates.map((cand, idx) => {
       const isSelected = cand.id === selectedId;
       const badgeClass = cand.statusLabel === 'Shortlisted' ? 'badge-shortlisted' : (cand.statusLabel === 'Human Review' ? 'badge-review' : 'badge-rejected');
-      const resumeFile = cand.resumeFile || (cand.candidateId === "riya_sharma" ? "riya_sharma.pdf" : "aksada.pdf");
+      const resumeFile = cand.resumeFile || "10089434.pdf";
       return `
         <div class="candidate-list-item ${isSelected ? 'selected' : ''}" onclick="AdminView.selectCandidate('${cand.id}')">
           <div style="display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1;">
@@ -132,6 +141,50 @@ const AdminView = {
         </div>
       `;
     }).join('');
+  },
+
+  handleJdChange(jobId) {
+    AdminView.selectedJdId = jobId;
+    AdminView.filterCandidates();
+  },
+
+  filterCandidates() {
+    const q = (document.getElementById('adminCandSearch')?.value || '').toLowerCase();
+    const status = document.getElementById('adminStatusFilter')?.value || '';
+    const sort = document.getElementById('adminSortFilter')?.value || 'fit';
+    const jdId = AdminView.selectedJdId || 'ALL';
+
+    let allCands = AppData.getCandidates() || [];
+    if (jdId && jdId !== 'ALL') {
+      allCands = allCands.filter(c => String(c.appliedJobId) === String(jdId));
+    }
+
+    let filtered = allCands.filter(c => {
+      const matchQ = !q || c.name.toLowerCase().includes(q) || (c.candidateId && c.candidateId.toLowerCase().includes(q)) || (c.appliedJobTitle && c.appliedJobTitle.toLowerCase().includes(q)) || (c.matchedSkills || []).some(s => s.toLowerCase().includes(q));
+      const st = c.statusLabel || c.finalStatus;
+      const matchStatus = !status || st === status || (status === 'Human Review' && st === 'Under Review');
+      return matchQ && matchStatus;
+    });
+
+    if (sort === 'fit') {
+      filtered.sort((a, b) => (parseFloat(b.fitScore) || 0) - (parseFloat(a.fitScore) || 0));
+    } else if (sort === 'name') {
+      filtered.sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    const listCont = document.getElementById('adminCandList');
+    if (listCont) {
+      if (filtered.length === 0) {
+        listCont.innerHTML = `<div style="text-align: center; padding: 24px; color: #94A3B8; font-size: 13px;">No matching candidates found for this selection.</div>`;
+      } else {
+        listCont.innerHTML = AdminView.renderCandidateListItems(filtered, AdminView.selectedCandidateId);
+      }
+    }
+
+    // Auto-select first matching if current is not in list
+    if (filtered.length > 0 && !filtered.some(c => c.id === AdminView.selectedCandidateId)) {
+      AdminView.selectCandidate(filtered[0].id);
+    }
   },
 
   selectCandidate(candidateId) {
@@ -200,12 +253,23 @@ const AdminView = {
             <div style="font-size: 11px; color: #64748B; font-weight: 600;">Fit Score</div>
           </div>
 
-          <div style="text-align: right; background: #FEF3C7; border: 1px solid #FDE68A; padding: 8px 14px; border-radius: 10px;">
-            <div style="font-size: 13px; font-weight: 700; color: #92400E;">${cand.statusLabel}</div>
-            <div style="font-size: 11px; color: #B45309;">${cand.decision}</div>
+          <div style="display: flex; gap: 8px;">
+            <div style="text-align: center; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 6px 12px; border-radius: 8px;">
+              <div style="font-size: 10px; font-weight: 700; color: #64748B;">AI RECOMMENDATION</div>
+              <span class="badge ${(cand.aiRecommendation || cand.decision) === 'SHORTLISTED' || (cand.aiRecommendation || cand.decision) === 'AUTO_ADVANCE' ? 'badge-shortlisted' : (((cand.aiRecommendation || cand.decision) === 'REJECTED' || (cand.aiRecommendation || cand.decision) === 'AUTO_REJECT') ? 'badge-rejected' : 'badge-review')}" style="font-size: 11px; font-family: var(--font-mono); font-weight: 700;">
+                ${cand.aiRecommendation || (cand.decision === 'AUTO_ADVANCE' ? 'SHORTLISTED' : (cand.decision === 'AUTO_REJECT' ? 'REJECTED' : 'HR_REVIEW'))}
+              </span>
+            </div>
+
+            <div style="text-align: center; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 6px 12px; border-radius: 8px;">
+              <div style="font-size: 10px; font-weight: 700; color: #64748B;">FINAL STATUS</div>
+              <span class="badge ${(cand.finalStatus || cand.statusLabel) === 'Shortlisted' ? 'badge-shortlisted' : (((cand.finalStatus || cand.statusLabel) === 'Rejected') ? 'badge-rejected' : 'badge-review')}" style="font-size: 11px; font-weight: 700;">
+                ${cand.finalStatus || cand.statusLabel || 'Under Review'}
+              </span>
+            </div>
           </div>
 
-          <button class="btn btn-outline btn-sm" onclick="App.openPdfModal('${cand.resumeFile || 'riya_sharma.pdf'}', 'Candidate Resume: ${cand.name}')">
+          <button class="btn btn-outline btn-sm" onclick="App.openPdfModal('${cand.resumeFile || '10089434.pdf'}', 'Candidate Resume: ${cand.name}')">
             ${Icons.fileText(14)} View PDF Resume
           </button>
 
@@ -476,7 +540,7 @@ const AdminView = {
             <span class="badge badge-danger" style="font-size: 12px; padding: 4px 10px;">
               ${ledger.filter(e => !e.is_verified && e.status !== 'verified').length} Gaps
             </span>
-            <button class="btn btn-outline btn-sm" onclick="App.openPdfModal('${cand.resumeFile || 'riya_sharma.pdf'}', 'Verify Ledger Citations: ${cand.name}')">
+            <button class="btn btn-outline btn-sm" onclick="App.openPdfModal('${cand.resumeFile || '10089434.pdf'}', 'Verify Ledger Citations: ${cand.name}')">
               ${Icons.fileText(14)} Cross-Check Resume PDF
             </button>
           </div>
@@ -571,7 +635,7 @@ const AdminView = {
 
   // Tab 3: Resume Analysis & Live PDF Preview
   renderResumeTab(cand) {
-    const resumeFile = cand.resumeFile || "riya_sharma.pdf";
+    const resumeFile = cand.resumeFile || "10089434.pdf";
     const pdfUrl = `/api/pdf/view?file=${encodeURIComponent(resumeFile)}`;
 
     return `
@@ -721,7 +785,7 @@ ${cand.assessment?.gaps || 'No hard deficits detected.'}
               </p>
             </div>
             <div style="display: flex; gap: 10px; align-items: center;">
-              <button class="btn btn-outline btn-sm" onclick="App.openPdfModal('${cand.resumeFile || 'riya_sharma.pdf'}', 'Inspect PDF Resume: ${cand.name}')">
+              <button class="btn btn-outline btn-sm" onclick="App.openPdfModal('${cand.resumeFile || '10089434.pdf'}', 'Inspect PDF Resume: ${cand.name}')">
                 ${Icons.fileText(14)} PDF Resume Preview
               </button>
             </div>
@@ -972,11 +1036,19 @@ ${cand.assessment?.gaps || 'No hard deficits detected.'}
   },
 
   async runLivePipeline(candidateId) {
-    App.showToast(`Invoking 10-Gate AI Screening Engine for ${candidateId}...`, "info");
-
     const cand = AppData.getCandidateById(candidateId);
-    const resume = cand.candidateId === "aksada" ? "aksada.pdf" : `${cand.candidateId}.pdf`;
-    const jdId = AdminView.selectedJdId || cand.appliedJobId || "2234533717";
+    if (!cand) {
+      App.showToast(`Candidate ${candidateId} not found`, "error");
+      return;
+    }
+    App.showToast(`Invoking 10-Gate AI Screening Engine for ${cand.name || candidateId}...`, "info");
+
+    const resume = cand.resumeFile || `${cand.candidateId}.pdf`;
+    const jdId = AdminView.selectedJdId || cand.appliedJobId;
+    if (!jdId) {
+      App.showToast("No target job specified for screening.", "error");
+      return;
+    }
 
     try {
       const res = await AppData.runPipeline(resume, jdId);
@@ -1217,7 +1289,7 @@ ${cand.assessment?.gaps || 'No hard deficits detected.'}
     `;
   },
 
-  openInteractiveGateScanner(candidateId = "aksada") {
+  openInteractiveGateScanner(candidateId = "10089434") {
     const cand = AppData.getCandidateById(candidateId);
     const modalId = "gateScannerModal";
     let modal = document.getElementById(modalId);

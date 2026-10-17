@@ -1,61 +1,44 @@
-# HYT ATS - Golden Set Labelling Guide
+# HYT ATS - Multi-Domain Golden Set Labelling Guide
 
-## Your task
-Open `golden_labels.csv` and fill in three columns for every row:
-- `human_fit_score` - integer 1-5 (see scale below)
-- `human_decision` - one of: `advance` / `escalate` / `reject`
-- `human_rationale` - 1-2 sentences explaining your decision
-
-Do NOT modify any other column. Do NOT leave all three blank for any row.
-
----
-
-## Fit Score Scale (1-5)
-
-| Score | Meaning |
-|-------|---------|
-| 5 | Excellent fit. Matches most must-haves with demonstrated evidence. |
-| 4 | Good fit. Matches most must-haves; minor gaps. Would shortlist. |
-| 3 | Partial fit. Matches some must-haves but notable gaps remain. Human judgment call. |
-| 2 | Weak fit. Few relevant skills. Unlikely candidate but not impossible. |
-| 1 | Clear mismatch. Wrong domain, wrong seniority, or insufficient experience. |
+## Benchmark Overview
+The HYT ATS Golden Benchmark is a multi-domain evaluation dataset comprising 200 hand-calibrated candidate-job pairs spanning 10 diverse professional disciplines:
+1. **Accounting & Finance:** Corporate GAAP, General Ledger, AP/AR, Tax Compliance (Staff Accountant).
+2. **Culinary Arts & Food Service:** High-volume scratch kitchens, ServSafe, station prep, line execution (Line Cook / Chef).
+3. **Legal Practice:** Trusts & Estates, elder law, probate litigation, statutory counsel (Senior Associate Attorney).
+4. **Healthcare & Therapy:** Outpatient clinical psychotherapy, DSM-5, treatment planning, HIPAA compliance (Mental Health Therapist).
+5. **Human Resources:** Full-lifecycle recruiting, employee relations, HRIS, labor law compliance (HR Manager).
+6. **Commercial & Technical Sales:** B2B territory growth, CRM pipeline management, industrial hydraulics (Industrial Sales Rep).
+7. **Mechanical Engineering:** Robotics hardware design, SolidWorks CAD, FEA structural analysis (Senior Mechanical Engineer).
+8. **Information Technology:** Web architecture, React, Node.js, REST APIs, cloud databases (Full Stack Software Engineer).
+9. **Aviation & Aerospace:** Avionics embedded software, DO-178C certification, flight control telemetry (Flight Software Engineer).
+10. **Creative & Motion Design:** Adobe After Effects, Premiere, typography, visual storytelling (Motion Graphic Designer).
 
 ---
 
-## Decision Guide
-
-| Decision | When to use |
-|----------|-------------|
-| `advance` | Score 4-5 AND no red flags. Shortlist this candidate. |
-| `escalate` | Score 2-4 OR any uncertainty. Human recruiter should see this. |
-| `reject` | Score 1 AND clearly wrong domain. Safe to auto-reject. |
-
-IMPORTANT: Bias toward `escalate` on any doubt. Auto-reject is the hardest outcome by design.
-
----
-
-## Hard Cases - Label These Carefully
-
-The golden set intentionally includes:
-- Career switchers: adjacent domain, transferable skills -> usually `escalate`
-- Overqualified: too senior for the role -> `escalate` (flag is_overqualified=yes)
-- Keyword stuffers: long skill list, no evidence in experience -> score low, note in rationale
-- Non-standard format: multi-column, tables -> score on content, not format
+## Labelling Protocol & Required Fields
+In `golden_labels.csv`, every candidate-job pair is evaluated across:
+- `human_fit_score`: Integer 1-5 (see scale below).
+- `human_decision`: One of `advance`, `escalate`, or `reject`.
+- `human_rationale`: 1-2 sentence evidence-grounded justification citing demonstrated qualifications or deficits.
+- `is_career_switcher`: `yes` if transitioning across adjacent or non-traditional disciplines with transferable skills.
+- `is_overqualified`: `yes` if YoE or executive seniority significantly exceeds the position scope.
+- `has_relevant_github`: `yes` if a portfolio or code repository is present.
 
 ---
 
-## Strata
+## 5-Point Recruiter Fit Scale
 
-The `stratum` column is your starting point:
-- `obvious_fit` -> likely score 4-5, but verify the resume
-- `borderline_*` -> needs careful reading - these are the hard cases
-- `obvious_mismatch` -> likely score 1-2, but check for transferable skills
-
-The `prelim_fit_score_1_5` and `prelim_decision` are auto-generated via Jaccard keyword overlap.
-They are a first-pass hint ONLY. Override them whenever resume content does not match.
+| Score | Rating | Recruiter Standard |
+|:---:|:---|:---|
+| **5** | Excellent Fit | Demonstrates mastery across all core must-haves with direct verified domain evidence. |
+| **4** | Solid Fit | Meets primary requirements with minor gaps in secondary tooling. Clear shortlist. |
+| **3** | Borderline / Transferable | Partial fit or career switcher with transferable capabilities. Requires recruiter phone screen. |
+| **2** | Weak Fit | Minimal overlapping competencies; significant deficits in required hard skills. |
+| **1** | Direct Mismatch | Unrelated domain, wrong technical discipline, or failure to meet baseline thresholds. |
 
 ---
 
-## Time budget
-~1-2 minutes per pair. 252 pairs = approx 5-8 hours total.
-Focus reading time on borderline_* stratum - those drive system quality.
+## Decision Routing Matrix
+- `advance`: Fit Score 4-5 AND no critical red flags.
+- `escalate`: Fit Score 2-4 with ambiguity, career switchers, or overqualified executive profiles.
+- `reject`: Fit Score 1-2 with irreconcilable domain disparity.

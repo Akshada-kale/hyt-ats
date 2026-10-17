@@ -1,0 +1,27 @@
+{
+  "job_id": "3619548798",
+  "title": "Senior Mechanical Engineer",
+  "company": "Dexterity, Inc.",
+  "raw_description": "Senior Mechanical Engineer\nLocation: Redwood City, CA\nAbout DexterityAt Dexterity, we\u2019re building robotic automation systems to perform pick-place-pack tasks in warehouses. Our end-to-end automation systems use intelligent software to enable human-like dexterity in commodity robot arms. Such intelligent robots will deeply impact the logistics industry and help realize a step change in logistics automation and supply chain productivity.Dexterity is one of the fastest growing and best funded startups in the robot manipulation space. Come join our team of robot-obsessed engineers and help make intelligent robots a reality.\nAbout the Role We are looking for an experienced, enthusiastic engineer to join our mechanical team. They will be expected to design, prototype, test, release, and coordinate manufacturing of novel solutions to robotics problems. In addition to design duties, the candidate will be expected to smoothly interface across functions, including with supply chain, customers, investors and internal leadership.\nThe candidate must be capable of working both autonomously and with the broader engineering team to ensure cohesive system design. Our engineers work quickly and enthusiastically to turn team and client feedback into improved engineering solutions.\nThe candidate would be expected to also be involved in recruitment and would help expand our engineering team or help build new teams to meet the company\u2019s engineering goals.\nDay-to-day Responsibilities (does not include all responsibilities)-Take inputs from customers (both internal and external) and generate sub-system requirements.-Utilize a set of requirements to design elegant solutions both quickly and carefully, independently preempting issues of manufacturability and future maintenance.-Transform tested conceptual solutions into robust product designs in coordination with engineering, operations, the customer and contract manufacturers.-Design and release components and systems using SolidWorks.-Develop production and support documentation including bills of material (BOMs), assembly drawings, and maintenance instructions.-Perform test and verification of prototype systems.-Perform system design analyses, including reliability, design-for-manufacture, design-for-assembly, cost-downs, etc.-Coordinate engineering efforts across the mechanical engineering team.-Mentor junior engineers, help improve designs, and inculcate a production mindset.\nDesired Experience, Knowledge, Skills and Abilities-Bachelor's or Master's in Mechanical Engineering.-5 or more years of related work experience, including having advanced designs from initial concept through scale production.-Significant experience using 3D CAD, preferably SolidWorks - including 2D drawings and simulations.-Experience designing motion control systems with sensors, actuators and complex mechanisms.-A working knowledge of ASME and ISO drafting standards including GD&T, (Y14.5-2009).-A working knowledge of DFM/A and statistical tolerance analysis.-A working knowledge of failure avoidance methods including DFMEA/PFMEA and fault tree analysis.-Able to work with customers and contract manufacturers.-Able to manage multiple projects and engineering teams concurrently.-High level of technical writing proficiency (specs, test plans, reports, white papers, etc.).-Familiarity with electrical design and integration (cable harnesses, wiring diagrams) is a plus.-Have worked in mid-to-large sized teams (5-20 people) and mentored junior engineers to build production-grade systems.\nBase pay is one element of our Total Rewards package which may also include comprehensive benefits and equity etc., depending on eligibility. The annual base salary range for this position is from $150,000 to $190,000. The actual base pay offered will be determined on factors such as years of relevant experience, skills, education etc. Decisions will be determined on a case-by-case basis.\nEqual Opportunity EmployerWe are an equal opportunity employer and value diversity at our company. We do not discriminate on the basis of race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, or disability status.",
+  "skills_desc": "",
+  "location": "Redwood City, CA",
+  "remote_allowed": "0.0",
+  "exp_level": "Senior",
+  "work_type": "Full-time",
+  "seniority_level": "senior",
+  "min_years_experience": 5,
+  "remote_policy": "onsite",
+  "domain_context": "Robotics hardware design, CAD modeling, FEA structural analysis, tolerance analysis, and electromechanical prototyping.",
+  "approx_must_haves": [
+    "solidworks",
+    "cad modeling",
+    "finite element analysis",
+    "prototyping",
+    "tolerance stackup",
+    "geometric dimensioning",
+    "electromechanical",
+    "robotics",
+    "thermal analysis",
+    "manufacturing drawings"
+  ]
+}

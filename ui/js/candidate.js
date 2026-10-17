@@ -14,13 +14,13 @@ const CandidateView = {
   // 1. Candidate Dashboard
   renderDashboard(container) {
     const user = AppData.getCurrentUser();
-    const apps = AppData.getCandidateApplications();
-    const jobs = AppData.getJobs();
+    const apps = AppData.getCandidateApplications() || [];
+    const jobs = AppData.getJobs() || [];
 
     const totalApplied = apps.length;
-    const underReview = apps.filter(a => a.status === "Under Review").length;
-    const shortlisted = apps.filter(a => a.status === "Shortlisted").length;
-    const notShortlisted = apps.filter(a => a.status === "Not Shortlisted" || a.status === "Rejected").length;
+    const underReview = apps.filter(a => (a.status || a.finalStatus) === "Under Review").length;
+    const shortlisted = apps.filter(a => (a.status || a.finalStatus) === "Shortlisted").length;
+    const notShortlisted = apps.filter(a => (a.status || a.finalStatus) === "Not Shortlisted" || (a.status || a.finalStatus) === "Rejected").length;
 
     const recommendedJobs = jobs.slice(0, 3);
 
@@ -28,7 +28,7 @@ const CandidateView = {
       <div class="main-header">
         <div>
           <h1>Welcome back, ${user.name.split(' ')[0]}!</h1>
-          <p>Find your next opportunity</p>
+          <p>Find your next opportunity and track your active applications</p>
         </div>
       </div>
 
@@ -54,6 +54,76 @@ const CandidateView = {
           <div class="value">${notShortlisted}</div>
           <div class="subtext">Closed or not advanced</div>
         </div>
+      </div>
+
+      <!-- My Recent Applications Live Tracker -->
+      <div class="card" style="padding: 24px; margin-bottom: 24px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin: 0;">My Recent Applications</h3>
+              <span class="badge badge-indigo">${apps.length} Total</span>
+            </div>
+            <p style="font-size: 13px; color: #64748B; margin: 4px 0 0 0;">Live tracking across all submitted applications and deterministic screening decisions</p>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="App.navigate('candidate-applications')">
+            View All Applications ${Icons.arrowRight ? Icons.arrowRight(14) : '&rarr;'}
+          </button>
+        </div>
+
+        ${apps.length === 0 ? `
+          <div style="text-align: center; padding: 36px 20px; background: #F8FAFC; border-radius: 10px; border: 1px dashed #CBD5E1;">
+            <div style="width: 48px; height: 48px; border-radius: 50%; background: #EEF2FF; color: #4F46E5; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+              ${Icons.briefcase(24)}
+            </div>
+            <div style="font-weight: 700; font-size: 15px; color: #1E293B;">No applications submitted yet</div>
+            <p style="font-size: 13px; color: #64748B; max-width: 420px; margin: 6px auto 16px;">Explore open requisitions and submit your application to trigger real-time AI screening.</p>
+            <button class="btn btn-primary btn-sm" onclick="App.navigate('candidate-browse')">
+              Browse Open Positions
+            </button>
+          </div>
+        ` : `
+          <div class="table-wrapper">
+            <table class="data-table" style="font-size: 13px;">
+              <thead>
+                <tr>
+                  <th>Job Title & Company</th>
+                  <th>Applied On</th>
+                  <th>Status</th>
+                  <th>Fit Score</th>
+                  <th style="text-align: right;">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${apps.slice(0, 5).map(app => {
+                  const st = app.status || app.finalStatus || 'Under Review';
+                  const badgeClass = st === 'Shortlisted' ? 'badge-shortlisted' : (st === 'Under Review' ? 'badge-review' : 'badge-rejected');
+                  const score = app.fitScore !== undefined ? app.fitScore : (app.score !== undefined ? app.score : '--');
+                  return `
+                    <tr>
+                      <td>
+                        <div style="font-weight: 700; color: #111827;">${app.jobTitle}</div>
+                        <div style="font-size: 12px; color: #64748B;">${app.company || 'TechCorp'} • ${app.location || 'Pune, India'}</div>
+                      </td>
+                      <td style="color: #64748B; white-space: nowrap;">${app.appliedDate || 'Oct 17, 2026'}</td>
+                      <td>
+                        <span class="badge ${badgeClass}">${st}</span>
+                      </td>
+                      <td>
+                        <span style="font-weight: 700; font-family: var(--font-mono); color: #1E293B;">${score}</span>
+                      </td>
+                      <td style="text-align: right; white-space: nowrap;">
+                        <button class="btn btn-outline btn-sm" onclick="App.navigate('candidate-app-detail', { appId: '${app.id}' })">
+                          Track Status
+                        </button>
+                      </td>
+                    </tr>
+                  `;
+                }).join('')}
+              </tbody>
+            </table>
+          </div>
+        `}
       </div>
 
       <!-- Resume Quick Upload Card (Interactive Feature) -->
@@ -116,31 +186,43 @@ const CandidateView = {
         </div>
 
         <div style="display: flex; flex-direction: column; gap: 16px;">
-          ${recommendedJobs.map(job => `
-            <div class="card card-hover" style="display: flex; align-items: center; justify-content: space-between; padding: 18px 20px; border: 1px solid var(--border);">
-              <div style="display: flex; align-items: center; gap: 16px;">
-                <div style="width: 44px; height: 44px; border-radius: 10px; background: #EEF2FF; color: #4F46E5; display: flex; align-items: center; justify-content: center; font-weight: 700;">
-                  ${Icons.briefcase(20)}
-                </div>
-                <div>
-                  <h4 style="font-size: 16px; font-weight: 700; color: #111827; margin-bottom: 2px;">${job.title}</h4>
-                  <div style="font-size: 13px; color: #64748B; margin-bottom: 8px;">
-                    <span style="font-weight: 500;">${job.company}</span> • <span>${job.location}</span> • <span style="color: #94A3B8;">${job.postedDate || '2 days ago'}</span>
+          ${recommendedJobs.map(job => {
+            const isApplied = apps.some(a => String(a.jobId) === String(job.id));
+            return `
+              <div class="card card-hover" style="display: flex; align-items: center; justify-content: space-between; padding: 18px 20px; border: 1px solid var(--border);">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                  <div style="width: 44px; height: 44px; border-radius: 10px; background: #EEF2FF; color: #4F46E5; display: flex; align-items: center; justify-content: center; font-weight: 700;">
+                    ${Icons.briefcase(20)}
                   </div>
-                  <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                    ${(job.mustHaves || []).slice(0, 4).map(skill => `<span class="tag">${skill}</span>`).join('')}
-                    <span class="tag tag-nice">${job.jobType}</span>
+                  <div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <h4 style="font-size: 16px; font-weight: 700; color: #111827; margin: 0;">${job.title}</h4>
+                      ${isApplied ? `<span class="badge badge-shortlisted" style="font-size: 11px;">✓ Applied</span>` : ''}
+                    </div>
+                    <div style="font-size: 13px; color: #64748B; margin: 4px 0 8px 0;">
+                      <span style="font-weight: 500;">${job.company}</span> • <span>${job.location}</span> • <span style="color: #94A3B8;">${job.postedDate || '2 days ago'}</span>
+                    </div>
+                    <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                      ${(job.mustHaves || []).slice(0, 4).map(skill => `<span class="tag">${skill}</span>`).join('')}
+                      <span class="tag tag-nice">${job.jobType}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div>
-                <button class="btn btn-primary btn-sm" onclick="App.navigate('candidate-job-detail', { jobId: '${job.id}' })">
-                  View Details
-                </button>
+                <div>
+                  ${isApplied ? `
+                    <button class="btn btn-outline btn-sm" onclick="App.navigate('candidate-applications')">
+                      View Application
+                    </button>
+                  ` : `
+                    <button class="btn btn-primary btn-sm" onclick="App.navigate('candidate-job-detail', { jobId: '${job.id}' })">
+                      View Details
+                    </button>
+                  `}
+                </div>
               </div>
-            </div>
-          `).join('')}
+            `;
+          }).join('')}
         </div>
       </div>
     `;
@@ -215,38 +297,55 @@ const CandidateView = {
       return `<div class="card" style="text-align: center; padding: 40px; color: #64748B;">No roles found matching your criteria.</div>`;
     }
 
-    return jobs.map(job => `
-      <div class="card card-hover" style="display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border: 1px solid var(--border);">
-        <div style="display: flex; align-items: center; gap: 18px;">
-          <div style="width: 48px; height: 48px; border-radius: 12px; background: #EEF2FF; color: #4F46E5; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px;">
-            ${job.title.charAt(0)}
-          </div>
-          <div>
-            <h3 style="font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 4px;">${job.title}</h3>
-            <div style="font-size: 13px; color: #64748B; display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-              <span style="font-weight: 500;">${job.company}</span>
-              <span>•</span>
-              <span>${job.location}</span>
-              <span>•</span>
-              <span style="color: #94A3B8;">${job.postedDate || "3 days ago"}</span>
-            </div>
-            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-              ${(job.mustHaves || []).slice(0, 5).map(skill => `<span class="tag">${skill}</span>`).join('')}
-              <span class="tag tag-nice">${job.jobType}</span>
-            </div>
-          </div>
-        </div>
+    const apps = AppData.getCandidateApplications() || [];
 
-        <div style="text-align: right;">
-          <div style="font-size: 13px; color: #64748B; margin-bottom: 12px;">
-            ${job.experience}
+    return jobs.map(job => {
+      const isApplied = apps.some(a => String(a.jobId) === String(job.id));
+      const app = isApplied ? apps.find(a => String(a.jobId) === String(job.id)) : null;
+      const statusLabel = app ? (app.status || app.finalStatus || 'Applied') : '';
+
+      return `
+        <div class="card card-hover" style="display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border: 1px solid var(--border);">
+          <div style="display: flex; align-items: center; gap: 18px;">
+            <div style="width: 48px; height: 48px; border-radius: 12px; background: #EEF2FF; color: #4F46E5; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px;">
+              ${job.title.charAt(0)}
+            </div>
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <h3 style="font-size: 17px; font-weight: 700; color: #111827; margin: 0;">${job.title}</h3>
+                ${isApplied ? `<span class="badge badge-shortlisted" style="font-size: 11px;">✓ Applied (${statusLabel})</span>` : ''}
+              </div>
+              <div style="font-size: 13px; color: #64748B; display: flex; align-items: center; gap: 10px; margin: 6px 0 10px 0;">
+                <span style="font-weight: 500;">${job.company}</span>
+                <span>•</span>
+                <span>${job.location}</span>
+                <span>•</span>
+                <span style="color: #94A3B8;">${job.postedDate || "3 days ago"}</span>
+              </div>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                ${(job.mustHaves || []).slice(0, 5).map(skill => `<span class="tag">${skill}</span>`).join('')}
+                <span class="tag tag-nice">${job.jobType}</span>
+              </div>
+            </div>
           </div>
-          <button class="btn btn-primary btn-sm" onclick="App.navigate('candidate-job-detail', { jobId: '${job.id}' })">
-            View Details
-          </button>
+
+          <div style="text-align: right;">
+            <div style="font-size: 13px; color: #64748B; margin-bottom: 12px;">
+              ${job.experience}
+            </div>
+            ${isApplied ? `
+              <button class="btn btn-outline btn-sm" onclick="App.navigate('candidate-applications')">
+                View Application
+              </button>
+            ` : `
+              <button class="btn btn-primary btn-sm" onclick="App.navigate('candidate-job-detail', { jobId: '${job.id}' })">
+                View Details
+              </button>
+            `}
+          </div>
         </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
   },
 
   filterBrowseJobs() {
@@ -273,7 +372,9 @@ const CandidateView = {
   // 3. Job Details Page (Screen 4)
   renderJobDetail(container, params = {}) {
     const jobId = params.jobId || "2234533717";
-    const job = AppData.getJobById(jobId);
+    const job = AppData.getJobById(jobId) || { id: jobId, title: "Position", company: "Company", location: "Pune", jobType: "Full-time", experience: "2+ years", overview: "Job overview", mustHaves: [], niceToHaves: [] };
+    const apps = AppData.getCandidateApplications() || [];
+    const existingApp = apps.find(a => String(a.jobId) === String(job.id));
 
     container.innerHTML = `
       <div style="margin-bottom: 16px;">
@@ -281,6 +382,23 @@ const CandidateView = {
           ${Icons.arrowLeft(14)} Back to Jobs
         </button>
       </div>
+
+      ${existingApp ? `
+        <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 12px; padding: 16px 20px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="width: 38px; height: 38px; border-radius: 50%; background: #DCFCE7; color: #16A34A; display: flex; align-items: center; justify-content: center;">
+              ${Icons.checkCircle(22)}
+            </div>
+            <div>
+              <div style="font-weight: 700; font-size: 15px; color: #166534;">You have already applied for this position!</div>
+              <div style="font-size: 13px; color: #15803D;">Submitted on ${existingApp.appliedDate || 'Oct 17, 2026'} • Current Status: <strong>${existingApp.status || existingApp.finalStatus}</strong></div>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="App.navigate('candidate-app-detail', { appId: '${existingApp.id}' })">
+            Track Application Timeline
+          </button>
+        </div>
+      ` : ''}
 
       <div class="card" style="padding: 28px; margin-bottom: 24px;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; flex-wrap: wrap; gap: 16px;">
@@ -300,9 +418,15 @@ const CandidateView = {
             <button class="btn btn-outline btn-lg" onclick="App.openPdfModal('${job.pdfFile || (job.id === 'pa_director' ? 'pa_director.pdf' : 'pa_director.pdf')}', 'Job Description PDF: ${job.title}')">
               ${Icons.fileText(16)} View JD PDF
             </button>
-            <button class="btn btn-primary btn-lg" onclick="CandidateView.openApplyModal('${job.id}')">
-              Apply Now
-            </button>
+            ${existingApp ? `
+              <button class="btn btn-outline btn-lg" onclick="App.navigate('candidate-app-detail', { appId: '${existingApp.id}' })">
+                ${Icons.check(16)} Applied (${existingApp.status || existingApp.finalStatus})
+              </button>
+            ` : `
+              <button class="btn btn-primary btn-lg" onclick="CandidateView.openApplyModal('${job.id}')">
+                Apply Now
+              </button>
+            `}
           </div>
         </div>
 
@@ -367,7 +491,7 @@ const CandidateView = {
   // 4. Apply for Job Modal (Screen 5)
   openApplyModal(jobId) {
     CandidateView.pendingCustomResumeFile = null;
-    const job = AppData.getJobById(jobId);
+    const job = AppData.getJobById(jobId) || { id: jobId, title: "Position", company: "Company", location: "Pune, India" };
     const candidate = AppData.getCurrentUser();
 
     const modalId = "applyModal";
@@ -380,7 +504,7 @@ const CandidateView = {
     }
 
     modal.innerHTML = `
-      <div class="modal-content">
+      <div class="modal-content" style="max-width: 620px;">
         <div class="modal-header">
           <h3 style="font-size: 20px; font-weight: 700;">Apply for this Job</h3>
           <button class="modal-close-btn" onclick="CandidateView.closeApplyModal()">
@@ -390,44 +514,46 @@ const CandidateView = {
 
         <div style="background: #F8FAFC; border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; border: 1px solid var(--border);">
           <div style="font-weight: 700; font-size: 15px; color: #111827;">${job.title}</div>
-          <div style="font-size: 13px; color: #64748B;">${job.company} • ${job.location}</div>
+          <div style="font-size: 13px; color: #64748B;">${job.company} • ${job.location} • Job ID: ${job.id}</div>
+        </div>
+
+        <!-- Candidate Information Fields -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px;">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Full Name *</label>
+            <input type="text" id="applyCandName" class="form-control" value="${candidate.name || 'Akshada Kale'}" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Email Address *</label>
+            <input type="email" id="applyCandEmail" class="form-control" value="${candidate.email || 'akshada@example.com'}" required>
+          </div>
         </div>
 
         <div style="margin-bottom: 20px;">
-          <div style="font-size: 13px; font-weight: 600; color: #111827; margin-bottom: 8px;">Resume for this Application</div>
+          <div style="font-size: 13px; font-weight: 600; color: #111827; margin-bottom: 8px;">Resume Document for Screening *</div>
           
-          <div style="display: flex; gap: 16px; margin-bottom: 12px;">
+          <div style="display: flex; gap: 14px; margin-bottom: 12px; flex-wrap: wrap;">
             <label style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; cursor: pointer;">
-              <input type="radio" name="applyResumeChoice" value="profile" checked onchange="CandidateView.toggleApplyResumeOption('profile')">
-              <span>Use Profile Resume</span>
+              <input type="radio" name="applyResumeChoice" value="upload" checked onchange="CandidateView.toggleApplyResumeOption('upload')">
+              <span>Upload Resume (PDF)</span>
             </label>
             <label style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; cursor: pointer;">
-              <input type="radio" name="applyResumeChoice" value="upload" onchange="CandidateView.toggleApplyResumeOption('upload')">
-              <span>Upload Custom Resume</span>
+              <input type="radio" name="applyResumeChoice" value="sample" onchange="CandidateView.toggleApplyResumeOption('sample')">
+              <span>Choose Benchmark Resume</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; cursor: pointer;">
+              <input type="radio" name="applyResumeChoice" value="profile" onchange="CandidateView.toggleApplyResumeOption('profile')">
+              <span>Profile Default</span>
             </label>
           </div>
 
-          <!-- Profile Resume Display -->
-          <div id="applyProfileResumeBox" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-radius: 10px; border: 1px solid #C7D2FE; background: #EEF2FF;">
-            <div style="display: flex; align-items: center; gap: 12px;">
-              <span style="color: #4F46E5;">${Icons.fileText(24)}</span>
-              <div>
-                <div style="font-size: 14px; font-weight: 600; color: #111827;">${candidate.resumeFile || 'Akshada_Kale_Resume.pdf'}</div>
-                <div style="font-size: 12px; color: #64748B;">${candidate.resumeSize || '450 KB'} • Verified from Profile</div>
-              </div>
-            </div>
-            <button type="button" class="btn btn-outline btn-sm" onclick="CandidateView.openResumePreviewModal()">
-              ${Icons.eye ? Icons.eye(14) : Icons.fileText(14)} Preview
-            </button>
-          </div>
-
-          <!-- Custom Resume Upload Box -->
-          <div id="applyCustomResumeBox" style="display: none; margin-top: 10px;">
-            <div class="upload-dropzone" style="padding: 18px;" ondragover="event.preventDefault(); this.classList.add('drag-active');" ondragleave="this.classList.remove('drag-active');" ondrop="CandidateView.handleApplyCustomDrop(event, this)">
+          <!-- Custom Resume Upload Box (Default) -->
+          <div id="applyCustomResumeBox" style="margin-top: 10px;">
+            <div class="upload-dropzone" style="padding: 20px;" ondragover="event.preventDefault(); this.classList.add('drag-active');" ondragleave="this.classList.remove('drag-active');" ondrop="CandidateView.handleApplyCustomDrop(event, this)">
               <input type="file" accept=".pdf,.docx,.txt" onchange="CandidateView.handleApplyCustomSelect(event)">
               <div class="upload-icon" style="width: 36px; height: 36px; margin-bottom: 6px;">${Icons.upload(18)}</div>
-              <div class="title" style="font-size: 13px;">Drag & drop customized resume, or click to browse</div>
-              <div class="subtitle" style="font-size: 11px;">PDF, DOCX, TXT up to 10MB</div>
+              <div class="title" style="font-size: 13px;">Drag & drop your Resume PDF, or click to browse</div>
+              <div class="subtitle" style="font-size: 11px;">Saved to data/resume/ • Evaluated immediately through Gates 0-8</div>
             </div>
             <div id="applyCustomFilePreview" style="display: none;" class="file-preview-card">
               <div style="display: flex; align-items: center; gap: 10px;">
@@ -438,27 +564,62 @@ const CandidateView = {
             </div>
           </div>
 
-          <div style="font-size: 12px; color: #64748B; margin-top: 8px;">
-            Your resume will be processed by our AI screening engine (Gates 0-8). Status will update in "My Applications".
+          <!-- Sample Benchmark Selector Box -->
+          <div id="applySampleResumeBox" style="display: none; margin-top: 10px;">
+            <label class="form-label">Select Candidate Resume from Benchmark Catalog:</label>
+            <select id="applySampleResumeSelect" class="form-control" style="font-size: 13px; font-weight: 600;">
+              <option value="10089434.pdf">Rahul Sharma (Full Stack Engineer, AWS / Microservices) - 10089434.pdf</option>
+              <option value="10219099.pdf">Sneha Patel (Frontend Developer, React / Web) - 10219099.pdf</option>
+              <option value="10247517.pdf">Priya Nair (Junior Developer, Python / SQL) - 10247517.pdf</option>
+              <option value="PA_to_Director_Matching_Resume.pdf">Executive Personal Assistant (Director Office) - PA_to_Director_Matching_Resume.pdf</option>
+              <option value="dhruv_mehta.pdf">Dhruv Mehta (Software Engineer) - dhruv_mehta.pdf</option>
+            </select>
+          </div>
+
+          <!-- Profile Resume Display -->
+          <div id="applyProfileResumeBox" style="display: none; align-items: center; justify-content: space-between; padding: 12px 16px; border-radius: 10px; border: 1px solid #C7D2FE; background: #EEF2FF; margin-top: 10px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span style="color: #4F46E5;">${Icons.fileText(24)}</span>
+              <div>
+                <div style="font-size: 14px; font-weight: 600; color: #111827;">${candidate.resumeFile || '10089434.pdf'}</div>
+                <div style="font-size: 12px; color: #64748B;">Saved in data/resume/ • Verified profile resume</div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-outline btn-sm" onclick="App.openPdfModal('${candidate.resumeFile || '10089434.pdf'}', 'Profile Resume')">
+              ${Icons.eye(14)} Preview
+            </button>
+          </div>
+
+          <div style="font-size: 12px; color: #64748B; margin-top: 10px; background: #F1F5F9; padding: 8px 12px; border-radius: 6px;">
+            <strong>Deterministic ATS Pipeline:</strong> Clicking "Submit Application" immediately runs Gates 0 to 8 in real time and calculates your fit score, skills match, and initial recommendation.
           </div>
         </div>
 
         <div class="form-group">
           <label class="form-label">Why are you a good fit? (Optional)</label>
-          <textarea id="applyWhyFit" class="form-control" placeholder="I am excited to apply for this role because..." maxlength="500"></textarea>
-          <div style="text-align: right; font-size: 12px; color: #94A3B8; margin-top: 4px;">0/500</div>
+          <textarea id="applyWhyFit" class="form-control" rows="2" placeholder="I am excited to apply for this role because..." maxlength="500"></textarea>
         </div>
 
-        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 20px;">
           <button class="btn btn-outline" onclick="CandidateView.closeApplyModal()">Cancel</button>
           <button class="btn btn-primary" onclick="CandidateView.submitApplication('${job.id}')">
-            Submit Application
+            Submit Application & Run AI Pipeline
           </button>
         </div>
       </div>
     `;
 
     modal.style.display = 'flex';
+  },
+
+  toggleApplyResumeOption(choice) {
+    const uploadBox = document.getElementById("applyCustomResumeBox");
+    const sampleBox = document.getElementById("applySampleResumeBox");
+    const profileBox = document.getElementById("applyProfileResumeBox");
+
+    if (uploadBox) uploadBox.style.display = choice === 'upload' ? 'block' : 'none';
+    if (sampleBox) sampleBox.style.display = choice === 'sample' ? 'block' : 'none';
+    if (profileBox) profileBox.style.display = choice === 'profile' ? 'flex' : 'none';
   },
 
   closeApplyModal() {
@@ -468,30 +629,39 @@ const CandidateView = {
   },
 
   async submitApplication(jobId) {
+    const candName = (document.getElementById('applyCandName')?.value || 'Candidate').trim();
+    const candEmail = (document.getElementById('applyCandEmail')?.value || 'candidate@example.com').trim();
     const whyFit = document.getElementById('applyWhyFit')?.value || '';
-    const resumeChoice = document.querySelector('input[name="applyResumeChoice"]:checked')?.value || 'profile';
+    const resumeChoice = document.querySelector('input[name="applyResumeChoice"]:checked')?.value || 'upload';
     const customFile = CandidateView.pendingCustomResumeFile;
+    const sampleResume = document.getElementById('applySampleResumeSelect')?.value || '10089434.pdf';
 
     CandidateView.closeApplyModal();
 
-    let uploadedFileName = null;
+    let resumeToUse = "10089434.pdf";
     if (resumeChoice === 'upload' && customFile) {
-      App.showToast(`Uploading '${customFile.name}' and running Gate 0 Integrity Shield...`, "info");
+      App.showToast(`Uploading '${customFile.name}' to data/resume/ and executing Gate 0 Integrity Shield...`, "info");
       await CandidateView.processUploadedResumeFile(customFile);
-      uploadedFileName = customFile.name;
+      resumeToUse = customFile.name;
+    } else if (resumeChoice === 'sample') {
+      resumeToUse = sampleResume;
+      App.showToast(`Applying with benchmark resume '${sampleResume}'...`, "info");
     } else {
+      resumeToUse = AppData.getCurrentUser().resumeFile || "10089434.pdf";
       App.showToast("Submitting application and invoking AI Screening Pipeline...", "info");
     }
 
-    const resumeToUse = uploadedFileName || AppData.getCurrentUser().resumeFile || "aksada.pdf";
-    const newApp = await AppData.submitApplication(jobId, whyFit, resumeToUse);
-    if (uploadedFileName && newApp && newApp.timeline) {
-      newApp.timeline[0].note = `Application registered with custom resume (${uploadedFileName}).`;
-    }
+    const candidateId = candName.toLowerCase().replace(/[^a-z0-9]/g, "_") || "candidate";
+
+    // Submit and trigger live ATS Pipeline
+    const newApp = await AppData.submitApplication(jobId, whyFit, resumeToUse, candName, candEmail);
 
     CandidateView.pendingCustomResumeFile = null;
     await AppData.syncWithBackend();
-    App.showToast(`Application submitted! AI Decision: ${newApp.decision || newApp.status}`, "success");
+
+    const st = newApp ? (newApp.finalStatus || newApp.status || "Under Review") : "Under Review";
+    const sc = newApp && newApp.fitScore !== undefined ? newApp.fitScore : "--";
+    App.showToast(`Application submitted! Real-time AI Pipeline finished: Score ${sc}/100 [Status: ${st}]`, "success");
     App.navigate("candidate-applications");
   },
 
@@ -501,18 +671,19 @@ const CandidateView = {
     const allApps = AppData.getCandidateApplications();
 
     const filtered = allApps.filter(app => {
+      const st = app.status || app.finalStatus;
       if (activeFilter === "All") return true;
-      if (activeFilter === "Under Review") return app.status === "Under Review";
-      if (activeFilter === "Shortlisted") return app.status === "Shortlisted";
-      if (activeFilter === "Not Shortlisted") return app.status === "Not Shortlisted" || app.status === "Rejected";
+      if (activeFilter === "Under Review") return st === "Under Review";
+      if (activeFilter === "Shortlisted") return st === "Shortlisted";
+      if (activeFilter === "Not Shortlisted") return st === "Not Shortlisted" || st === "Rejected";
       return true;
     });
 
     const counts = {
       all: allApps.length,
-      review: allApps.filter(a => a.status === "Under Review").length,
-      shortlisted: allApps.filter(a => a.status === "Shortlisted").length,
-      rejected: allApps.filter(a => a.status === "Not Shortlisted" || a.status === "Rejected").length
+      review: allApps.filter(a => (a.status || a.finalStatus) === "Under Review").length,
+      shortlisted: allApps.filter(a => (a.status || a.finalStatus) === "Shortlisted").length,
+      rejected: allApps.filter(a => (a.status || a.finalStatus) === "Not Shortlisted" || (a.status || a.finalStatus) === "Rejected").length
     };
 
     container.innerHTML = `
@@ -555,7 +726,8 @@ const CandidateView = {
             ${filtered.length === 0 ? `
               <tr><td colspan="5" style="text-align: center; padding: 32px; color: #64748B;">No applications found in this tab.</td></tr>
             ` : filtered.map(app => {
-              const badgeClass = app.status === 'Shortlisted' ? 'badge-shortlisted' : (app.status === 'Under Review' ? 'badge-review' : 'badge-rejected');
+              const currentStatus = app.status || app.finalStatus || 'Under Review';
+              const badgeClass = currentStatus === 'Shortlisted' ? 'badge-shortlisted' : (currentStatus === 'Under Review' ? 'badge-review' : 'badge-rejected');
               return `
                 <tr>
                   <td>
@@ -563,11 +735,11 @@ const CandidateView = {
                   </td>
                   <td>${app.company}</td>
                   <td>
-                    <span class="badge ${badgeClass}">${app.status}</span>
+                    <span class="badge ${badgeClass}">${currentStatus}</span>
                   </td>
                   <td style="color: #64748B;">${app.appliedDate}</td>
                   <td style="text-align: right; white-space: nowrap;">
-                    <button class="btn btn-outline btn-sm" style="margin-right: 6px;" onclick="App.openPdfModal('${app.resumeFile || 'riya_sharma.pdf'}', 'Resume PDF: ${app.jobTitle}')">
+                    <button class="btn btn-outline btn-sm" style="margin-right: 6px;" onclick="App.openPdfModal('${app.resumeFile || '10089434.pdf'}', 'Resume PDF: ${app.jobTitle}')">
                       ${Icons.fileText(14)} PDF
                     </button>
                     <button class="btn btn-outline btn-sm" onclick="App.navigate('candidate-app-detail', { appId: '${app.id}' })">
@@ -587,9 +759,10 @@ const CandidateView = {
   renderAppDetail(container, params = {}) {
     const appId = params.appId || "APP-2234-AK01";
     const app = AppData.getCandidateApplications().find(a => a.id === appId) || AppData.getCandidateApplications()[0];
-    const job = AppData.getJobById(app.jobId);
+    const job = AppData.getJobById(app.jobId) || { id: app.jobId, title: app.jobTitle || 'Role', company: app.company || 'Company', overview: 'Full requisition description and criteria are preserved in system records.' };
 
-    const badgeClass = app.status === 'Shortlisted' ? 'badge-shortlisted' : (app.status === 'Under Review' ? 'badge-review' : 'badge-rejected');
+    const currentStatus = app.status || app.finalStatus || 'Under Review';
+    const badgeClass = currentStatus === 'Shortlisted' ? 'badge-shortlisted' : (currentStatus === 'Under Review' ? 'badge-review' : 'badge-rejected');
 
     container.innerHTML = `
       <div style="margin-bottom: 16px;">
@@ -991,7 +1164,7 @@ const CandidateView = {
 
   openResumePreviewModal() {
     const user = (AppData.getCurrentUser() && AppData.getCurrentUser().candidate) || AppData.getCurrentUser();
-    App.openPdfModal(user.resumeFile || "riya_sharma.pdf", `Active Resume: ${user.name || 'Candidate'}`);
+    App.openPdfModal(user.resumeFile || "10089434.pdf", `Active Resume: ${user.name || 'Candidate'}`);
   }
 };
 

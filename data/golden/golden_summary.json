@@ -1,22 +1,41 @@
 {
-  "updated_at": "2026-10-14T01:19:32.667928",
+  "updated_at": "2026-10-17T14:30:09.195804",
   "total_pairs": 200,
-  "unique_candidates": 106,
-  "num_jds": 6,
+  "unique_candidates": 200,
+  "num_jds": 10,
+  "categories_covered": [
+    "ACCOUNTANT",
+    "ADVOCATE",
+    "ARTS",
+    "AUTOMOBILE",
+    "AVIATION",
+    "BUSINESS-DEVELOPMENT",
+    "CHEF",
+    "CONSULTANT",
+    "DESIGNER",
+    "DIGITAL-MEDIA",
+    "ENGINEERING",
+    "FINANCE",
+    "FITNESS",
+    "HEALTHCARE",
+    "HR",
+    "INFORMATION-TECHNOLOGY",
+    "SALES"
+  ],
   "score_distribution": {
-    "1": 5,
-    "2": 81,
-    "3": 82,
-    "4": 25,
-    "5": 7
+    "1": 50,
+    "2": 0,
+    "3": 68,
+    "4": 79,
+    "5": 3
   },
   "decision_distribution": {
-    "advance": 32,
-    "escalate": 104,
-    "reject": 64
+    "advance": 82,
+    "escalate": 68,
+    "reject": 50
   },
-  "career_switchers_count": 24,
-  "overqualified_count": 45,
-  "has_github_count": 17,
+  "career_switchers_count": 50,
+  "overqualified_count": 33,
+  "has_github_count": 16,
   "status": "complete_human_labelled"
 }

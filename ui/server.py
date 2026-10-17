@@ -35,8 +35,17 @@ if str(PROJECT_ROOT) not in sys.path:
 UI_DIR = Path(__file__).resolve().parent
 DATA_DIR = PROJECT_ROOT / "data"
 JDS_DIR = DATA_DIR / "jds"
+RESUMES_DIR = DATA_DIR / "resumes"
+RESUME_DIR = DATA_DIR / "resume"
 LOGS_DIR = PROJECT_ROOT / "logs"
 APPLICATIONS_FILE = DATA_DIR / "applications.json"
+
+# Ensure directories exist
+RESUMES_DIR.mkdir(parents=True, exist_ok=True)
+RESUME_DIR.mkdir(parents=True, exist_ok=True)
+JDS_DIR.mkdir(parents=True, exist_ok=True)
+
+from src.utils.database import ATSDatabase
 
 # In-memory session stores with persistence
 RUNTIME_STATE = {
@@ -44,7 +53,7 @@ RUNTIME_STATE = {
     "applications": [],
     "custom_candidates": {},
     "screenings": {},
-    "active_resume": "aksada.pdf",
+    "active_resume": "10089434.pdf",
     "last_pipeline_run": None,
 }
 
@@ -187,8 +196,8 @@ def extract_skills_from_text(text: str, title: str = "") -> tuple[list, list]:
 def run_screening_for_candidate(
     resume_name: str,
     job_id: str,
-    candidate_name: str = "Akshada Kale",
-    candidate_id: str = "aksada",
+    candidate_name: str = "Rahul Sharma",
+    candidate_id: str = "10089434",
     candidate_details: dict = None,
     force_refresh: bool = True
 ) -> dict:
@@ -201,14 +210,23 @@ def run_screening_for_candidate(
     from src.pipeline import process_candidate
     from src.utils.output import format_candidate_record
 
-    # Resolve resume path - prioritize recently saved uploaded resume in DATA_DIR/sample, then PROJECT_ROOT
-    resume_path = DATA_DIR / "sample" / resume_name
-    if not resume_path.exists():
-        resume_path = PROJECT_ROOT / resume_name
-    if not resume_path.exists():
-        resume_path = DATA_DIR / "sample" / f"{resume_name}.pdf"
-    if not resume_path.exists():
-        resume_path = PROJECT_ROOT / "aksada.pdf"
+    # Resolve resume path - prioritize data/resume/, data/resumes/, then DATA_DIR/sample, then PROJECT_ROOT
+    candidates_to_try = [
+        RESUME_DIR / resume_name,
+        RESUME_DIR / f"{resume_name}.pdf",
+        RESUMES_DIR / resume_name,
+        RESUMES_DIR / f"{resume_name}.pdf",
+        DATA_DIR / "sample" / resume_name,
+        DATA_DIR / "sample" / f"{resume_name}.pdf",
+        PROJECT_ROOT / resume_name,
+        DATA_DIR / "sample" / "10089434.pdf",
+        DATA_DIR / "sample" / "PA_to_Director_Matching_Resume.pdf"
+    ]
+    resume_path = next((p for p in candidates_to_try if p.exists() and p.is_file()), None)
+    if not resume_path:
+        # Pick any available pdf in sample
+        sample_pdfs = list((DATA_DIR / "sample").glob("*.pdf"))
+        resume_path = sample_pdfs[0] if sample_pdfs else RESUMES_DIR / resume_name
 
     jd_path = resolve_jd_path(str(job_id))
     record = process_candidate(resume_path, jd_path, force_refresh=force_refresh, use_cache=not force_refresh)
@@ -217,24 +235,30 @@ def run_screening_for_candidate(
     score = round(record.final_score, 1)
     dec_val = record.decision.value if hasattr(record.decision, "value") else str(record.decision)
 
-    if dec_val == "AUTO_ADVANCE":
+    if dec_val == "AUTO_ADVANCE" or score >= 75.0:
         status_label = "Shortlisted"
         app_status = "Shortlisted"
+        ai_recommendation = "SHORTLISTED"
         screening_note = f"Deterministic Gates 0-8 PASSED: Score {score}/100. Auto-Advance rule triggered (Score >= 75.0)."
         decision_note = "Congratulations! You have been shortlisted for technical interview."
         step3_status = "completed"
         step4_status = "completed"
-    elif dec_val == "AUTO_REJECT":
+    elif dec_val == "AUTO_REJECT" or score < 40.0:
         status_label = "Rejected"
-        app_status = "Not Shortlisted"
+        app_status = "Rejected"
+        ai_recommendation = "REJECTED"
         screening_note = f"Deterministic Gates 0-8 executed: Score {score}/100. Below threshold for role criteria."
         decision_note = "Application closed. Role technical requirements not met."
         step3_status = "completed"
         step4_status = "completed"
     else:  # ESCALATE or MANUAL_REVIEW
-        status_label = "Human Review"
+        status_label = "Under Review"
         app_status = "Under Review"
+        ai_recommendation = "HR_REVIEW"
         screening_note = f"Deterministic Gates 0-8 executed: Score {score}/100 ({record.decision_reason}). Flagged for recruiter review."
+        decision_note = "Awaiting recruiter portfolio review and interview scheduling."
+        step3_status = "active"
+        step4_status = "pending"
         decision_note = "Awaiting recruiter portfolio review and interview scheduling."
         step3_status = "active"
         step4_status = "pending"
@@ -294,10 +318,10 @@ def run_screening_for_candidate(
         ]
 
     details = candidate_details or {}
-    cand_degree = details.get("degree") or details.get("education") or ("BBA (2016 - 2019)" if "riya" in candidate_name.lower() or "riya" in candidate_id.lower() else "B.Tech (2022 - 2026)")
-    cand_email = details.get("email") or ("riya.sharma.sample@example.com" if "riya" in candidate_name.lower() or "riya" in candidate_id.lower() else "akshada@example.com")
-    cand_phone = details.get("phone") or ("+91 90000 12345" if "riya" in candidate_name.lower() or "riya" in candidate_id.lower() else "+91 98765 43210")
-    cand_github = details.get("github") or details.get("linkedin") or ("linkedin.com/in/riya-sharma" if "riya" in candidate_name.lower() or "riya" in candidate_id.lower() else "@Akshada-kale")
+    cand_degree = details.get("degree") or details.get("education") or "B.Tech (2022 - 2026)"
+    cand_email = details.get("email") or "candidate@example.com"
+    cand_phone = details.get("phone") or "+91 98765 43210"
+    cand_github = details.get("github") or details.get("linkedin") or "@dev-engineer"
     cand_location = details.get("location") or "Pune, India"
 
     cand_dict = {
@@ -309,7 +333,9 @@ def run_screening_for_candidate(
         "appliedJobTitle": record.job_title or "Software Engineer",
         "appliedDate": datetime.now().strftime("%b %d, %Y"),
         "fitScore": score,
-        "decision": dec_val,
+        "aiRecommendation": ai_recommendation,
+        "decision": ai_recommendation,
+        "finalStatus": app_status,
         "statusLabel": status_label,
         "skillsMatch": skills_match_str,
         "email": cand_email,
@@ -482,39 +508,39 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
             except Exception as e:
                 provider_status = {"error": str(e)}
 
-            jobs = self.get_normalized_jobs()
-            candidates = self.get_candidate_roster()
-            apps = RUNTIME_STATE["applications"]
+            admin_metrics = ATSDatabase.get_admin_metrics()
+            recruiter_metrics = ATSDatabase.get_recruiter_metrics()
 
             self.send_json(200, {
                 "success": True,
                 "system": "HuntYourTribe (HYT ATS) Deterministic Screening Engine",
                 "status": "online",
-                "version": "1.0.0",
+                "version": "2.0.0",
                 "timestamp": datetime.now().isoformat(),
                 "python": sys.version.split(" ")[0],
                 "project_root": str(PROJECT_ROOT),
                 "counts": {
-                    "jobs": len(jobs),
-                    "candidates": len(candidates),
-                    "applications": len(apps),
-                    "overrides": len(RUNTIME_STATE["overrides"]),
+                    "jobs": admin_metrics["totalJobs"],
+                    "candidates": admin_metrics["totalCandidates"],
+                    "applications": admin_metrics["totalApplications"],
+                    "overrides": admin_metrics["totalOverrides"],
                 },
+                "adminMetrics": admin_metrics,
+                "recruiterMetrics": recruiter_metrics,
                 "providers": provider_status,
             })
 
         # 2. Jobs List
         elif path in ("/api/jobs", "/api/jds"):
-            jobs = self.get_normalized_jobs()
+            jobs = ATSDatabase.get_jobs()
             self.send_json(200, {"success": True, "jobs": jobs, "total": len(jobs)})
 
         # 3. Single Job by ID
         elif path.startswith("/api/jobs/"):
             job_id = path.replace("/api/jobs/", "").strip("/")
-            jobs = self.get_normalized_jobs()
-            match = next((j for j in jobs if j["id"] == job_id), None)
-            if match:
-                self.send_json(200, {"success": True, "job": match})
+            job = ATSDatabase.get_job(job_id)
+            if job:
+                self.send_json(200, {"success": True, "job": job})
             else:
                 self.send_json(404, {"success": False, "error": f"Job ID {job_id} not found"})
 
@@ -524,10 +550,10 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
             status_filter = query.get("status", [None])[0]
             search_query = query.get("q", [None])[0]
 
-            candidates = self.get_candidate_roster(target_jd=target_jd)
+            candidates = ATSDatabase.get_candidate_roster(job_id=target_jd)
 
             if status_filter:
-                candidates = [c for c in candidates if c.get("statusLabel") == status_filter]
+                candidates = [c for c in candidates if c.get("statusLabel") == status_filter or c.get("finalStatus") == status_filter]
             if search_query:
                 sq = search_query.lower()
                 candidates = [
@@ -541,7 +567,7 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
 
         # 5. Single Candidate Detail / Full Record
         elif path in ("/api/candidate", "/api/candidates/detail"):
-            cand_id = query.get("id", [query.get("candidate_id", ["c_aksada"])])[0]
+            cand_id = query.get("id", [query.get("candidate_id", ["c_10089434"])])[0]
             cand = self.get_candidate_detail(cand_id)
             if cand:
                 self.send_json(200, {"success": True, "candidate": cand})
@@ -550,11 +576,24 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
 
         # 6. Candidate Applications List
         elif path == "/api/applications":
+            target_cand = query.get("candidate_id", [None])[0]
+            target_job = query.get("job_id", [None])[0]
+            apps = ATSDatabase.get_applications(job_id=target_job, candidate_id=target_cand)
             self.send_json(200, {
                 "success": True,
-                "applications": RUNTIME_STATE["applications"],
-                "total": len(RUNTIME_STATE["applications"])
+                "applications": apps,
+                "total": len(apps)
             })
+
+        # 6b. Recruiter Specific Live Metrics
+        elif path == "/api/recruiter/metrics":
+            m = ATSDatabase.get_recruiter_metrics()
+            self.send_json(200, {"success": True, "metrics": m})
+
+        # 6c. Admin Specific Live Metrics
+        elif path == "/api/admin/metrics":
+            m = ATSDatabase.get_admin_metrics()
+            self.send_json(200, {"success": True, "metrics": m})
 
         # 7. Evaluation & Benchmark Metrics (from eval_results.json)
         elif path == "/api/evaluation":
@@ -597,15 +636,19 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
             if "candidate_profile" in RUNTIME_STATE:
                 self.send_json(200, {"success": True, "profile": RUNTIME_STATE["candidate_profile"]})
             else:
-                cand = self.get_candidate_detail("aksada")
+                cand = self.get_candidate_detail("10089434")
                 self.send_json(200, {"success": True, "profile": cand})
 
         # 12. Active Resume Content / Document Preview
         elif path in ("/api/resume/content", "/api/resume/preview"):
-            target_res = query.get("file", [RUNTIME_STATE.get("active_resume", "aksada.pdf")])[0]
+            target_res = query.get("file", [RUNTIME_STATE.get("active_resume", "10089434.pdf")])[0]
             content = RUNTIME_STATE.get("active_resume_content")
             if not content:
-                res_path = DATA_DIR / "sample" / target_res
+                res_path = RESUME_DIR / target_res
+                if not res_path.exists():
+                    res_path = RESUMES_DIR / target_res
+                if not res_path.exists():
+                    res_path = DATA_DIR / "sample" / target_res
                 if not res_path.exists():
                     res_path = PROJECT_ROOT / target_res
                 if res_path.exists() and str(res_path).lower().endswith(".pdf"):
@@ -615,26 +658,31 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
                         content = "\n".join([p.get_text() for p in doc])
                     except Exception:
                         pass
+            self.send_json(200, {"success": True, "filename": target_res, "content": content or "No raw text available."})
+
         # 13. PDF File Streaming & Inline Preview Endpoint
         elif path in ("/api/pdf", "/api/pdf/view", "/api/pdf/download"):
-            target_file = query.get("file", ["riya_sharma.pdf"])[0]
+            target_file = query.get("file", ["10089434.pdf"])[0]
             clean_name = Path(target_file).name
             if not clean_name.lower().endswith(".pdf"):
                 clean_name = f"{clean_name}.pdf"
 
             search_paths = [
-                PROJECT_ROOT / clean_name,
+                RESUME_DIR / clean_name,
+                RESUMES_DIR / clean_name,
                 DATA_DIR / "sample" / clean_name,
                 DATA_DIR / "jds" / clean_name,
-                PROJECT_ROOT / "recruiter_annotation_kit" / "resumes" / clean_name,
+                PROJECT_ROOT / clean_name,
                 PROJECT_ROOT / target_file,
                 DATA_DIR / target_file
             ]
 
             pdf_file = next((p for p in search_paths if p.exists() and p.is_file()), None)
             if not pdf_file:
-                for fb_name in ["riya_sharma.pdf", "akasada.pdf", "pa_director.pdf"]:
-                    fb = PROJECT_ROOT / fb_name
+                for fb_name in ["10089434.pdf", "PA_to_Director_Matching_Resume.pdf", "pa_director.pdf", "10219099.pdf"]:
+                    fb = RESUME_DIR / fb_name
+                    if not fb.exists():
+                        fb = RESUMES_DIR / fb_name
                     if not fb.exists():
                         fb = DATA_DIR / "sample" / fb_name
                     if not fb.exists():
@@ -674,7 +722,7 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
     def handle_api_post(self, path: str, data: dict):
         # 1. Run Live Pipeline for a Candidate
         if path == "/api/pipeline/run":
-            resume_name = data.get("resume", "aksada.pdf")
+            resume_name = data.get("resume", "10089434.pdf")
             jd_id = data.get("jd", "2234533717")
 
             try:
@@ -682,14 +730,21 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
                 from src.pipeline import process_candidate
                 from src.utils.output import format_candidate_record
 
-                # Resolve resume path
-                resume_path = PROJECT_ROOT / resume_name
-                if not resume_path.exists():
-                    resume_path = DATA_DIR / "sample" / resume_name
-                if not resume_path.exists():
-                    resume_path = DATA_DIR / "sample" / f"{resume_name}.pdf"
-                if not resume_path.exists():
-                    resume_path = PROJECT_ROOT / "aksada.pdf"
+                # Resolve resume path across data/resume, data/resumes, data/sample
+                candidates_to_try = [
+                    RESUME_DIR / resume_name,
+                    RESUME_DIR / f"{resume_name}.pdf",
+                    RESUMES_DIR / resume_name,
+                    RESUMES_DIR / f"{resume_name}.pdf",
+                    DATA_DIR / "sample" / resume_name,
+                    DATA_DIR / "sample" / f"{resume_name}.pdf",
+                    PROJECT_ROOT / resume_name,
+                    DATA_DIR / "sample" / "10089434.pdf"
+                ]
+                resume_path = next((p for p in candidates_to_try if p.exists() and p.is_file()), None)
+                if not resume_path:
+                    sample_pdfs = list((DATA_DIR / "sample").glob("*.pdf"))
+                    resume_path = sample_pdfs[0] if sample_pdfs else RESUMES_DIR / resume_name
 
                 jd_path = resolve_jd_path(jd_id)
                 record = process_candidate(resume_path, jd_path, use_cache=True)
@@ -714,176 +769,156 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
 
         # 2. Candidate Job Application Submit
         elif path == "/api/applications/submit":
-            job_id = str(data.get("job_id", data.get("jobId", "2234533717")))
-            candidate_id = data.get("candidate_id", "aksada")
-            why_fit = data.get("why_fit", "")
-            resume_name = data.get("resume_name", data.get("resume", RUNTIME_STATE.get("active_resume", "aksada.pdf")))
+            job_id = data.get("job_id") or data.get("jobId")
+            if not job_id:
+                self.send_json(400, {"success": False, "error": "job_id is required."})
+                return
 
-            jobs = self.get_normalized_jobs()
-            target_job = next((j for j in jobs if str(j["id"]) == str(job_id)), jobs[0])
+            target_job = ATSDatabase.get_job(str(job_id))
+            if not target_job:
+                self.send_json(404, {"success": False, "error": f"Job ID '{job_id}' not found. Cannot apply to a nonexistent job."})
+                return
+
+            if target_job.get("status") != "Open":
+                self.send_json(400, {"success": False, "error": f"Job '{job_id}' is closed or not open for applications."})
+                return
+
+            candidate_id = data.get("candidate_id") or data.get("candidateId")
+            if not candidate_id:
+                self.send_json(400, {"success": False, "error": "candidate_id is required."})
+                return
+
+            why_fit = data.get("why_fit", "")
+            resume_name = data.get("resume_name") or data.get("resume")
+            if not resume_name:
+                cprof = ATSDatabase.get_candidate_profile(candidate_id)
+                resume_name = cprof.get("resumeFile") if cprof else None
+            if not resume_name:
+                self.send_json(400, {"success": False, "error": "A valid candidate resume file is required to apply."})
+                return
+
+            # Validate resume ownership (Candidate A cannot submit Candidate B's resume)
+            if not ATSDatabase.verify_resume_ownership(candidate_id, resume_name):
+                self.send_json(403, {"success": False, "error": "Security validation failed: Candidate cannot use a resume owned by another candidate."})
+                return
 
             candidate_name = data.get("candidate_name")
             if not candidate_name:
-                if "riya" in str(resume_name).lower() or "riya" in str(candidate_id).lower():
-                    candidate_name = "Riya Sharma"
-                elif "dhruv" in str(resume_name).lower():
-                    candidate_name = "Dhruv Mehta"
-                else:
-                    candidate_name = "Akshada Kale"
+                cprof = ATSDatabase.get_candidate_profile(candidate_id)
+                candidate_name = cprof.get("name") if cprof else candidate_id.replace("_", " ").title()
 
-            # Run deterministic 10-gate ATS pipeline in real-time
+            candidate_email = data.get("candidate_email") or data.get("email") or f"{candidate_id}@example.com"
+
+            # Run deterministic 10-gate ATS pipeline in real-time immediately upon clicking apply!
             screening = None
+            screening_failed = False
+            screening_err = ""
             try:
                 screening = run_screening_for_candidate(
                     resume_name=resume_name,
-                    job_id=job_id,
+                    job_id=str(job_id),
                     candidate_name=candidate_name,
-                    candidate_id=candidate_id
+                    candidate_id=candidate_id,
+                    candidate_details={"email": candidate_email, "name": candidate_name}
                 )
             except Exception as e:
-                print(f"Warning: live screening error, using fallback: {e}")
+                screening_failed = True
+                screening_err = str(e)
+                print(f"Warning: live screening error for candidate {candidate_id} on job {job_id}: {e}")
 
-            if screening:
-                score = screening["score"]
-                decision = screening["decision"]
-                app_status = screening["app_status"]
-                screening_note = screening["screening_note"]
-                decision_note = screening["decision_note"]
-                step3_status = screening["step3_status"]
-                step4_status = screening["step4_status"]
-                cand_record = screening["candidate"]
-                report = screening["report"]
-            else:
-                score = 42.6
-                decision = "ESCALATE"
-                app_status = "Under Review"
-                screening_note = "Deterministic Gates 0-8 executed: Score 42.6/100 (ESCALATE)."
-                decision_note = "Awaiting recruiter portfolio review."
-                step3_status = "active"
-                step4_status = "pending"
-                cand_record = None
-                report = ""
-
-            app_id = f"APP-{str(job_id)[:4]}-{int(datetime.now().timestamp()) % 10000:04d}"
-            new_app = {
-                "id": app_id,
-                "jobId": str(target_job["id"]),
-                "jobTitle": target_job["title"],
-                "company": target_job["company"],
-                "status": app_status,
-                "appliedDate": datetime.now().strftime("%b %d, %Y"),
-                "fitScore": score,
-                "decision": decision,
-                "resumeFile": resume_name,
-                "timeline": [
-                    {
-                        "title": "Application Submitted",
-                        "timestamp": datetime.now().strftime("%b %d, %Y, %I:%M %p"),
-                        "status": "completed",
-                        "note": f"Application received with resume ({resume_name})."
+            if screening_failed or not screening:
+                screening = {
+                    "score": 0.0,
+                    "decision": "ESCALATE",
+                    "status_label": "Under Review",
+                    "app_status": "Under Review",
+                    "is_error": True,
+                    "screening_note": f"Automated screening encountered an issue ({screening_err or 'Service error'}). Application preserved in safe Human Review queue.",
+                    "decision_note": "Awaiting recruiter portfolio review due to automated screening pipeline failure.",
+                    "step3_status": "active",
+                    "step4_status": "pending",
+                    "candidate": {
+                        "id": f"c_{candidate_id}",
+                        "candidateId": candidate_id,
+                        "name": candidate_name,
+                        "appliedJobId": str(job_id),
+                        "appliedJobTitle": target_job.get("title", "Role"),
+                        "resumeFile": resume_name,
+                        "fitScore": 0.0,
+                        "decision": "ESCALATE",
+                        "statusLabel": "Under Review",
+                        "matchedSkills": [],
+                        "missingSkills": []
                     },
-                    {
-                        "title": "Resume Screening (AI)",
-                        "timestamp": datetime.now().strftime("%b %d, %Y, %I:%M %p"),
-                        "status": "completed",
-                        "note": screening_note
-                    },
-                    {
-                        "title": "Under Human Review",
-                        "timestamp": "Completed" if step3_status == "completed" else "In Progress",
-                        "status": step3_status,
-                        "note": "Candidate fast-tracked to shortlist by policy" if step3_status == "completed" else "Recruiter is evaluating transferable portfolio."
-                    },
-                    {
-                        "title": "Final Decision",
-                        "timestamp": datetime.now().strftime("%b %d, %Y") if step4_status == "completed" else "Pending",
-                        "status": step4_status,
-                        "note": decision_note
-                    }
-                ]
-            }
-
-            RUNTIME_STATE["applications"].insert(0, new_app)
-            save_applications(RUNTIME_STATE["applications"])
-
-            if cand_record:
-                # Store in screenings store so Recruiter & Admin immediately see this candidate
-                RUNTIME_STATE["screenings"][f"{candidate_id}_{job_id}"] = cand_record
-                RUNTIME_STATE["last_pipeline_run"] = {
-                    "candidate_id": candidate_id,
-                    "job_id": job_id,
-                    "score": score,
-                    "decision": decision,
-                    "report": report,
-                    "timestamp": datetime.now().isoformat()
+                    "report": f"SCREENING FAILURE NOTICE\n========================\nError: {screening_err or 'Unexpected error'}\nApplication routed to Human Recruiter Review Queue."
                 }
 
-            # Also log into audit trail
-            self.append_audit_log(
-                actor="Akshada Kale",
-                action="Submitted Application",
-                target=f"Job: {target_job['title']} ({target_job['company']})",
-                status=f"AI Screening Complete: {decision} (Score {score}/100)"
+            # Save in authoritative SQLite database
+            db_app = ATSDatabase.submit_application(
+                job_id=str(job_id),
+                candidate_id=candidate_id,
+                resume_file=resume_name,
+                screening=screening,
+                why_fit=why_fit
             )
+
+            cand_record = screening.get("candidate", {})
+            report = screening.get("report", "")
+
+            # Sync in-memory runtime state
+            RUNTIME_STATE["applications"] = [db_app] + [a for a in RUNTIME_STATE["applications"] if a.get("id") != db_app.get("id")]
+            if cand_record:
+                RUNTIME_STATE["screenings"][f"{candidate_id}_{job_id}"] = cand_record
 
             self.send_json(200, {
                 "success": True,
-                "application": new_app,
+                "application": db_app,
                 "candidate": cand_record,
                 "report": report,
-                "message": f"Application submitted! AI Pipeline screened: Score {score}/100 ({decision})"
+                "message": f"Application submitted! Screening: Status '{db_app.get('finalStatus')}', Recommendation '{db_app.get('aiRecommendation')}'"
             })
 
         # 3. Recruiter Decision Override
         elif path in ("/api/override", "/api/applications/override"):
-            cand_id = data.get("candidate_id", data.get("candidateId", "aksada"))
+            role = data.get("role", "recruiter")
+            if role == "admin":
+                self.send_json(403, {
+                    "success": False,
+                    "error": "Admin users have view-only monitoring permissions and are prohibited from altering candidate decisions per ATS Governance policy."
+                })
+                return
+
+            cand_id = data.get("candidate_id", data.get("candidateId", "10089434"))
             new_decision = data.get("decision", data.get("new_decision", "AUTO_ADVANCE"))
-            reason = data.get("reason", data.get("comment", "Recruiter manual review"))
+            reason = data.get("reason", data.get("comment", "")).strip() or "Manual recruiter review decision"
             recruiter_id = data.get("recruiter_id", data.get("recruiter", "Rohan (HR)"))
             job_id = data.get("job_id", "2234533717")
+            app_id = data.get("application_id", data.get("applicationId", ""))
 
             try:
-                from src.models.schemas import DecisionType
-                from src.utils.override import log_decision_override
-
-                dec_enum = DecisionType(new_decision)
-                entry = log_decision_override(
-                    candidate_id=cand_id,
-                    new_decision=dec_enum,
-                    reason=reason,
-                    job_id=job_id,
-                    recruiter_id=recruiter_id
+                res = ATSDatabase.override_recruiter_decision(
+                    application_id=app_id or cand_id,
+                    new_status=new_decision,
+                    recruiter_id=recruiter_id,
+                    reason=reason
                 )
-            except Exception:
-                entry = {
-                    "timestamp": datetime.now().isoformat(),
-                    "candidate_id": cand_id,
-                    "job_id": job_id,
-                    "new_decision": new_decision,
+
+                # Keep RUNTIME_STATE in sync
+                clean_status = res["newStatus"]
+                RUNTIME_STATE["overrides"][cand_id] = {
+                    "decision": "AUTO_ADVANCE" if clean_status == "Shortlisted" else ("AUTO_REJECT" if clean_status == "Rejected" else "ESCALATE"),
+                    "statusLabel": clean_status,
                     "reason": reason,
-                    "recruiter_id": recruiter_id
+                    "timestamp": datetime.now().isoformat()
                 }
 
-            # Update in-memory session override
-            RUNTIME_STATE["overrides"][cand_id] = {
-                "decision": new_decision,
-                "statusLabel": "Shortlisted" if new_decision == "AUTO_ADVANCE" else ("Rejected" if new_decision == "AUTO_REJECT" else "Human Review"),
-                "reason": reason,
-                "timestamp": datetime.now().isoformat()
-            }
-
-            self.append_audit_log(
-                actor=recruiter_id,
-                action=f"Decision override: {new_decision}",
-                target=f"Candidate: {cand_id}",
-                status=reason
-            )
-
-            self.send_json(200, {
-                "success": True,
-                "message": f"Candidate decision updated to {new_decision} and written to logs/overrides.jsonl",
-                "entry": entry
-            })
+                self.send_json(200, {
+                    "success": True,
+                    "message": f"Candidate status updated to {clean_status} and saved to SQLite database and logs/overrides.jsonl",
+                    "override": res
+                })
+            except Exception as e:
+                self.send_json(500, {"success": False, "error": str(e)})
 
         # 4. Post New Job Description
         elif path in ("/api/jobs", "/api/jobs/create", "/api/jds/create"):
@@ -896,36 +931,42 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
             must_haves = data.get("mustHaves", [])
             nice_haves = data.get("niceToHaves", [])
 
+            import uuid
             # Generate unique Job ID
-            new_id = f"custom_{int(datetime.now().timestamp()) % 1000000}"
+            new_id = str(data.get("job_id") or data.get("id") or f"custom_{uuid.uuid4().hex[:8]}")
             job_data = {
                 "job_id": new_id,
                 "title": title,
                 "company": company,
                 "location": location,
+                "job_type": job_type,
                 "work_type": job_type,
                 "seniority_level": "mid",
+                "experience": experience,
                 "min_years_experience": float(re.search(r"\d+", experience).group(0)) if re.search(r"\d+", experience) else 2.0,
+                "overview": overview,
                 "raw_description": overview,
+                "must_haves": must_haves,
                 "approx_must_haves": must_haves,
+                "nice_to_haves": nice_haves,
                 "approx_nice_to_haves": nice_haves,
                 "status": "Open",
-                "postedDate": "Today"
+                "postedDate": "Today",
+                "posted_date": datetime.now().strftime("%b %d, %Y")
             }
 
-            # Save to data/jds/jd_<id>.json
             try:
-                JDS_DIR.mkdir(parents=True, exist_ok=True)
-                new_file = JDS_DIR / f"jd_{new_id}.json"
-                with open(new_file, "w", encoding="utf-8") as jf:
-                    json.dump(job_data, jf, indent=2)
+                created = ATSDatabase.create_job(job_data)
             except Exception as e:
-                print(f"Warning: could not save JD to disk: {e}")
+                print(f"Warning: could not save JD to database: {e}")
+                created = None
 
-            normalized = self.normalize_job_dict(job_data, new_id)
+            if not created:
+                created = self.normalize_job_dict(job_data, new_id)
+
             self.send_json(201, {
                 "success": True,
-                "job": normalized,
+                "job": created,
                 "message": f"Job posting '{title}' published successfully!"
             })
 
@@ -1045,20 +1086,24 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
             content_base64 = data.get("content_base64", "")
             raw_text = data.get("raw_text", "")
 
+            RESUME_DIR.mkdir(parents=True, exist_ok=True)
+            RESUMES_DIR.mkdir(parents=True, exist_ok=True)
             DATA_DIR.joinpath("sample").mkdir(parents=True, exist_ok=True)
+            saved_resume_path = RESUME_DIR / filename
+            saved_resumes_path = RESUMES_DIR / filename
             saved_path = DATA_DIR / "sample" / filename
             root_path = PROJECT_ROOT / filename
 
+            file_bytes = b""
             if content_base64:
                 try:
                     file_bytes = base64.b64decode(content_base64)
-                    with open(saved_path, "wb") as f:
-                        f.write(file_bytes)
-                    try:
-                        with open(root_path, "wb") as rf:
-                            rf.write(file_bytes)
-                    except Exception:
-                        pass
+                    for target in [saved_resume_path, saved_resumes_path, saved_path, root_path]:
+                        try:
+                            with open(target, "wb") as f:
+                                f.write(file_bytes)
+                        except Exception:
+                            pass
                 except Exception as e:
                     print(f"Error saving uploaded resume file: {e}")
 
@@ -1113,53 +1158,33 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
             detected_skills, _ = extract_skills_from_text(extracted_text, headline)
             cand_id = cand_name.lower().replace(" ", "_")
 
-            # Determine best matching target Job Description
-            target_job_id = data.get("job_id")
-            if not target_job_id:
-                text_lower = (extracted_text + " " + filename).lower()
-                if any(w in text_lower for w in ["director", "personal assistant", "executive assistant", "office coordinator", "secretary", "calendar management"]):
-                    target_job_id = "pa_director"
-                elif any(w in text_lower for w in ["designer", "ui/ux", "figma"]):
-                    target_job_id = "3887497535"
-                elif any(w in text_lower for w in ["lawyer", "legal", "compliance", "attorney"]):
-                    target_job_id = "custom_218410"
-                else:
-                    target_job_id = "2234533717"
-
-            cand_details = {
-                "degree": degree,
-                "email": email,
-                "phone": phone,
-                "location": location,
-                "github": cand_social,
-                "title": headline
-            }
+            # Persist resume file into data/resumes/ and SQLite
+            if file_bytes:
+                try:
+                    ATSDatabase.save_stored_resume(
+                        candidate_id=cand_id,
+                        filename=filename,
+                        file_bytes=file_bytes,
+                        extracted_text=extracted_text,
+                        metadata={
+                            "detected_skills": detected_skills,
+                            "name": cand_name,
+                            "email": email,
+                            "phone": phone,
+                            "degree": degree,
+                            "location": location,
+                            "headline": headline
+                        }
+                    )
+                except Exception as e:
+                    print(f"Warning: could not save stored resume: {e}")
 
             # Set active resume in runtime state
             RUNTIME_STATE["active_resume"] = filename
             RUNTIME_STATE["active_resume_content"] = extracted_text
 
-            # Execute real-time deterministic 10-gate ATS screening on newly uploaded resume
-            screening_data = None
-            try:
-                screening_data = run_screening_for_candidate(
-                    resume_name=filename,
-                    job_id=target_job_id,
-                    candidate_name=cand_name,
-                    candidate_id=cand_id,
-                    candidate_details=cand_details,
-                    force_refresh=True
-                )
-            except Exception as e:
-                print(f"Warning: screening on upload failed: {e}")
-
-            score_val = screening_data["score"] if screening_data else 42.6
-            dec_val = screening_data["decision"] if screening_data else "ESCALATE"
-            status_lbl = screening_data["status_label"] if screening_data else "Human Review"
-            app_status = screening_data["app_status"] if screening_data else "Under Review"
-
-            # Store in candidate profile
-            RUNTIME_STATE["candidate_profile"] = {
+            # Update candidate profile strictly (NO job inference, NO screening, NO applications created)
+            prof = {
                 "id": cand_id,
                 "name": cand_name,
                 "email": email,
@@ -1167,83 +1192,25 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
                 "education": degree,
                 "degree": degree,
                 "location": location,
-                "title": headline or ("Personal Assistant to Director" if "director" in filename.lower() else "Software Engineer"),
+                "title": headline or "Software Engineer",
                 "headline": headline,
                 "skills": detected_skills,
                 "resumeFile": filename,
                 "resumeSize": f"{max(len(extracted_text)//1024, 1)} KB",
                 "resumeContent": extracted_text,
-                "lastUpdated": datetime.now().strftime("%b %d, %Y %I:%M %p"),
-                "fitScore": score_val,
-                "decision": dec_val,
-                "statusLabel": status_lbl,
-                "appliedJobId": target_job_id
+                "lastUpdated": datetime.now().strftime("%b %d, %Y %I:%M %p")
             }
-
-            # Update screenings stores
-            cand_card = screening_data["candidate"] if (screening_data and screening_data.get("candidate")) else None
-            if cand_card:
-                RUNTIME_STATE["screenings"][f"{cand_id}_{target_job_id}"] = cand_card
-                RUNTIME_STATE["screenings"][cand_id] = cand_card
-                RUNTIME_STATE["screenings"]["aksada"] = cand_card  # Sync default slot
-                RUNTIME_STATE["last_pipeline_run"] = {
-                    "candidate_id": cand_id,
-                    "job_id": target_job_id,
-                    "score": score_val,
-                    "decision": dec_val,
-                    "report": screening_data.get("report", ""),
-                    "timestamp": datetime.now().isoformat()
-                }
-
-            # Update top application in live applications list
-            jobs = self.get_normalized_jobs()
-            t_job = next((j for j in jobs if str(j["id"]) == str(target_job_id)), jobs[0])
-            new_app = {
-                "id": f"APP-{str(target_job_id)[:4]}-{int(datetime.now().timestamp()) % 10000:04d}",
-                "jobId": str(target_job_id),
-                "jobTitle": t_job["title"],
-                "company": t_job["company"],
-                "status": app_status,
-                "appliedDate": datetime.now().strftime("%b %d, %Y"),
-                "fitScore": score_val,
-                "decision": dec_val,
-                "resumeFile": filename,
-                "timeline": [
-                    {
-                        "title": "Application Submitted",
-                        "timestamp": datetime.now().strftime("%b %d, %Y, %I:%M %p"),
-                        "status": "completed",
-                        "note": f"Application received with updated resume ({filename})."
-                    },
-                    {
-                        "title": "Resume Screening (AI)",
-                        "timestamp": datetime.now().strftime("%b %d, %Y, %I:%M %p"),
-                        "status": "completed",
-                        "note": screening_data["screening_note"] if screening_data else f"Deterministic Gates 0-8 executed: Score {score_val}/100."
-                    },
-                    {
-                        "title": "Under Human Review",
-                        "timestamp": "Completed" if (screening_data and screening_data.get("step3_status") == "completed") else "In Progress",
-                        "status": screening_data["step3_status"] if screening_data else "active",
-                        "note": "Candidate auto-advanced to shortlist by AI screening policy." if (screening_data and screening_data.get("step3_status") == "completed") else "Recruiter is evaluating transferable portfolio."
-                    },
-                    {
-                        "title": "Final Decision",
-                        "timestamp": datetime.now().strftime("%b %d, %Y") if (screening_data and screening_data.get("step4_status") == "completed") else "Pending",
-                        "status": screening_data["step4_status"] if screening_data else "pending",
-                        "note": screening_data["decision_note"] if screening_data else "Awaiting recruiter decision."
-                    }
-                ]
-            }
-
-            RUNTIME_STATE["applications"] = [new_app] + [a for a in RUNTIME_STATE["applications"] if a.get("id") != new_app["id"]]
-            save_applications(RUNTIME_STATE["applications"])
+            RUNTIME_STATE["candidate_profile"] = prof
+            try:
+                ATSDatabase.save_candidate_profile(cand_id, prof)
+            except Exception as e:
+                print(f"Warning: could not save candidate profile to DB: {e}")
 
             self.append_audit_log(
                 actor=f"Candidate ({cand_name})",
                 action="Uploaded Resume",
                 target=filename,
-                status=f"AI Screening Complete: {dec_val} (Score {score_val}/100, {len(detected_skills)} skills extracted)"
+                status=f"Profile updated: Gate 0 Integrity Shield evaluated ({len(gate0_flags)} flags, {len(detected_skills)} skills extracted)"
             )
 
             self.send_json(200, {
@@ -1253,17 +1220,12 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
                 "candidateId": cand_id,
                 "id": cand_id,
                 "name": cand_name,
-                "headline": headline or ("Personal Assistant to Director" if "director" in filename.lower() else "Software Engineer"),
+                "headline": headline or "Software Engineer",
                 "email": email,
                 "phone": phone,
                 "degree": degree,
                 "location": location,
                 "detectedSkills": detected_skills,
-                "fitScore": score_val,
-                "decision": dec_val,
-                "targetJobId": target_job_id,
-                "screening": cand_card,
-                "application": new_app,
                 "integrity": {"flags": gate0_flags, "is_quarantined": False},
                 "preview": extracted_text[:1200],
                 "fullText": extracted_text,
@@ -1309,9 +1271,9 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
         if len(overview) > 420:
             overview = overview[:420] + "..."
 
-        # Calculate live applicant counts
-        apps = [a for a in RUNTIME_STATE["applications"] if a.get("jobId") == job_id]
-        app_count = max(len(apps), d.get("applicantsCount", 12))
+        # Calculate live applicant counts strictly from persisted applications
+        apps = ATSDatabase.get_applications(job_id=str(job_id))
+        app_count = len(apps)
 
         return {
             "id": str(job_id),
@@ -1320,12 +1282,12 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
             "location": location,
             "jobType": "Full-time" if "full" in str(work_type).lower() else str(work_type),
             "experience": exp_str,
-            "postedDate": d.get("postedDate", "Oct 10, 2026"),
+            "postedDate": d.get("postedDate", "Today"),
             "status": d.get("status", "Open"),
             "applicantsCount": app_count,
-            "shortlistedCount": max(len([a for a in apps if a.get("status") == "Shortlisted"]), d.get("shortlistedCount", 3)),
-            "reviewCount": max(len([a for a in apps if a.get("status") == "Under Review"]), d.get("reviewCount", 5)),
-            "rejectedCount": max(len([a for a in apps if a.get("status") == "Not Shortlisted"]), d.get("rejectedCount", 4)),
+            "shortlistedCount": len([a for a in apps if a.get("finalStatus") == "Shortlisted" or a.get("status") == "Shortlisted"]),
+            "reviewCount": len([a for a in apps if a.get("finalStatus") in ("Under Review", "HR_REVIEW") or a.get("status") in ("Under Review", "Human Review")]),
+            "rejectedCount": len([a for a in apps if a.get("finalStatus") in ("Rejected", "Not Shortlisted") or a.get("status") in ("Rejected", "Not Shortlisted")]),
             "overview": overview or "Full-stack software engineering position building resilient cloud applications.",
             "mustHaves": [str(m).title() for m in must],
             "niceToHaves": [str(n).title() for n in nice],
@@ -1346,213 +1308,8 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
         return jobs
 
     def get_candidate_roster(self, target_jd: str = None) -> list:
-        """Assembles rich candidate list for recruiter and admin tables."""
-        override_ak = RUNTIME_STATE["overrides"].get("aksada", {})
-        ak_decision = override_ak.get("decision", "ESCALATE")
-        ak_status = override_ak.get("statusLabel", "Human Review")
-
-        roster = []
-        seen_cand_ids = set()
-
-        # 1. Prepend any live screened candidates from RUNTIME_STATE["screenings"]
-        for screen_key, cand_obj in RUNTIME_STATE["screenings"].items():
-            if target_jd and str(cand_obj.get("appliedJobId")) != str(target_jd):
-                continue
-
-            c_copy = dict(cand_obj)
-            cid = c_copy.get("candidateId", "aksada")
-            if cid in seen_cand_ids:
-                continue
-            if cid in RUNTIME_STATE["overrides"]:
-                ov = RUNTIME_STATE["overrides"][cid]
-                c_copy["decision"] = ov.get("decision", c_copy["decision"])
-                c_copy["statusLabel"] = ov.get("statusLabel", c_copy["statusLabel"])
-
-            seen_cand_ids.add(cid)
-            roster.append(c_copy)
-
-        # Baseline candidates
-        baseline = [
-            {
-                "id": "c_riya_sharma",
-                "candidateId": "riya_sharma",
-                "name": "Riya Sharma",
-                "degree": "4.5 yrs - Professional",
-                "resumeFile": "riya_sharma.pdf",
-                "appliedJobId": target_jd or "pa_director",
-                "appliedJobTitle": "Personal Assistant (PA) to the Director",
-                "appliedDate": "Oct 16, 2026",
-                "fitScore": 42.6,
-                "decision": "ESCALATE",
-                "statusLabel": "Human Review",
-                "skillsMatch": "2/7",
-                "email": "riya.sharma@example.com",
-                "phone": "+91 98200 12345",
-                "github": "Not specified",
-                "location": "Not specified",
-                "matchedSkills": ["Records Management", "Stakeholder Communication"],
-                "missingSkills": ["Legal Practice", "Contract Law", "Litigation"],
-                "breakdown": {"technical": 0.0, "experience": 37.5, "seniority": 40.0, "education": 100.0, "location": 70.0, "weighted_total": 42.6}
-            },
-            {
-                "id": "c_rahul",
-                "candidateId": "rahul_sharma",
-                "name": "Rahul Sharma",
-                "degree": "2 yrs - B.Tech",
-                "appliedJobId": target_jd or "2234533717",
-                "appliedJobTitle": "Full Stack Software Engineer",
-                "appliedDate": "Oct 11, 2026",
-                "fitScore": 90.1,
-                "decision": "AUTO_ADVANCE",
-                "statusLabel": "Shortlisted",
-                "skillsMatch": "15/16",
-                "email": "r*******@gmail.com",
-                "phone": "+91 98******12",
-                "github": "@rahul-dev",
-                "location": "Bangalore, India",
-                "matchedSkills": ["JavaScript", "TypeScript", "React", "Node.js", "MongoDB", "SQL", "REST APIs", "Git", "AWS", "Docker", "CI/CD"],
-                "missingSkills": ["Kubernetes"],
-                "breakdown": {"technical": 92.0, "experience": 88.0, "seniority": 90.0, "education": 100.0, "location": 100.0, "weighted_total": 90.1}
-            },
-            {
-                "id": "c_sneha",
-                "candidateId": "sneha_patel",
-                "name": "Sneha Patel",
-                "degree": "4 yrs - M.Tech",
-                "appliedJobId": target_jd or "2234533717",
-                "appliedJobTitle": "Full Stack Software Engineer",
-                "appliedDate": "Oct 12, 2026",
-                "fitScore": 76.5,
-                "decision": "AUTO_ADVANCE",
-                "statusLabel": "Shortlisted",
-                "skillsMatch": "12/16",
-                "email": "s*****@gmail.com",
-                "phone": "+91 99******45",
-                "github": "@sneha-p",
-                "location": "Mumbai, India",
-                "matchedSkills": ["JavaScript", "React", "Node.js", "MongoDB", "REST APIs", "Git", "SQL"],
-                "missingSkills": ["AWS", "Docker", "CI/CD"],
-                "breakdown": {"technical": 78.0, "experience": 75.0, "seniority": 80.0, "education": 100.0, "location": 100.0, "weighted_total": 76.5}
-            }
-        ]
-
-        # Only add default Akshada card if she wasn't already added from live screenings
-        if "aksada" not in seen_cand_ids:
-            baseline.append({
-                "id": "c_aksada",
-                "candidateId": "aksada",
-                "name": "Akshada Kale",
-                "degree": "B.Tech (2022 - 2026)",
-                "appliedJobId": target_jd or "2234533717",
-                "appliedJobTitle": "Full Stack Software Engineer",
-                "appliedDate": "Oct 14, 2026",
-                "fitScore": 42.6,
-                "decision": ak_decision,
-                "statusLabel": ak_status,
-                "skillsMatch": "9/16",
-                "email": "akshada@example.com",
-                "phone": "+91 98765 43210",
-                "github": "@Akshada-kale",
-                "location": "Pune, India",
-                "matchedSkills": ["JavaScript", "React", "Node.js", "MongoDB", "REST APIs", "Git", "HTML5", "CSS3", "Python"],
-                "missingSkills": ["AWS", "Docker", "CI/CD", "TypeScript", "Express.js", "PostgreSQL", "System Design"],
-                "breakdown": {"technical": 55.3, "experience": 8.3, "seniority": 40.0, "education": 100.0, "location": 100.0, "weighted_total": 42.6}
-            })
-
-        baseline.extend([
-            {
-                "id": "c_priya",
-                "candidateId": "priya_nair",
-                "name": "Priya Nair",
-                "degree": "1 yr - B.E.",
-                "appliedJobId": target_jd or "2234533717",
-                "appliedJobTitle": "Full Stack Software Engineer",
-                "appliedDate": "Oct 13, 2026",
-                "fitScore": 52.4,
-                "decision": "ESCALATE",
-                "statusLabel": "Human Review",
-                "skillsMatch": "10/16",
-                "email": "p****@outlook.com",
-                "phone": "+91 97******89",
-                "github": "@priya-codes",
-                "location": "Kochi, India",
-                "matchedSkills": ["JavaScript", "React", "Python", "SQL", "Git", "HTML5", "CSS3"],
-                "missingSkills": ["Node.js", "MongoDB", "AWS", "CI/CD"],
-                "breakdown": {"technical": 58.0, "experience": 35.0, "seniority": 40.0, "education": 100.0, "location": 100.0, "weighted_total": 52.4}
-            },
-            {
-                "id": "c_vikram",
-                "candidateId": "vikram_singh",
-                "name": "Vikram Singh",
-                "degree": "0.5 yrs - BCA",
-                "appliedJobId": target_jd or "2234533717",
-                "appliedJobTitle": "Full Stack Software Engineer",
-                "appliedDate": "Oct 09, 2026",
-                "fitScore": 35.8,
-                "decision": "AUTO_REJECT",
-                "statusLabel": "Rejected",
-                "skillsMatch": "4/16",
-                "email": "v*****@yahoo.com",
-                "phone": "+91 96******34",
-                "github": "@vikram-s",
-                "location": "Delhi, India",
-                "matchedSkills": ["HTML5", "CSS3", "JavaScript", "Git"],
-                "missingSkills": ["React", "Node.js", "MongoDB", "REST APIs", "AWS", "Docker", "CI/CD"],
-                "breakdown": {"technical": 30.0, "experience": 15.0, "seniority": 20.0, "education": 80.0, "location": 100.0, "weighted_total": 35.8}
-            }
-        ])
-
-        roster.extend(baseline)
-
-        # Read more candidates from recruiter_human_labels.csv if available
-        csv_path = PROJECT_ROOT / "recruiter_human_labels.csv"
-        if csv_path.exists():
-            import csv
-            try:
-                with open(csv_path, "r", encoding="utf-8") as cf:
-                    reader = csv.DictReader(cf)
-                    for idx, row in enumerate(reader):
-                        if idx >= 15:
-                            break
-                        cid = row.get("candidate_id", f"cand_{idx}")
-                        if any(c["candidateId"] == cid for c in roster):
-                            continue
-                        h_score = float(row.get("human_fit_score", 3)) * 20.0
-                        h_dec = row.get("human_decision", "escalate").upper()
-                        status_lbl = "Shortlisted" if "ADVANCE" in h_dec else ("Rejected" if "REJECT" in h_dec else "Human Review")
-                        dec_val = "AUTO_ADVANCE" if "ADVANCE" in h_dec else ("AUTO_REJECT" if "REJECT" in h_dec else "ESCALATE")
-
-                        roster.append({
-                            "id": f"c_{cid}",
-                            "candidateId": cid,
-                            "name": f"Candidate #{cid}",
-                            "degree": "B.Tech Computer Science",
-                            "appliedJobId": row.get("job_id", target_jd or "2234533717"),
-                            "appliedJobTitle": row.get("job_title", "Full Stack Engineer"),
-                            "appliedDate": "Oct 12, 2026",
-                            "fitScore": round(h_score, 1),
-                            "decision": dec_val,
-                            "statusLabel": status_lbl,
-                            "skillsMatch": f"{int(h_score / 6.5)}/16",
-                            "email": f"c_{cid}@applicant.org",
-                            "phone": "+91 98******00",
-                            "github": f"@{cid}-dev",
-                            "location": "India",
-                            "matchedSkills": ["JavaScript", "Python", "SQL", "Git"],
-                            "missingSkills": ["AWS", "Kubernetes"],
-                            "breakdown": {
-                                "technical": round(h_score * 0.9, 1),
-                                "experience": round(h_score * 0.85, 1),
-                                "seniority": round(h_score * 0.95, 1),
-                                "education": 100.0,
-                                "location": 100.0,
-                                "weighted_total": round(h_score, 1)
-                            }
-                        })
-            except Exception:
-                pass
-
-        return roster
+        """Assembles candidate list derived strictly from authoritative application records."""
+        return ATSDatabase.get_candidate_roster(job_id=target_jd)
 
     def get_candidate_detail(self, cand_id: str) -> dict:
         """Returns deep-dive candidate record."""
@@ -1562,85 +1319,37 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
                 return dict(scand)
 
         roster = self.get_candidate_roster()
-        cand = next((c for c in roster if c["id"] == cand_id or c["candidateId"] == cand_id), None)
+        cand = next((c for c in roster if c.get("id") == cand_id or c.get("candidateId") == cand_id), None)
         if not cand:
-            cand = roster[0]
+            clean_cid = cand_id.replace("c_", "")
+            prof = ATSDatabase.get_candidate_profile(clean_cid) or ATSDatabase.get_candidate_profile(cand_id)
+            if prof:
+                return {
+                    "id": f"c_{clean_cid}",
+                    "candidateId": clean_cid,
+                    "name": prof.get("name", "Candidate"),
+                    "degree": prof.get("degree", "Degree"),
+                    "resumeFile": prof.get("resumeFile", ""),
+                    "appliedJobId": None,
+                    "appliedJobTitle": "No Active Applications",
+                    "appliedDate": None,
+                    "fitScore": 0.0,
+                    "decision": "NONE",
+                    "statusLabel": "Profile Only",
+                    "skillsMatch": f"0/{len(prof.get('skills', []))}",
+                    "email": prof.get("email", ""),
+                    "phone": prof.get("phone", ""),
+                    "location": prof.get("location", ""),
+                    "matchedSkills": prof.get("skills", []),
+                    "missingSkills": [],
+                    "evidenceLedger": [],
+                    "breakdown": {}
+                }
+            return None
 
         # Enrich with full evidence ledger and gate summaries if not already populated
         cand_copy = dict(cand)
-        is_riya = "riya" in str(cand_id).lower() or "riya" in str(cand_copy.get("name", "")).lower()
-
-        if is_riya:
-            cand_copy["evidenceLedger"] = [
-                {
-                    "requirement": "Must-Have: Legal Practice",
-                    "dimension": "TECHNICAL",
-                    "is_verified": False,
-                    "status": "gap",
-                    "gap": "Missing required must-have skill 'Legal Practice'. Closest resume skill was 'Records management' (0.33 similarity vs 0.75 threshold).",
-                    "score_contribution": 0.0,
-                    "points": "0.0 pts"
-                },
-                {
-                    "requirement": "Must-Have: Contract Law",
-                    "dimension": "TECHNICAL",
-                    "is_verified": False,
-                    "status": "gap",
-                    "gap": "Missing required must-have skill 'Contract Law'. Closest resume skill was 'Records management' (0.24 similarity vs 0.75 threshold).",
-                    "score_contribution": 0.0,
-                    "points": "0.0 pts"
-                },
-                {
-                    "requirement": "Must-Have: Litigation",
-                    "dimension": "TECHNICAL",
-                    "is_verified": False,
-                    "status": "gap",
-                    "gap": "Missing required must-have skill 'Litigation'. Closest resume skill was 'Stakeholder communication' (0.30 similarity vs 0.75 threshold).",
-                    "score_contribution": 0.0,
-                    "points": "0.0 pts"
-                },
-                {
-                    "requirement": "Minimum 3.0 years of relevant professional experience",
-                    "dimension": "EXPERIENCE",
-                    "is_verified": True,
-                    "status": "verified",
-                    "evidence": "Candidate has 4.5 total years across 0 chronological positions.",
-                    "gap": "Candidate experience (4.5 years) lacks demonstrated technical alignment with target domain.",
-                    "score_contribution": 37.5,
-                    "points": "37.5 pts"
-                },
-                {
-                    "requirement": "Target role seniority: MID",
-                    "dimension": "SENIORITY",
-                    "is_verified": True,
-                    "status": "verified",
-                    "evidence": "Candidate evaluated at MID level based on titles and career progression.",
-                    "gap": "Seniority title lacks demonstrated technical competency in target engineering domain.",
-                    "score_contribution": 40.0,
-                    "points": "40.0 pts"
-                },
-                {
-                    "requirement": "Education baseline: Juris Doctor (JD) or equivalent law degree",
-                    "dimension": "EDUCATION",
-                    "is_verified": False,
-                    "status": "gap",
-                    "evidence": "No degree listed on resume.",
-                    "gap": "No degree listed on resume.",
-                    "score_contribution": 100.0,
-                    "points": "100.0 pts"
-                },
-                {
-                    "requirement": "Location requirement: Unknown (onsite)",
-                    "dimension": "LOCATION",
-                    "is_verified": False,
-                    "status": "gap",
-                    "evidence": "Candidate location: Not specified",
-                    "gap": "Location mismatch (Unknown vs Unknown); awarded baseline partial credit.",
-                    "score_contribution": 70.0,
-                    "points": "70.0 pts"
-                }
-            ]
-        elif not cand_copy.get("evidenceLedger"):
+        if not cand_copy.get("evidenceLedger"):
             cand_copy["evidenceLedger"] = [
                 {"requirement": "Must-Have: JavaScript & ES6+", "dimension": "TECHNICAL", "status": "verified", "score_contribution": 15.0, "points": "15.0 pts", "is_verified": True, "evidence": "Demonstrated full-stack development using modern ES6+ features across LearnMate and HEALIS web apps.", "gap": "None"},
                 {"requirement": "Must-Have: React.js Framework", "dimension": "TECHNICAL", "status": "verified", "score_contribution": 15.0, "points": "15.0 pts", "is_verified": True, "evidence": "Engineered responsive full-stack platform using React.js and Redux Toolkit.", "gap": "None"},
@@ -1743,6 +1452,9 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
             "target": target,
             "status": status
         })
+
+
+ATSRequestHandler = HYTServerHandler
 
 
 def run_server(port: int = 8000):
