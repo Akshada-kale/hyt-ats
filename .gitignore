@@ -1,0 +1,51 @@
+# ==============================================================================
+# HYT ATS - Git Ignore Rules
+# ==============================================================================
+
+# Raw and processed data - never commit PII or applicant resumes
+data/raw/
+data/sample/
+data/adversarial/
+
+# LLM cache & Embedding models - regenerable, not source code
+cache/
+*.pkl
+*.sqlite
+*.sqlite-journal
+
+# Logs & Diagnostics
+logs/
+*.log
+
+# Python environment & bytecode
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# OS and Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Build artifacts & distribution
+dist/
+build/
+*.egg-info/
+
+# Evaluation packages & scratch directories
+check/
+scratch/
+recruiter_annotation_kit.zip
+recruiter_annotation_kit/
+/recruiter_human_labels.csv
+
+# Golden Set Policy:
+# Canonical labels live inside data/golden/ (tracked)
+# No raw resumes or PII PDFs are ever committed
