@@ -23,6 +23,10 @@ const LandingView = {
           <a href="#how-it-works" class="sidebar-link" style="padding: 6px 12px;" onclick="LandingView.scrollTo('how-it-works')">How It Works</a>
         </div>
         <div class="navbar-actions">
+          <div class="backend-status-badge ${AppData.isBackendConnected ? 'online' : 'offline'}" onclick="App.reconnectBackend()" title="${AppData.isBackendConnected ? 'Connected to HYT AI ATS Backend (Click to refresh)' : 'Operating in Offline Mode (Click to retry connection)'}">
+            <span class="status-pulse-dot"></span>
+            <span class="status-badge-text">${AppData.isBackendConnected ? 'Backend Online' : 'Offline Mode'}</span>
+          </div>
           <button class="btn btn-primary" onclick="App.navigate('role-select')">
             Login
           </button>
@@ -543,3 +547,6 @@ const LandingView = {
     App.navigate("dashboard");
   }
 };
+
+window.LandingView = LandingView;
+

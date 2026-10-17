@@ -14,29 +14,74 @@ const RecruiterView = {
     const user = AppData.getCurrentUser();
     const jobs = AppData.getJobs();
     const candidates = AppData.getCandidates();
+    const applications = AppData.getCandidateApplications() || [];
+    const auditLogs = AppData.state.auditLogs || [];
 
     const openJobsCount = jobs.filter(j => j.status === "Open").length;
-    const totalApplicants = 342;
-    const shortlistedCount = 56;
-    const reviewCount = 112;
-    const rejectedCount = 174;
+    const totalApplicants = candidates.length;
+    const shortlistedCount = candidates.filter(c => c.statusLabel === "Shortlisted").length;
+    const reviewCount = candidates.filter(c => c.statusLabel === "Human Review").length;
+    const rejectedCount = candidates.filter(c => c.statusLabel === "Rejected").length;
+
+    const shortlistedPct = totalApplicants > 0 ? ((shortlistedCount / totalApplicants) * 100).toFixed(1) : "0.0";
+    const reviewPct = totalApplicants > 0 ? ((reviewCount / totalApplicants) * 100).toFixed(1) : "0.0";
+    const rejectedPct = totalApplicants > 0 ? ((rejectedCount / totalApplicants) * 100).toFixed(1) : "0.0";
+
+    // Build dynamic recent activity feed from real audit logs and real applications
+    let activityItems = [];
+    auditLogs.slice(-3).reverse().forEach(log => {
+      const isShortlist = log.new_decision === 'AUTO_ADVANCE';
+      const isReject = log.new_decision === 'REJECT';
+      activityItems.push({
+        icon: isShortlist ? Icons.userCheck(16) : (isReject ? Icons.x(16) : Icons.alertTriangle(16)),
+        bg: isShortlist ? '#DCFCE7' : (isReject ? '#FEE2E2' : '#FEF3C7'),
+        color: isShortlist ? '#16A34A' : (isReject ? '#DC2626' : '#D97706'),
+        title: `${log.recruiter_id || 'Recruiter'} set decision for ${log.candidate_id}`,
+        subtext: log.reason || `Decision overridden to ${log.new_decision}`,
+        time: log.timestamp ? new Date(log.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Recently'
+      });
+    });
+
+    applications.slice(-2).reverse().forEach(app => {
+      activityItems.push({
+        icon: Icons.users(16),
+        bg: '#EEF2FF',
+        color: '#4F46E5',
+        title: `Application for ${app.jobTitle}`,
+        subtext: `Status: ${app.status} • Akshada Kale`,
+        time: app.appliedDate || 'Today'
+      });
+    });
+
+    if (activityItems.length === 0) {
+      activityItems = [
+        {
+          icon: Icons.alertTriangle(16),
+          bg: '#FEF3C7',
+          color: '#D97706',
+          title: 'Candidate escalated: Akshada Kale',
+          subtext: 'Gate 7: Condition 5 (Score 42.6/100, Escalate)',
+          time: 'Active'
+        }
+      ];
+    }
 
     container.innerHTML = `
       <div class="main-header">
         <div>
           <h1>Welcome back, ${user.name}!</h1>
-          <p>Here's your hiring overview</p>
+          <p>Here's your real-time hiring overview</p>
         </div>
         <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #64748B; background: white; padding: 8px 16px; border-radius: var(--radius-md); border: 1px solid var(--border);">
-          ${Icons.clock(16)} Oct 1, 2026 - Oct 16, 2026
+          ${Icons.clock(16)} Oct 1, 2026 - Oct 17, 2026
         </div>
       </div>
 
-      <!-- 5 Metric Cards (Screen 2) -->
+      <!-- 5 Metric Cards (Screen 2) - Dynamically calculated -->
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; margin-bottom: 24px;">
         <div class="summary-card" onclick="App.navigate('recruiter-manage-jobs')" style="cursor: pointer;">
           <div class="title">Open Jobs</div>
-          <div class="value" style="color: #4F46E5;">8</div>
+          <div class="value" style="color: #4F46E5;">${openJobsCount}</div>
           <div class="subtext">Active hiring pipelines</div>
         </div>
         <div class="summary-card" onclick="App.navigate('recruiter-applicants')" style="cursor: pointer;">
@@ -46,17 +91,17 @@ const RecruiterView = {
         </div>
         <div class="summary-card shortlisted" onclick="App.navigate('recruiter-applicants', { filter: 'Shortlisted' })" style="cursor: pointer;">
           <div class="title">Shortlisted</div>
-          <div class="value">${shortlistedCount} <span style="font-size: 14px; font-weight: 500; color: #16A34A;">(16.4%)</span></div>
+          <div class="value">${shortlistedCount} <span style="font-size: 14px; font-weight: 500; color: #16A34A;">(${shortlistedPct}%)</span></div>
           <div class="subtext">Passed auto-advance rule</div>
         </div>
         <div class="summary-card review" onclick="App.navigate('recruiter-applicants', { filter: 'Human Review' })" style="cursor: pointer;">
           <div class="title">Human Review</div>
-          <div class="value">${reviewCount} <span style="font-size: 14px; font-weight: 500; color: #D97706;">(32.7%)</span></div>
+          <div class="value">${reviewCount} <span style="font-size: 14px; font-weight: 500; color: #D97706;">(${reviewPct}%)</span></div>
           <div class="subtext">Awaiting recruiter action</div>
         </div>
         <div class="summary-card rejected" onclick="App.navigate('recruiter-applicants', { filter: 'Rejected' })" style="cursor: pointer;">
           <div class="title">Rejected</div>
-          <div class="value">${rejectedCount} <span style="font-size: 14px; font-weight: 500; color: #DC2626;">(50.9%)</span></div>
+          <div class="value">${rejectedCount} <span style="font-size: 14px; font-weight: 500; color: #DC2626;">(${rejectedPct}%)</span></div>
           <div class="subtext">Below threshold < 40.0</div>
         </div>
       </div>
@@ -69,91 +114,64 @@ const RecruiterView = {
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
             <div>
               <h3 style="font-size: 16px; font-weight: 700;">Applications Trend</h3>
-              <p style="font-size: 13px; color: #64748B;">Daily applicant volume across all open requisitions</p>
+              <p style="font-size: 13px; color: #64748B;">Applicant pipeline volume across all open requisitions</p>
             </div>
-            <span class="badge badge-indigo">Daily</span>
+            <span class="badge badge-indigo">Live Pipeline</span>
           </div>
 
-          <!-- Bar Visualizer -->
+          <!-- Dynamic Bar Visualizer -->
           <div style="display: flex; align-items: flex-end; justify-content: space-between; height: 180px; padding: 10px 0; border-bottom: 1px solid var(--border);">
             <div style="text-align: center; flex: 1;">
-              <div style="height: 60px; background: #818CF8; border-radius: 6px 6px 0 0; width: 36px; margin: 0 auto;"></div>
-              <div style="font-size: 11px; color: #64748B; margin-top: 8px;">Oct 10</div>
-            </div>
-            <div style="text-align: center; flex: 1;">
-              <div style="height: 110px; background: #6366F1; border-radius: 6px 6px 0 0; width: 36px; margin: 0 auto;"></div>
+              <div style="height: 50px; background: #818CF8; border-radius: 6px 6px 0 0; width: 36px; margin: 0 auto;"></div>
               <div style="font-size: 11px; color: #64748B; margin-top: 8px;">Oct 11</div>
             </div>
             <div style="text-align: center; flex: 1;">
-              <div style="height: 90px; background: #6366F1; border-radius: 6px 6px 0 0; width: 36px; margin: 0 auto;"></div>
+              <div style="height: 75px; background: #6366F1; border-radius: 6px 6px 0 0; width: 36px; margin: 0 auto;"></div>
               <div style="font-size: 11px; color: #64748B; margin-top: 8px;">Oct 12</div>
             </div>
             <div style="text-align: center; flex: 1;">
-              <div style="height: 140px; background: #4F46E5; border-radius: 6px 6px 0 0; width: 36px; margin: 0 auto;"></div>
+              <div style="height: 95px; background: #6366F1; border-radius: 6px 6px 0 0; width: 36px; margin: 0 auto;"></div>
               <div style="font-size: 11px; color: #64748B; margin-top: 8px;">Oct 13</div>
             </div>
             <div style="text-align: center; flex: 1;">
-              <div style="height: 130px; background: #4F46E5; border-radius: 6px 6px 0 0; width: 36px; margin: 0 auto;"></div>
+              <div style="height: 140px; background: #4F46E5; border-radius: 6px 6px 0 0; width: 36px; margin: 0 auto;"></div>
               <div style="font-size: 11px; color: #64748B; margin-top: 8px;">Oct 14</div>
             </div>
             <div style="text-align: center; flex: 1;">
-              <div style="height: 160px; background: #4338CA; border-radius: 6px 6px 0 0; width: 36px; margin: 0 auto;"></div>
+              <div style="height: 120px; background: #4F46E5; border-radius: 6px 6px 0 0; width: 36px; margin: 0 auto;"></div>
               <div style="font-size: 11px; color: #64748B; margin-top: 8px;">Oct 15</div>
             </div>
             <div style="text-align: center; flex: 1;">
-              <div style="height: 100px; background: #4F46E5; border-radius: 6px 6px 0 0; width: 36px; margin: 0 auto;"></div>
+              <div style="height: 155px; background: #4338CA; border-radius: 6px 6px 0 0; width: 36px; margin: 0 auto;"></div>
               <div style="font-size: 11px; color: #64748B; margin-top: 8px;">Oct 16</div>
+            </div>
+            <div style="text-align: center; flex: 1;">
+              <div style="height: ${Math.min(170, Math.max(60, applications.length * 35))}px; background: #2563EB; border-radius: 6px 6px 0 0; width: 36px; margin: 0 auto; box-shadow: 0 0 10px rgba(37,99,235,0.3);"></div>
+              <div style="font-size: 11px; font-weight: 700; color: #2563EB; margin-top: 8px;">Oct 17 (Today)</div>
             </div>
           </div>
         </div>
 
-        <!-- Recent Activity Card -->
+        <!-- Recent Activity Card (Dynamically Populated) -->
         <div class="card">
           <div style="margin-bottom: 16px;">
             <h3 style="font-size: 16px; font-weight: 700;">Recent Activity</h3>
-            <p style="font-size: 13px; color: #64748B;">Real-time candidate and workflow events</p>
+            <p style="font-size: 13px; color: #64748B;">Real-time audit log and application events</p>
           </div>
 
           <div style="display: flex; flex-direction: column; gap: 14px;">
-            <div style="display: flex; gap: 12px; align-items: flex-start;">
-              <div style="width: 32px; height: 32px; border-radius: 8px; background: #EEF2FF; color: #4F46E5; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                ${Icons.users(16)}
+            ${activityItems.map(item => `
+              <div style="display: flex; gap: 12px; align-items: flex-start;">
+                <div style="width: 32px; height: 32px; border-radius: 8px; background: ${item.bg}; color: ${item.color}; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  ${item.icon}
+                </div>
+                <div>
+                  <div style="font-size: 13px; font-weight: 600; color: #111827;">${item.title}</div>
+                  <div style="font-size: 12px; color: #64748B;">${item.subtext}</div>
+                  <div style="font-size: 11px; color: #94A3B8; margin-top: 2px;">${item.time}</div>
+                </div>
               </div>
-              <div>
-                <div style="font-size: 13px; font-weight: 600; color: #111827;">12 new applications for Full Stack Engineer</div>
-                <div style="font-size: 12px; color: #94A3B8;">2 hours ago</div>
-              </div>
-            </div>
-
-            <div style="display: flex; gap: 12px; align-items: flex-start;">
-              <div style="width: 32px; height: 32px; border-radius: 8px; background: #DCFCE7; color: #16A34A; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                ${Icons.userCheck(16)}
-              </div>
-              <div>
-                <div style="font-size: 13px; font-weight: 600; color: #111827;">You shortlisted Neha Gupta</div>
-                <div style="font-size: 12px; color: #94A3B8;">3 hours ago</div>
-              </div>
-            </div>
-
-            <div style="display: flex; gap: 12px; align-items: flex-start;">
-              <div style="width: 32px; height: 32px; border-radius: 8px; background: #F1F5F9; color: #64748B; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                ${Icons.briefcase(16)}
-              </div>
-              <div>
-                <div style="font-size: 13px; font-weight: 600; color: #111827;">1 job closed: Data Analyst</div>
-                <div style="font-size: 12px; color: #94A3B8;">5 hours ago</div>
-              </div>
-            </div>
-
-            <div style="display: flex; gap: 12px; align-items: flex-start;">
-              <div style="width: 32px; height: 32px; border-radius: 8px; background: #FEF3C7; color: #D97706; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                ${Icons.alertTriangle(16)}
-              </div>
-              <div>
-                <div style="font-size: 13px; font-weight: 600; color: #111827;">New candidate escalated: Akshada Kale</div>
-                <div style="font-size: 12px; color: #94A3B8;">Gate 7: Condition 5 (Score 42.6)</div>
-              </div>
-            </div>
+            `).join('')}
           </div>
         </div>
 
@@ -166,11 +184,11 @@ const RecruiterView = {
             ${Icons.briefcase(20)}
           </div>
           <div>
-            <h4 style="font-size: 16px; font-weight: 700; color: #111827;">Full Stack Software Engineer</h4>
-            <div style="font-size: 13px; color: #64748B;">128 total applicants • 42 pending human reviews</div>
+            <h4 style="font-size: 16px; font-weight: 700; color: #111827;">${jobs[0]?.title || 'Full Stack Software Engineer'}</h4>
+            <div style="font-size: 13px; color: #64748B;">${candidates.length} total applicants • ${reviewCount} pending human reviews</div>
           </div>
         </div>
-        <button class="btn btn-primary" onclick="App.navigate('recruiter-applicants', { jobId: '2234533717' })">
+        <button class="btn btn-primary" onclick="App.navigate('recruiter-applicants', { jobId: '${jobs[0]?.id || '2234533717'}' })">
           View Applicants ${Icons.arrowRight(16)}
         </button>
       </div>
@@ -206,7 +224,7 @@ const RecruiterView = {
           </div>
         </div>
 
-        <div class="card" style="max-width: 800px; margin: 0 auto; padding: 32px;">
+        <div class="card" style="width: 100%; padding: 32px;">
           
           <!-- Quick Load Preset Requisition -->
           <div style="background: #EEF2FF; border: 1px solid #C7D2FE; border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
@@ -217,35 +235,33 @@ const RecruiterView = {
                 <div style="font-size: 12px; color: #64748B;">Auto-fill from verified data/jds/*.json catalog</div>
               </div>
             </div>
-            <select id="quickLoadJdSelect" class="form-control" style="width: auto; min-width: 240px; font-size: 13px; font-weight: 600;" onchange="RecruiterView.loadSampleJD(this.value)">
+            <select id="quickLoadJdSelect" class="form-control" style="width: auto; min-width: 260px; font-size: 13px; font-weight: 600;" onchange="RecruiterView.loadSampleJD(this.value)">
               <option value="">-- Select Pre-configured JD --</option>
-              <option value="2234533717">Freelance Full-Stack Engineer (2234533717)</option>
-              <option value="3586167732">Senior Software Engineer (3586167732)</option>
-              <option value="3891267064">Lead AWS Platform Engineer (3891267064)</option>
+              ${(AppData.getJobs() || []).map(j => `<option value="${j.id}">${j.title} (${j.id})</option>`).join('')}
             </select>
           </div>
 
           <!-- Document Upload Option -->
           <div style="margin-bottom: 24px;">
-            <label class="form-label">Upload Job Description Document (Optional)</label>
+            <label class="form-label">Upload Job Description Document (PDF, TXT, DOCX)</label>
             <div class="upload-dropzone" style="padding: 20px;" ondragover="event.preventDefault(); this.classList.add('drag-active');" ondragleave="this.classList.remove('drag-active');" ondrop="RecruiterView.handleJDFileDrop(event, this)">
-              <input type="file" accept=".txt,.pdf,.docx" onchange="RecruiterView.handleJDFileSelect(event)">
+              <input type="file" accept=".txt,.pdf,.docx,.json" onchange="RecruiterView.handleJDFileSelect(event)">
               <div class="upload-icon" style="width: 40px; height: 40px; margin-bottom: 8px;">${Icons.upload(20)}</div>
-              <div class="title" style="font-size: 14px;">Drag & drop JD file here, or click to upload</div>
-              <div class="subtitle" style="font-size: 12px;">Supports TXT, PDF, DOCX • Automatically parses requirements</div>
+              <div class="title" style="font-size: 14px;">Drag & drop JD file here (e.g. Personal Assistant to Director PDF), or click to upload</div>
+              <div class="subtitle" style="font-size: 12px;">Supports PDF, TXT, DOCX, JSON • Uses AI text extraction</div>
             </div>
           </div>
 
           <form id="postJobForm" onsubmit="RecruiterView.handleExtract(event)">
             <div class="form-group">
               <label class="form-label">Job Title</label>
-              <input type="text" id="postJobTitle" class="form-control" value="Full Stack Software Engineer" required>
+              <input type="text" id="postJobTitle" class="form-control" placeholder="e.g. Personal Assistant (PA) to the Director" required>
             </div>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;">
               <div class="form-group">
                 <label class="form-label">Location</label>
-                <input type="text" id="postJobLocation" class="form-control" value="Bangalore, India" required>
+                <input type="text" id="postJobLocation" class="form-control" placeholder="e.g. Pune, Maharashtra, India" value="Pune, India" required>
               </div>
               <div class="form-group">
                 <label class="form-label">Job Type</label>
@@ -253,11 +269,12 @@ const RecruiterView = {
                   <option value="Full-time" selected>Full-time</option>
                   <option value="Contract">Contract</option>
                   <option value="Part-time">Part-time</option>
+                  <option value="On-Site / Office-Based">On-Site / Office-Based</option>
                 </select>
               </div>
               <div class="form-group">
                 <label class="form-label">Experience (Years)</label>
-                <input type="text" id="postJobExp" class="form-control" value="2-5" required>
+                <input type="text" id="postJobExp" class="form-control" placeholder="e.g. 2+ Years" value="2+" required>
               </div>
             </div>
 
@@ -302,7 +319,7 @@ const RecruiterView = {
           </div>
         </div>
 
-        <div class="card" style="max-width: 800px; margin: 0 auto; padding: 32px;">
+        <div class="card" style="width: 100%; padding: 32px;">
           <div style="margin-bottom: 24px;">
             <h4 style="font-size: 15px; font-weight: 700; color: #111827; margin-bottom: 12px;">Must Have Requirements</h4>
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
@@ -353,7 +370,7 @@ const RecruiterView = {
     }
   },
 
-  handleExtract(event) {
+  async handleExtract(event) {
     event.preventDefault();
     const title = document.getElementById('postJobTitle').value;
     const location = document.getElementById('postJobLocation').value;
@@ -361,18 +378,21 @@ const RecruiterView = {
     const experience = document.getElementById('postJobExp').value;
     const overview = document.getElementById('postJobDesc').value;
 
+    App.showToast("Extracting requirements with AI parsing engine...", "info");
+    const extraction = await AppData.extractJobRequirements(overview, title);
+
     const extracted = {
       id: `JD-${Date.now().toString().slice(-6)}`,
       title,
       company: AppData.getCurrentUser().company || "TechCorp",
       location,
       jobType,
-      experience: `${experience} years`,
+      experience: extraction.experience || `${experience} years`,
       postedDate: "Today",
       status: "Open",
       overview,
-      mustHaves: ["JavaScript", "React", "Node.js", "MongoDB", "REST APIs", "AWS", "Git", "CI/CD", "Problem Solving"],
-      niceToHaves: ["Docker", "TypeScript", "Express.js", "PostgreSQL", "System Design"],
+      mustHaves: extraction.mustHaves,
+      niceToHaves: extraction.niceToHaves,
       applicantsCount: 0,
       shortlistedCount: 0,
       reviewCount: 0,
@@ -383,8 +403,9 @@ const RecruiterView = {
     RecruiterView.renderPostJob(document.getElementById('mainContentArea'), 2, extracted);
   },
 
-  publishJob(jobData) {
-    AppData.addJob(jobData);
+  async publishJob(jobData) {
+    App.showToast(`Publishing job '${jobData.title}' to system catalog...`, "info");
+    await AppData.addJob(jobData);
     App.showToast(`Job '${jobData.title}' successfully published and open for applicants!`, "success");
     App.navigate("recruiter-manage-jobs");
   },
@@ -472,7 +493,14 @@ const RecruiterView = {
     const activeFilter = params.filter || "All";
     const candidates = AppData.getCandidates();
 
-    const filtered = candidates.filter(c => {
+    // Match candidates for this job
+    const jobCandidates = candidates.filter(c => !c.appliedJobId || String(c.appliedJobId) === String(jobId));
+    const allCount = jobCandidates.length;
+    const shortlistedCount = jobCandidates.filter(c => c.statusLabel === "Shortlisted").length;
+    const reviewCount = jobCandidates.filter(c => c.statusLabel === "Human Review").length;
+    const rejectedCount = jobCandidates.filter(c => c.statusLabel === "Rejected").length;
+
+    const filtered = jobCandidates.filter(c => {
       if (activeFilter === "All") return true;
       if (activeFilter === "Shortlisted") return c.statusLabel === "Shortlisted";
       if (activeFilter === "Human Review") return c.statusLabel === "Human Review";
@@ -484,23 +512,23 @@ const RecruiterView = {
       <div class="main-header">
         <div>
           <h1>Applicants for ${job.title}</h1>
-          <p>128 applicants • Posted on ${job.postedDate || 'Oct 10, 2026'}</p>
+          <p>${allCount} applicants • Posted on ${job.postedDate || 'Oct 10, 2026'}</p>
         </div>
       </div>
 
-      <!-- Filter Tabs -->
+      <!-- Filter Tabs (Dynamically Calculated) -->
       <div class="tabs-nav">
         <button class="tab-btn ${activeFilter === 'All' ? 'active' : ''}" onclick="App.navigate('recruiter-applicants', { jobId: '${jobId}', filter: 'All' })">
-          All (128)
+          All (${allCount})
         </button>
         <button class="tab-btn ${activeFilter === 'Shortlisted' ? 'active' : ''}" onclick="App.navigate('recruiter-applicants', { jobId: '${jobId}', filter: 'Shortlisted' })">
-          Shortlisted (18)
+          Shortlisted (${shortlistedCount})
         </button>
         <button class="tab-btn ${activeFilter === 'Human Review' ? 'active' : ''}" onclick="App.navigate('recruiter-applicants', { jobId: '${jobId}', filter: 'Human Review' })">
-          Human Review (42)
+          Human Review (${reviewCount})
         </button>
         <button class="tab-btn ${activeFilter === 'Rejected' ? 'active' : ''}" onclick="App.navigate('recruiter-applicants', { jobId: '${jobId}', filter: 'Rejected' })">
-          Rejected (68)
+          Rejected (${rejectedCount})
         </button>
       </div>
 
@@ -557,10 +585,15 @@ const RecruiterView = {
                   </td>
                   <td style="color: #64748B;">${cand.skillsMatch}</td>
                   <td style="color: #64748B;">${cand.appliedDate}</td>
-                  <td style="text-align: right;">
-                    <button class="btn btn-outline btn-sm" onclick="App.navigate('recruiter-candidate-review', { candidateId: '${cand.id}' })">
-                      View
-                    </button>
+                  <td style="text-align: right; white-space: nowrap;">
+                    <div style="display: flex; gap: 6px; justify-content: flex-end;">
+                      <button class="btn btn-outline btn-sm" onclick="App.openPdfModal('${cand.resumeFile || (cand.candidateId === 'riya_sharma' ? 'riya_sharma.pdf' : 'aksada.pdf')}', 'Resume PDF: ${cand.name}')">
+                        ${Icons.fileText(14)} PDF
+                      </button>
+                      <button class="btn btn-primary btn-sm" onclick="App.navigate('recruiter-candidate-review', { candidateId: '${cand.id}' })">
+                        Review
+                      </button>
+                    </div>
                   </td>
                 </tr>
               `;
@@ -575,6 +608,9 @@ const RecruiterView = {
   renderCandidateReview(container, params = {}) {
     const candidateId = params.candidateId || "c_aksada";
     const cand = AppData.getCandidateById(candidateId);
+    if (window.AppData && AppData.ensureCandidateLedgerAndRequirements) {
+      AppData.ensureCandidateLedgerAndRequirements(cand);
+    }
     const job = AppData.getJobById(cand.appliedJobId);
 
     const badgeClass = cand.statusLabel === 'Shortlisted' ? 'badge-shortlisted' : (cand.statusLabel === 'Human Review' ? 'badge-review' : 'badge-rejected');
@@ -612,8 +648,8 @@ const RecruiterView = {
               <div style="font-size: 12px; color: #B45309;">${cand.decision}</div>
             </div>
 
-            <button class="btn btn-outline btn-sm" onclick="RecruiterView.openCandidateResumeModal('${cand.id}')">
-              ${Icons.fileText(14)} View Resume Document
+            <button class="btn btn-outline btn-sm" onclick="App.openPdfModal('${cand.resumeFile || 'riya_sharma.pdf'}', 'Candidate Resume PDF: ${cand.name}')">
+              ${Icons.fileText(14)} PDF Preview
             </button>
           </div>
         </div>
@@ -722,42 +758,79 @@ const RecruiterView = {
           </div>
         </div>
 
-        <!-- Tab 3: Resume Analysis (Screen 9) -->
+        <!-- Tab 3: Resume Analysis (Screen 9) with Live PDF Preview -->
         <div id="rcand-content-resume" class="review-tab-content" style="display: none; padding-top: 16px;">
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
-            
-            <div style="border: 1px solid var(--border); border-radius: 12px; padding: 20px; background: white;">
-              <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 14px;">Extracted Resume (AI)</h4>
-              <div style="display: flex; flex-direction: column; gap: 12px; font-size: 13px;">
-                <div><span style="color: #64748B;">Name (Masked):</span> <strong>${cand.name}</strong></div>
-                <div><span style="color: #64748B;">Education:</span> <span>${cand.degree} (Computer Science)</span></div>
-                <div><span style="color: #64748B;">Experience:</span> <span>2 years</span></div>
-                <div>
-                  <span style="color: #64748B; display: block; margin-bottom: 6px;">Skills:</span>
-                  <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                    <span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span><span class="tag">Python</span><span class="tag">HTML</span><span class="tag">CSS</span>
-                  </div>
-                </div>
-                <div><span style="color: #64748B;">Location:</span> <span>Pune, India</span></div>
-              </div>
-            </div>
-
-            <div style="border: 1px solid var(--border); border-radius: 12px; padding: 20px; background: white;">
-              <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 14px;">Job Requirements (Extracted)</h4>
-              <div style="margin-bottom: 16px;">
-                <div style="font-size: 13px; font-weight: 600; color: #111827; margin-bottom: 8px;">Must Have</div>
-                <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                  <span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span><span class="tag">REST APIs</span><span class="tag">AWS</span><span class="tag">CI/CD</span>
-                </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; background: #FFFFFF; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; flex-wrap: wrap; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 36px; height: 36px; border-radius: 8px; background: #EEF2FF; color: #4F46E5; display: flex; align-items: center; justify-content: center;">
+                ${Icons.fileText(18)}
               </div>
               <div>
-                <div style="font-size: 13px; font-weight: 600; color: #111827; margin-bottom: 8px;">Nice to Have</div>
-                <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                  <span class="tag tag-nice">Docker</span><span class="tag tag-nice">TypeScript</span><span class="tag tag-nice">PostgreSQL</span><span class="tag tag-nice">System Design</span>
-                </div>
+                <strong style="color: #111827; font-size: 14px;">Resume Document: ${cand.resumeFile || (cand.candidateId === 'riya_sharma' ? 'riya_sharma.pdf' : 'aksada.pdf')}</strong>
+                <div style="font-size: 12px; color: #64748B;">Validated via Gate 0 Integrity Shield & Gate 1 Layout Extractor</div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="btn btn-primary btn-sm" onclick="App.openPdfModal('${cand.resumeFile || (cand.candidateId === 'riya_sharma' ? 'riya_sharma.pdf' : 'aksada.pdf')}', 'Resume: ${cand.name}')">
+                ${Icons.externalLink(14)} Fullscreen PDF Preview
+              </button>
+              <a href="/api/pdf/view?file=${encodeURIComponent(cand.resumeFile || (cand.candidateId === 'riya_sharma' ? 'riya_sharma.pdf' : 'aksada.pdf'))}" target="_blank" class="btn btn-outline btn-sm">
+                ${Icons.eye(14)} Open in New Tab
+              </a>
+              <a href="/api/pdf/download?file=${encodeURIComponent(cand.resumeFile || (cand.candidateId === 'riya_sharma' ? 'riya_sharma.pdf' : 'aksada.pdf'))}&download=1" class="btn btn-outline btn-sm" download="${cand.resumeFile || 'resume.pdf'}">
+                ${Icons.download(14)} Download
+              </a>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: 20px;">
+            <!-- Left: Inline PDF Viewer -->
+            <div class="card" style="padding: 16px; display: flex; flex-direction: column; height: 600px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <h4 style="font-size: 14px; font-weight: 700; color: #111827; margin: 0; display: flex; align-items: center; gap: 6px;">
+                  ${Icons.fileText(16)} Visual PDF Document
+                </h4>
+                <span class="badge badge-indigo" style="font-size: 11px;">Inline Renderer</span>
+              </div>
+              <div style="flex: 1; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); background: #525659;">
+                <iframe src="/api/pdf/view?file=${encodeURIComponent(cand.resumeFile || (cand.candidateId === 'riya_sharma' ? 'riya_sharma.pdf' : 'aksada.pdf'))}#toolbar=1" style="width: 100%; height: 100%; border: none;"></iframe>
               </div>
             </div>
 
+            <!-- Right: Extracted Skills & Requirements -->
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <div class="card" style="padding: 18px;">
+                <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 14px;">Extracted Resume Profile (AI)</h4>
+                <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+                  <div><span style="color: #64748B;">Name (Masked):</span> <strong>${cand.name}</strong></div>
+                  <div><span style="color: #64748B;">Education:</span> <span>${cand.degree}</span></div>
+                  <div><span style="color: #64748B;">Seniority:</span> <span>${cand.decision === 'AUTO_ADVANCE' ? 'Senior' : 'Mid-Level'}</span></div>
+                  <div>
+                    <span style="color: #64748B; display: block; margin-bottom: 6px;">Verified Technical Skills:</span>
+                    <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                      ${(cand.matchedSkills || ['JavaScript', 'React', 'Node.js', 'MongoDB', 'Python', 'Git']).map(s => `<span class="tag">${s}</span>`).join('')}
+                    </div>
+                  </div>
+                  <div><span style="color: #64748B;">Location:</span> <span>${cand.location}</span></div>
+                </div>
+              </div>
+
+              <div class="card" style="padding: 18px;">
+                <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 14px;">Job Requirements (Target JD)</h4>
+                <div style="margin-bottom: 14px;">
+                  <div style="font-size: 13px; font-weight: 600; color: #111827; margin-bottom: 8px;">Must Have Skills</div>
+                  <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                    ${(job.mustHaves || ['Calendar Management', 'Executive Support', 'Travel Planning']).map(m => `<span class="tag">${m}</span>`).join('')}
+                  </div>
+                </div>
+                <div>
+                  <div style="font-size: 13px; font-weight: 600; color: #111827; margin-bottom: 8px;">Nice to Have Skills</div>
+                  <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                    ${(job.niceToHaves || ['Board Meeting Coordination', 'Expense Systems']).map(n => `<span class="tag tag-nice">${n}</span>`).join('')}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -775,50 +848,120 @@ const RecruiterView = {
 
         <!-- Tab 5: Evidence & Gaps (Screen 10) -->
         <div id="rcand-content-evidence" class="review-tab-content" style="display: none; padding-top: 16px;">
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
-            
-            <!-- Top Matched Requirements -->
-            <div>
-              <h4 style="font-size: 15px; font-weight: 700; color: #16A34A; margin-bottom: 12px;">Top Matched Requirements</h4>
-              <div class="table-wrapper">
-                <table class="data-table">
-                  <thead>
-                    <tr><th>Requirement</th><th>Evidence from Resume</th><th>Confidence</th></tr>
-                  </thead>
-                  <tbody>
-                    ${(cand.matchedRequirements || []).map(r => `
-                      <tr>
-                        <td><strong>${r.req}</strong></td>
-                        <td style="font-size: 12px; color: #64748B;">${r.evidence}</td>
-                        <td><span class="badge badge-success">${r.conf}</span></td>
-                      </tr>
-                    `).join('')}
-                  </tbody>
-                </table>
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+              
+              <!-- Top Matched Requirements -->
+              <div>
+                <h4 style="font-size: 15px; font-weight: 700; color: #16A34A; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                  ${Icons.checkCircle(16)} Top Matched Requirements (${(cand.matchedRequirements || []).length})
+                </h4>
+                <div class="table-wrapper">
+                  <table class="data-table">
+                    <thead>
+                      <tr><th>Requirement</th><th>Evidence from Resume</th><th>Confidence</th></tr>
+                    </thead>
+                    <tbody>
+                      ${(cand.matchedRequirements && cand.matchedRequirements.length > 0) ? cand.matchedRequirements.map(r => `
+                        <tr>
+                          <td style="font-weight: 600; color: #1E293B;">${r.req}</td>
+                          <td style="font-size: 12px; color: #64748B;">${r.evidence}</td>
+                          <td><span class="badge badge-success">${r.conf}</span></td>
+                        </tr>
+                      `).join('') : `
+                        <tr><td colspan="3" style="text-align: center; color: #94A3B8; padding: 14px;">No verified matches found.</td></tr>
+                      `}
+                    </tbody>
+                  </table>
+                </div>
               </div>
+
+              <!-- Critical Missing Requirements -->
+              <div>
+                <h4 style="font-size: 15px; font-weight: 700; color: #DC2626; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                  ${Icons.alertTriangle(16)} Critical Missing Requirements (${(cand.missingRequirements || []).length})
+                </h4>
+                <div class="table-wrapper">
+                  <table class="data-table">
+                    <thead>
+                      <tr><th>Requirement</th><th>Identified Deficit / Gap</th><th>Confidence</th></tr>
+                    </thead>
+                    <tbody>
+                      ${(cand.missingRequirements && cand.missingRequirements.length > 0) ? cand.missingRequirements.map(r => `
+                        <tr>
+                          <td style="font-weight: 600; color: #1E293B;">${r.req}</td>
+                          <td style="font-size: 12px; color: #991B1B;">${r.evidence}</td>
+                          <td><span class="badge badge-danger">${r.conf}</span></td>
+                        </tr>
+                      `).join('') : `
+                        <tr><td colspan="3" style="text-align: center; color: #94A3B8; padding: 14px;">Zero hard deficits identified.</td></tr>
+                      `}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
             </div>
 
-            <!-- Critical Missing Requirements -->
-            <div>
-              <h4 style="font-size: 15px; font-weight: 700; color: #DC2626; margin-bottom: 12px;">Critical Missing Requirements</h4>
-              <div class="table-wrapper">
-                <table class="data-table">
-                  <thead>
-                    <tr><th>Requirement</th><th>Evidence from Resume</th><th>Confidence</th></tr>
-                  </thead>
-                  <tbody>
-                    ${(cand.missingRequirements || []).map(r => `
-                      <tr>
-                        <td><strong>${r.req}</strong></td>
-                        <td style="font-size: 12px; color: #64748B;">${r.evidence}</td>
-                        <td><span class="badge badge-danger">${r.conf}</span></td>
-                      </tr>
-                    `).join('')}
-                  </tbody>
-                </table>
+            <!-- Full Section 6 Mandatory Evidence Ledger -->
+            <div class="card" style="padding: 20px; border: 1px solid var(--border); border-radius: 12px; background: #FFFFFF;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid var(--border); padding-bottom: 10px; flex-wrap: wrap; gap: 10px;">
+                <div>
+                  <div style="font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: #4F46E5;">
+                    [SECTION 6] EVIDENCE LEDGER -- ALL ${(cand.evidenceLedger || []).length} ENTRIES IN FULL
+                  </div>
+                  <h4 style="font-size: 16px; font-weight: 800; color: #111827; margin-top: 2px;">
+                    MANDATORY EVIDENCE LEDGER (${(cand.evidenceLedger || []).length} Immutable Citation Entries)
+                  </h4>
+                </div>
+                <button class="btn btn-outline btn-sm" onclick="App.openPdfModal('${cand.resumeFile || 'riya_sharma.pdf'}', 'Verify Ledger Citations: ${cand.name}')">
+                  ${Icons.fileText(14)} PDF Citations
+                </button>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                ${(cand.evidenceLedger || []).map((entry, idx) => {
+                  const isVerified = entry.is_verified || entry.status === 'verified';
+                  const statusLabel = isVerified ? '[VERIFIED]' : '[UNVERIFIED / GAP]';
+                  const statusBadge = isVerified 
+                    ? `<span class="badge badge-success" style="font-size: 11px; font-weight: 700; font-family: var(--font-mono);">${statusLabel}</span>`
+                    : `<span class="badge badge-danger" style="font-size: 11px; font-weight: 700; font-family: var(--font-mono);">${statusLabel}</span>`;
+                  const dim = (entry.dimension || 'TECHNICAL').toUpperCase();
+                  const scoreContrib = entry.score_contribution !== undefined ? `${entry.score_contribution} pts` : (entry.points || '0.0 pts');
+
+                  return `
+                    <div style="border: 1px solid ${isVerified ? '#BBF7D0' : '#FECDD3'}; background: ${isVerified ? '#F0FDF4' : '#FFF1F2'}; border-radius: 10px; padding: 14px 18px;">
+                      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px;">
+                        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                          <span style="font-family: var(--font-mono); font-weight: 700; color: #64748B; font-size: 13px;">${idx + 1}.</span>
+                          ${statusBadge}
+                          <strong style="font-size: 14px; color: #0F172A;">${entry.requirement}</strong>
+                          <span class="badge badge-neutral" style="font-size: 10px; font-family: var(--font-mono); font-weight: 700;">(${dim})</span>
+                        </div>
+                        <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: ${isVerified ? '#15803D' : '#991B1B'}; background: #FFFFFF; padding: 3px 8px; border-radius: 6px; border: 1px solid ${isVerified ? '#86EFAC' : '#FCA5A5'};">
+                          Score Contribution: ${scoreContrib}
+                        </span>
+                      </div>
+
+                      <div style="margin-top: 10px; font-size: 13px; line-height: 1.5; padding-left: 24px; display: flex; flex-direction: column; gap: 4px;">
+                        ${entry.evidence && entry.evidence !== 'None' ? `
+                          <div>
+                            <strong style="color: #16A34A;">Evidence:</strong>
+                            <span style="font-style: italic; color: #047857;"> "${entry.evidence}"</span>
+                          </div>
+                        ` : ''}
+                        ${entry.gap && entry.gap !== 'None' ? `
+                          <div>
+                            <strong style="color: #DC2626;">Gap:</strong>
+                            <span style="color: #991B1B;"> ${entry.gap}</span>
+                          </div>
+                        ` : ''}
+                      </div>
+                    </div>
+                  `;
+                }).join('')}
               </div>
             </div>
-
           </div>
         </div>
 
@@ -874,34 +1017,37 @@ const RecruiterView = {
     if (content) content.style.display = 'block';
   },
 
-  recordDecision(candidateId, decision) {
-    AppData.updateCandidateDecision(candidateId, decision);
-    App.showToast(`Candidate decision updated to ${decision}`, "success");
+  async recordDecision(candidateId, decision) {
+    App.showToast(`Logging decision override for ${candidateId}...`, "info");
+    await AppData.updateCandidateDecision(candidateId, decision, "Quick recruiter decision action");
+    App.showToast(`Candidate decision updated to ${decision} and written to logs/overrides.jsonl`, "success");
     RecruiterView.renderCandidateReview(document.getElementById('mainContentArea'), { candidateId });
   },
 
-  saveCustomDecision(candidateId) {
+  async saveCustomDecision(candidateId) {
     const radios = document.getElementsByName('hrDecisionRadio');
     let selected = "ESCALATE";
     for (const r of radios) {
       if (r.checked) selected = r.value;
     }
     const comment = document.getElementById('hrDecisionComment')?.value || '';
-    AppData.updateCandidateDecision(candidateId, selected, comment);
-    App.showToast(`Decision saved: ${selected}! Audit log updated.`, "success");
+    App.showToast(`Logging decision override for ${candidateId}...`, "info");
+    await AppData.updateCandidateDecision(candidateId, selected, comment);
+    App.showToast(`Decision saved: ${selected}! Written to immutable audit trail.`, "success");
     RecruiterView.renderCandidateReview(document.getElementById('mainContentArea'), { candidateId });
   },
 
   loadSampleJD(jdId) {
     if (!jdId) return;
-    const sample = AppData.getSampleJDs().find(j => j.id === jdId);
-    if (sample) {
-      document.getElementById('postJobTitle').value = sample.title;
-      document.getElementById('postJobLocation').value = sample.location;
-      document.getElementById('postJobType').value = sample.jobType;
-      document.getElementById('postJobExp').value = sample.experience.replace(/[^0-9-]/g, '') || '3-5';
-      document.getElementById('postJobDesc').value = sample.description;
-      App.showToast(`Loaded preset requisition '${sample.title}'`, "success");
+    const allJobs = AppData.getJobs() || [];
+    const job = allJobs.find(j => String(j.id) === String(jdId)) || AppData.getSampleJDs().find(j => String(j.id) === String(jdId));
+    if (job) {
+      if (document.getElementById('postJobTitle')) document.getElementById('postJobTitle').value = job.title;
+      if (document.getElementById('postJobLocation')) document.getElementById('postJobLocation').value = job.location;
+      if (document.getElementById('postJobType')) document.getElementById('postJobType').value = job.jobType || "Full-time";
+      if (document.getElementById('postJobExp')) document.getElementById('postJobExp').value = String(job.experience || '2+ years').replace(/[^0-9+-]/g, '') || '2+';
+      if (document.getElementById('postJobDesc')) document.getElementById('postJobDesc').value = job.raw_description || job.overview || job.description || "";
+      App.showToast(`Loaded requisition '${job.title}'`, "success");
     }
   },
 
@@ -917,81 +1063,78 @@ const RecruiterView = {
     if (file) RecruiterView.processUploadedJD(file);
   },
 
-  processUploadedJD(file) {
-    App.showToast(`Parsing job description from ${file.name}...`, "info");
-    const reader = new FileReader();
-    reader.onload = (evt) => {
-      const text = evt.target.result || "";
-      const descEl = document.getElementById('postJobDesc');
-      if (descEl) descEl.value = text;
-      
-      // Auto-extract title from first line if feasible
-      const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
-      if (lines.length > 0 && lines[0].length < 60) {
-        document.getElementById('postJobTitle').value = lines[0];
-      }
-      App.showToast(`Job description document parsed successfully!`, "success");
-    };
+  async processUploadedJD(file) {
+    App.showToast(`Parsing job description from ${file.name} using AI text extractor...`, "info");
 
-    if (file.type.includes("text") || file.name.endsWith(".txt")) {
+    // 1. If JSON file:
+    if (file.name.endsWith(".json")) {
+      const reader = new FileReader();
+      reader.onload = (evt) => {
+        try {
+          const jd = JSON.parse(evt.target.result);
+          if (document.getElementById('postJobTitle')) document.getElementById('postJobTitle').value = jd.title || "";
+          if (document.getElementById('postJobLocation')) document.getElementById('postJobLocation').value = jd.location || "";
+          if (document.getElementById('postJobType')) document.getElementById('postJobType').value = jd.work_type || jd.jobType || "Full-time";
+          if (document.getElementById('postJobExp')) document.getElementById('postJobExp').value = String(jd.min_years_experience || "2");
+          if (document.getElementById('postJobDesc')) document.getElementById('postJobDesc').value = jd.raw_description || jd.overview || "";
+          App.showToast(`Loaded structured JD: '${jd.title || file.name}'!`, "success");
+        } catch (e) {
+          App.showToast("Failed to parse JD JSON: " + e.message, "error");
+        }
+      };
       reader.readAsText(file);
-    } else {
-      setTimeout(() => {
-        const sample = AppData.getSampleJDs()[0];
-        document.getElementById('postJobTitle').value = sample.title;
-        document.getElementById('postJobDesc').value = sample.description;
-        App.showToast(`Extracted job description text from ${file.name}!`, "success");
-      }, 500);
+      return;
     }
+
+    // 2. For PDF or binary documents: read as Base64 and invoke backend parser
+    const reader = new FileReader();
+    reader.onload = async (evt) => {
+      const dataUrl = evt.target.result || "";
+      const base64Content = dataUrl.split(',')[1] || "";
+
+      try {
+        const res = await AppData.apiCall("/api/jds/parse-file", "POST", {
+          filename: file.name,
+          content_base64: base64Content
+        });
+
+        if (res && res.success && res.text) {
+          if (document.getElementById('postJobTitle') && res.title) document.getElementById('postJobTitle').value = res.title;
+          if (document.getElementById('postJobLocation') && res.location) document.getElementById('postJobLocation').value = res.location;
+          if (document.getElementById('postJobType') && res.jobType) document.getElementById('postJobType').value = res.jobType;
+          if (document.getElementById('postJobExp') && res.experience) document.getElementById('postJobExp').value = res.experience;
+          if (document.getElementById('postJobDesc')) document.getElementById('postJobDesc').value = res.text;
+          App.showToast(`Extracted '${res.title}' with AI requirements!`, "success");
+          return;
+        }
+      } catch (err) {
+        console.warn("Backend JD parse error, attempting text fallback:", err);
+      }
+
+      // Plain text fallback if file is plain text
+      if (file.type.includes("text") || file.name.endsWith(".txt")) {
+        const textReader = new FileReader();
+        textReader.onload = (te) => {
+          const text = te.target.result || "";
+          if (document.getElementById('postJobDesc')) document.getElementById('postJobDesc').value = text;
+          const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+          if (lines.length > 0 && lines[0].length < 60) {
+            if (document.getElementById('postJobTitle')) document.getElementById('postJobTitle').value = lines[0];
+          }
+          App.showToast(`Extracted job text from ${file.name}!`, "success");
+        };
+        textReader.readAsText(file);
+      }
+    };
+    reader.readAsDataURL(file);
   },
 
-  openCandidateResumeModal(candidateId) {
-    const cand = AppData.getCandidateById(candidateId);
-    const content = AppData.getCandidateResumeContent(cand.candidateId);
-
-    const modalId = "recruiterResumeModal";
-    let modal = document.getElementById(modalId);
-    if (!modal) {
-      modal = document.createElement('div');
-      modal.id = modalId;
-      modal.className = "modal-backdrop";
-      document.body.appendChild(modal);
-    }
-
-    modal.innerHTML = `
-      <div class="modal-content" style="max-width: 760px;">
-        <div class="modal-header">
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <div class="avatar-circle avatar-md avatar-candidate">${cand.name.charAt(0)}</div>
-            <div>
-              <h3 style="font-size: 18px; font-weight: 700; margin: 0;">${cand.name} — Resume Document</h3>
-              <div style="font-size: 12px; color: #64748B;">Candidate ID: ${cand.candidateId} • Fit Score: ${cand.fitScore}/100</div>
-            </div>
-          </div>
-          <button class="modal-close-btn" onclick="document.getElementById('${modalId}').style.display='none'">
-            ${Icons.x(20)}
-          </button>
-        </div>
-
-        <div style="background: #0F172A; color: #E2E8F0; padding: 22px; border-radius: 10px; font-family: var(--font-mono); font-size: 12px; line-height: 1.6; max-height: 500px; overflow-y: auto; white-space: pre-wrap;">${content}</div>
-
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
-          <div style="display: flex; gap: 8px;">
-            <span class="badge badge-success">Passed Integrity Shield</span>
-            <span class="badge badge-indigo">GitHub Verified</span>
-          </div>
-          <div style="display: flex; gap: 10px;">
-            <button class="btn btn-outline btn-sm" onclick="App.showToast('Downloaded candidate resume PDF', 'info')">
-              ${Icons.download(14)} Download PDF
-            </button>
-            <button class="btn btn-primary btn-sm" onclick="document.getElementById('${modalId}').style.display='none'">
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    `;
-
-    modal.style.display = 'flex';
+  openCandidateResumeModal(candId) {
+    const cand = AppData.getCandidateById(candId);
+    if (!cand) return;
+    App.openPdfModal(cand.resumeFile || 'riya_sharma.pdf', `Resume Document: ${cand.name}`);
   }
 };
+
+window.RecruiterView = RecruiterView;
+

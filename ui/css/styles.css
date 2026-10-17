@@ -65,7 +65,7 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 a {
@@ -363,6 +363,71 @@ img, svg {
   flex-shrink: 0;
 }
 
+/* Backend Status Badge */
+.backend-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.backend-status-badge.online {
+  background: #ECFDF5;
+  color: #047857;
+  border: 1px solid #A7F3D0;
+}
+.backend-status-badge.online:hover {
+  background: #D1FAE5;
+  border-color: #6EE7B7;
+}
+
+.backend-status-badge.offline {
+  background: #F1F5F9;
+  color: #64748B;
+  border: 1px solid #CBD5E1;
+}
+.backend-status-badge.offline:hover {
+  background: #E2E8F0;
+}
+
+.status-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.backend-status-badge.online .status-pulse-dot {
+  background: #10B981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: pulseDot 2s infinite cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+.backend-status-badge.offline .status-pulse-dot {
+  background: #94A3B8;
+}
+
+@keyframes pulseDot {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
 .role-selector-wrapper {
   display: flex;
   align-items: center;
@@ -547,6 +612,8 @@ img, svg {
   display: flex;
   min-height: calc(100vh - 68px);
   position: relative;
+  width: 100%;
+  max-width: 100%;
 }
 
 .sidebar {
@@ -610,12 +677,13 @@ img, svg {
 
 /* Main Content Area */
 .main-content {
-  flex: 1;
-  padding: 28px 32px;
-  max-width: 1400px;
-  margin: 0 auto;
+  flex: 1 1 0;
+  padding: 24px 32px;
+  max-width: 100%;
+  margin: 0;
   width: 100%;
   min-width: 0;
+  box-sizing: border-box;
 }
 
 .main-header {
@@ -688,29 +756,30 @@ img, svg {
 
 .data-table {
   width: 100%;
-  min-width: 600px;
   border-collapse: collapse;
   text-align: left;
-  font-size: 14px;
+  font-size: 13px;
+  table-layout: auto;
 }
 
 .data-table th {
   background-color: var(--surface-alt);
-  padding: 12px 18px;
+  padding: 10px 14px;
   font-weight: 600;
   color: var(--text-muted);
   border-bottom: 1px solid var(--border);
-  font-size: 13px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.03em;
   white-space: nowrap;
 }
 
 .data-table td {
-  padding: 14px 18px;
+  padding: 12px 14px;
   border-bottom: 1px solid var(--border);
   color: var(--text-main);
   vertical-align: middle;
+  word-break: break-word;
 }
 
 .data-table tr:last-child td {
@@ -811,21 +880,28 @@ img, svg {
    ========================================================================== */
 .admin-split-layout {
   display: flex;
-  gap: 24px;
+  gap: 20px;
   align-items: flex-start;
   width: 100%;
+  max-width: 100%;
 }
 
 .admin-left-pane {
-  width: 360px;
+  width: 320px;
+  min-width: 290px;
+  max-width: 340px;
   flex-shrink: 0;
   background: var(--surface);
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
-  padding: 20px;
-  height: calc(100vh - 130px);
+  padding: 18px;
+  position: sticky;
+  top: 84px;
+  height: calc(100vh - 104px);
   display: flex;
   flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
 }
 
 .admin-candidate-list {
@@ -862,8 +938,9 @@ img, svg {
 }
 
 .admin-right-pane {
-  flex: 1;
+  flex: 1 1 0;
   min-width: 0;
+  width: 100%;
   background: var(--surface);
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
@@ -970,6 +1047,16 @@ img, svg {
   padding: 28px;
   position: relative;
   animation: modalIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-lg {
+  max-width: 960px !important;
+  width: 95vw !important;
+}
+
+.modal-full {
+  max-width: 1250px !important;
+  width: 96vw !important;
 }
 
 @keyframes modalIn {

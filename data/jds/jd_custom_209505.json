@@ -1,0 +1,26 @@
+{
+  "job_id": "custom_209505",
+  "title": "Freelance Full-Stack Software Engineer",
+  "company": "TechCorp",
+  "location": "nashik",
+  "work_type": "Full-time",
+  "seniority_level": "mid",
+  "min_years_experience": 2.0,
+  "raw_description": "SkillFit, a subsidiary of Ideando Inc. is a cutting-edge AI-powered platform that revolutionizes talent acquisition. We are seeking a talented and experienced Freelance Full-Stack Software Engineer. Proficiency in modern programming languages and frameworks including JavaScript/TypeScript, React, Node.js, Python, and Express.js. Experience with relational and NoSQL databases such as PostgreSQL, MongoDB. Familiarity with cloud platforms AWS, Azure, GCP, and CI/CD pipelines.",
+  "approx_must_haves": [
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Node.js",
+    "Python",
+    "MongoDB"
+  ],
+  "approx_nice_to_haves": [
+    "PostgreSQL",
+    "AWS",
+    "CI/CD",
+    "Express.js"
+  ],
+  "status": "Open",
+  "postedDate": "Today"
+}

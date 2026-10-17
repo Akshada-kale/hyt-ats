@@ -60,19 +60,25 @@ const CandidateView = {
       <div class="card" style="padding: 22px; margin-bottom: 24px; background: linear-gradient(135deg, #FFFFFF 0%, #F5F3FF 100%); border: 1px solid var(--primary-border);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px;">
           <div style="display: flex; align-items: center; gap: 12px;">
-            <div style="width: 40px; height: 40px; border-radius: 10px; background: #EEF2FF; color: #4F46E5; display: flex; align-items: center; justify-content: center;">
-              ${Icons.fileText(22)}
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: #EEF2FF; color: #4F46E5; display: flex; align-items: center; justify-content: center;">
+              ${Icons.fileText(24)}
             </div>
             <div>
-              <h3 style="font-size: 16px; font-weight: 700; color: #111827;">Your Active Screening Resume</h3>
-              <div style="font-size: 13px; color: #64748B;">
-                <strong>${user.resumeFile || 'Akshada_Kale_Resume.pdf'}</strong> (${user.resumeSize || '450 KB'}) • Last updated ${user.lastUpdated}
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <h3 style="font-size: 16px; font-weight: 700; color: #111827; margin: 0;">${user.name}</h3>
+                <span class="badge badge-indigo" style="font-size: 11px;">Active Resume</span>
+              </div>
+              <div style="font-size: 13px; color: #4F46E5; font-weight: 600; margin: 2px 0;">
+                ${user.title || 'Candidate Profile'}
+              </div>
+              <div style="font-size: 12px; color: #64748B;">
+                <strong>${user.resumeFile || 'Akshada_Kale_Resume.pdf'}</strong> (${user.resumeSize || '450 KB'}) • ${user.education || 'Graduate'} • Last updated ${user.lastUpdated}
               </div>
             </div>
           </div>
           <div style="display: flex; gap: 10px;">
             <button class="btn btn-outline btn-sm" onclick="CandidateView.openResumePreviewModal()">
-              ${Icons.eye ? Icons.eye(14) : Icons.fileText(14)} Preview Resume
+              ${Icons.eye ? Icons.eye(14) : Icons.fileText(14)} Preview Parsed Resume
             </button>
             <label class="btn btn-primary btn-sm" style="margin: 0; cursor: pointer;">
               ${Icons.upload(14)} Upload New Resume
@@ -81,12 +87,19 @@ const CandidateView = {
           </div>
         </div>
 
+        <!-- Extracted Skills Showcase -->
+        <div style="background: rgba(255, 255, 255, 0.7); border: 1px solid #E2E8F0; border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+          <span style="font-size: 12px; font-weight: 700; color: #475569;">Extracted Resume Skills (${(user.skills || []).length}):</span>
+          ${(user.skills || []).slice(0, 8).map(s => `<span class="tag" style="font-size: 11px; padding: 3px 8px;">${s}</span>`).join('')}
+          ${(user.skills || []).length > 8 ? `<span style="font-size: 11px; color: #64748B;">+${(user.skills || []).length - 8} more</span>` : ''}
+        </div>
+
         <!-- Drag & Drop Zone -->
         <div class="upload-dropzone" ondragover="event.preventDefault(); this.classList.add('drag-active');" ondragleave="this.classList.remove('drag-active');" ondrop="CandidateView.handleResumeDrop(event, this)">
           <input type="file" accept=".pdf,.docx,.txt" onchange="CandidateView.handleResumeFileSelect(event)">
           <div class="upload-icon">${Icons.upload(22)}</div>
-          <div class="title">Drag & drop your resume here, or browse files</div>
-          <div class="subtitle">Supports PDF, DOCX, TXT up to 10MB • Auto-extracts skills for AI Gates 0-8</div>
+          <div class="title">Drag & drop your new resume here to re-parse & update, or browse files</div>
+          <div class="subtitle">Supports PDF, DOCX, TXT up to 10MB • Auto-extracts skills for AI Gates 0-8 in real time</div>
         </div>
       </div>
 
@@ -283,7 +296,10 @@ const CandidateView = {
               <span>${job.experience}</span>
             </div>
           </div>
-          <div>
+          <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+            <button class="btn btn-outline btn-lg" onclick="App.openPdfModal('${job.pdfFile || (job.id === 'pa_director' ? 'pa_director.pdf' : 'pa_director.pdf')}', 'Job Description PDF: ${job.title}')">
+              ${Icons.fileText(16)} View JD PDF
+            </button>
             <button class="btn btn-primary btn-lg" onclick="CandidateView.openApplyModal('${job.id}')">
               Apply Now
             </button>
@@ -350,6 +366,7 @@ const CandidateView = {
 
   // 4. Apply for Job Modal (Screen 5)
   openApplyModal(jobId) {
+    CandidateView.pendingCustomResumeFile = null;
     const job = AppData.getJobById(jobId);
     const candidate = AppData.getCurrentUser();
 
@@ -376,7 +393,6 @@ const CandidateView = {
           <div style="font-size: 13px; color: #64748B;">${job.company} • ${job.location}</div>
         </div>
 
-        <div style="margin-bottom: 20px;">
         <div style="margin-bottom: 20px;">
           <div style="font-size: 13px; font-weight: 600; color: #111827; margin-bottom: 8px;">Resume for this Application</div>
           
@@ -418,7 +434,7 @@ const CandidateView = {
                 <span style="color: #4F46E5;">${Icons.fileText(20)}</span>
                 <span id="applyCustomFileName" style="font-size: 13px; font-weight: 600;">resume.pdf</span>
               </div>
-              <span class="badge badge-success" style="font-size: 11px;">Ready</span>
+              <span class="badge badge-success" style="font-size: 11px;">Ready to Submit</span>
             </div>
           </div>
 
@@ -446,16 +462,36 @@ const CandidateView = {
   },
 
   closeApplyModal() {
+    CandidateView.pendingCustomResumeFile = null;
     const modal = document.getElementById("applyModal");
     if (modal) modal.style.display = 'none';
   },
 
-  submitApplication(jobId) {
+  async submitApplication(jobId) {
     const whyFit = document.getElementById('applyWhyFit')?.value || '';
-    const newApp = AppData.submitApplication(jobId, whyFit);
+    const resumeChoice = document.querySelector('input[name="applyResumeChoice"]:checked')?.value || 'profile';
+    const customFile = CandidateView.pendingCustomResumeFile;
+
     CandidateView.closeApplyModal();
 
-    App.showToast("Application submitted successfully! AI screening pipeline triggered.", "success");
+    let uploadedFileName = null;
+    if (resumeChoice === 'upload' && customFile) {
+      App.showToast(`Uploading '${customFile.name}' and running Gate 0 Integrity Shield...`, "info");
+      await CandidateView.processUploadedResumeFile(customFile);
+      uploadedFileName = customFile.name;
+    } else {
+      App.showToast("Submitting application and invoking AI Screening Pipeline...", "info");
+    }
+
+    const resumeToUse = uploadedFileName || AppData.getCurrentUser().resumeFile || "aksada.pdf";
+    const newApp = await AppData.submitApplication(jobId, whyFit, resumeToUse);
+    if (uploadedFileName && newApp && newApp.timeline) {
+      newApp.timeline[0].note = `Application registered with custom resume (${uploadedFileName}).`;
+    }
+
+    CandidateView.pendingCustomResumeFile = null;
+    await AppData.syncWithBackend();
+    App.showToast(`Application submitted! AI Decision: ${newApp.decision || newApp.status}`, "success");
     App.navigate("candidate-applications");
   },
 
@@ -530,7 +566,10 @@ const CandidateView = {
                     <span class="badge ${badgeClass}">${app.status}</span>
                   </td>
                   <td style="color: #64748B;">${app.appliedDate}</td>
-                  <td style="text-align: right;">
+                  <td style="text-align: right; white-space: nowrap;">
+                    <button class="btn btn-outline btn-sm" style="margin-right: 6px;" onclick="App.openPdfModal('${app.resumeFile || 'riya_sharma.pdf'}', 'Resume PDF: ${app.jobTitle}')">
+                      ${Icons.fileText(14)} PDF
+                    </button>
                     <button class="btn btn-outline btn-sm" onclick="App.navigate('candidate-app-detail', { appId: '${app.id}' })">
                       View
                     </button>
@@ -870,6 +909,7 @@ const CandidateView = {
   handleApplyCustomSelect(e) {
     const file = e.target.files && e.target.files[0];
     if (file) {
+      CandidateView.pendingCustomResumeFile = file;
       document.getElementById('applyCustomFilePreview').style.display = 'flex';
       document.getElementById('applyCustomFileName').innerText = file.name;
       App.showToast(`Selected custom resume: ${file.name}`, "info");
@@ -881,6 +921,7 @@ const CandidateView = {
     el.classList.remove('drag-active');
     const file = e.dataTransfer.files && e.dataTransfer.files[0];
     if (file) {
+      CandidateView.pendingCustomResumeFile = file;
       document.getElementById('applyCustomFilePreview').style.display = 'flex';
       document.getElementById('applyCustomFileName').innerText = file.name;
       App.showToast(`Dropped custom resume: ${file.name}`, "info");
@@ -901,91 +942,58 @@ const CandidateView = {
 
   processUploadedResumeFile(file) {
     const sizeKB = Math.round(file.size / 1024) + " KB";
-    App.showToast(`Reading and parsing ${file.name}...`, "info");
+    App.showToast(`Uploading and analyzing ${file.name} with Gate 0 Integrity Shield...`, "info");
 
-    // Read file text client-side if txt or parse metadata
-    const reader = new FileReader();
-    reader.onload = (evt) => {
-      const text = evt.target.result || "";
-      // Extract potential skills found in text
-      const commonSkills = ["React", "Node.js", "Python", "JavaScript", "TypeScript", "AWS", "Docker", "SQL", "MongoDB", "Express", "REST APIs", "Git", "CI/CD"];
-      const detected = commonSkills.filter(s => text.toLowerCase().includes(s.toLowerCase()));
-      
-      AppData.uploadCandidateResume(file.name, sizeKB, detected);
-      App.showToast(`Resume '${file.name}' (${sizeKB}) uploaded & parsed successfully!`, "success");
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = async (evt) => {
+        let base64Data = "";
+        let rawText = "";
 
-      // Refresh current candidate view
-      const route = App.currentRoute;
-      if (route === "dashboard" || route === "candidate-dashboard") {
-        CandidateView.renderDashboard(document.getElementById('mainContentArea'));
-      } else if (route === "candidate-profile") {
-        CandidateView.renderProfile(document.getElementById('mainContentArea'));
-      }
-    };
+        if (file.name.toLowerCase().endsWith(".pdf")) {
+          // Data URL format: "data:application/pdf;base64,...."
+          const resultStr = evt.target.result;
+          base64Data = resultStr.includes(",") ? resultStr.split(",")[1] : resultStr;
+        } else {
+          rawText = evt.target.result || "";
+        }
 
-    if (file.type.includes("text") || file.name.endsWith(".txt")) {
-      reader.readAsText(file);
-    } else {
-      // Simulate binary parse
-      setTimeout(() => {
-        AppData.uploadCandidateResume(file.name, sizeKB, ["JavaScript", "React", "Node.js", "MongoDB", "REST APIs"]);
-        App.showToast(`Resume '${file.name}' (${sizeKB}) uploaded & parsed successfully!`, "success");
+        const uploadRes = await AppData.uploadCandidateResume(file.name, sizeKB, [], base64Data, rawText);
+        const detected = uploadRes.detectedSkills || [];
+        App.showToast(`Resume '${file.name}' verified! Extracted ${detected.length} technical skills.`, "success");
+
+        // Sync with backend so Recruiter and Admin panels immediately receive the new candidate data
+        await AppData.syncWithBackend();
+
+        // Refresh top navigation bar to display updated candidate name
+        if (window.App && typeof App.renderNavbar === "function") {
+          const navbarEl = document.getElementById("mainNavbar");
+          if (navbarEl) navbarEl.innerHTML = App.renderNavbar(App.currentRole);
+        }
+
+        // Refresh current view
         const route = App.currentRoute;
         if (route === "dashboard" || route === "candidate-dashboard") {
           CandidateView.renderDashboard(document.getElementById('mainContentArea'));
         } else if (route === "candidate-profile") {
           CandidateView.renderProfile(document.getElementById('mainContentArea'));
         }
-      }, 500);
-    }
+        resolve(uploadRes);
+      };
+
+      if (file.name.toLowerCase().endsWith(".pdf")) {
+        reader.readAsDataURL(file);
+      } else {
+        reader.readAsText(file);
+      }
+    });
   },
 
   openResumePreviewModal() {
-    const user = AppData.getCurrentUser();
-    const content = AppData.getCandidateResumeContent("aksada");
-
-    const modalId = "resumePreviewModal";
-    let modal = document.getElementById(modalId);
-    if (!modal) {
-      modal = document.createElement('div');
-      modal.id = modalId;
-      modal.className = "modal-backdrop";
-      document.body.appendChild(modal);
-    }
-
-    modal.innerHTML = `
-      <div class="modal-content" style="max-width: 720px;">
-        <div class="modal-header">
-          <div style="display: flex; align-items: center; gap: 10px;">
-            <span style="color: #4F46E5;">${Icons.fileText(24)}</span>
-            <div>
-              <h3 style="font-size: 18px; font-weight: 700; margin: 0;">${user.resumeFile || 'Akshada_Kale_Resume.pdf'}</h3>
-              <div style="font-size: 12px; color: #64748B;">${user.resumeSize || '450 KB'} • Pre-Screening Document</div>
-            </div>
-          </div>
-          <button class="modal-close-btn" onclick="document.getElementById('${modalId}').style.display='none'">
-            ${Icons.x(20)}
-          </button>
-        </div>
-
-        <div style="background: #0F172A; color: #E2E8F0; padding: 20px; border-radius: 10px; font-family: var(--font-mono); font-size: 12px; line-height: 1.6; max-height: 480px; overflow-y: auto; white-space: pre-wrap;">${content}</div>
-
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
-          <div style="font-size: 12px; color: #64748B;">
-            Verified PII redaction active prior to AI Gates 0-8.
-          </div>
-          <div style="display: flex; gap: 10px;">
-            <button class="btn btn-outline btn-sm" onclick="App.showToast('Downloaded copy of candidate resume', 'info')">
-              ${Icons.download(14)} Download
-            </button>
-            <button class="btn btn-primary btn-sm" onclick="document.getElementById('${modalId}').style.display='none'">
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    `;
-
-    modal.style.display = 'flex';
+    const user = (AppData.getCurrentUser() && AppData.getCurrentUser().candidate) || AppData.getCurrentUser();
+    App.openPdfModal(user.resumeFile || "riya_sharma.pdf", `Active Resume: ${user.name || 'Candidate'}`);
   }
 };
+
+window.CandidateView = CandidateView;
+

@@ -1,0 +1,790 @@
+[
+  {
+    "id": "APP-cust-4233",
+    "jobId": "custom_224188",
+    "jobTitle": "Chef / Cook",
+    "company": "TechCorp",
+    "status": "Not Shortlisted",
+    "appliedDate": "Oct 17, 2026",
+    "fitScore": 22.2,
+    "decision": "AUTO_REJECT",
+    "resumeFile": "akshu.pdf",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 01:33 PM",
+        "status": "completed",
+        "note": "Application received with resume (akshu.pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 01:33 PM",
+        "status": "completed",
+        "note": "Deterministic Gates 0-8 executed: Score 22.2/100. Below threshold for role criteria."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Completed",
+        "status": "completed",
+        "note": "Candidate fast-tracked to shortlist by policy"
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Application closed. Role technical requirements not met."
+      }
+    ]
+  },
+  {
+    "id": "APP-cust-3298",
+    "jobId": "custom_222939",
+    "jobTitle": "Chef / Cook",
+    "company": "TechCorp",
+    "status": "Not Shortlisted",
+    "appliedDate": "Oct 17, 2026",
+    "fitScore": 22.2,
+    "decision": "AUTO_REJECT",
+    "resumeFile": "akshu.pdf",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 01:18 PM",
+        "status": "completed",
+        "note": "Application received with resume (akshu.pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 01:18 PM",
+        "status": "completed",
+        "note": "Deterministic Gates 0-8 executed: Score 22.2/100. Below threshold for role criteria."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Completed",
+        "status": "completed",
+        "note": "Candidate fast-tracked to shortlist by policy"
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Application closed. Role technical requirements not met."
+      }
+    ]
+  },
+  {
+    "id": "APP-cust-3153",
+    "jobId": "custom_222939",
+    "jobTitle": "Chef / Cook",
+    "company": "TechCorp",
+    "status": "Not Shortlisted",
+    "appliedDate": "Oct 17, 2026",
+    "fitScore": 22.2,
+    "decision": "AUTO_REJECT",
+    "resumeFile": "akshu.pdf",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 01:15 PM",
+        "status": "completed",
+        "note": "Application received with resume (akshu.pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 01:15 PM",
+        "status": "completed",
+        "note": "Deterministic Gates 0-8 executed: Score 22.2/100. Below threshold for role criteria."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Completed",
+        "status": "completed",
+        "note": "Candidate fast-tracked to shortlist by policy"
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Application closed. Role technical requirements not met."
+      }
+    ]
+  },
+  {
+    "id": "APP-3887-3101",
+    "jobId": "3887497535",
+    "jobTitle": "Associate Software Engineer / Software Engineer",
+    "company": "University of Illinois Urbana-Champaign",
+    "status": "Under Review",
+    "appliedDate": "Oct 17, 2026",
+    "fitScore": 62.7,
+    "decision": "ESCALATE",
+    "resumeFile": "akshu.pdf",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 01:15 PM",
+        "status": "completed",
+        "note": "Application received with updated resume (akshu.pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 01:15 PM",
+        "status": "completed",
+        "note": "Deterministic Gates 0-8 executed: Score 62.7/100 (Ambiguous fit. Human judgment required.). Flagged for recruiter review."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "In Progress",
+        "status": "active",
+        "note": "Recruiter is evaluating transferable portfolio."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Pending",
+        "status": "pending",
+        "note": "Awaiting recruiter portfolio review and interview scheduling."
+      }
+    ]
+  },
+  {
+    "id": "APP-3887-3072",
+    "jobId": "3887497535",
+    "jobTitle": "Associate Software Engineer / Software Engineer",
+    "company": "University of Illinois Urbana-Champaign",
+    "status": "Under Review",
+    "appliedDate": "Oct 17, 2026",
+    "fitScore": 62.7,
+    "decision": "ESCALATE",
+    "resumeFile": "akshu.pdf",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 01:14 PM",
+        "status": "completed",
+        "note": "Application received with updated resume (akshu.pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 01:14 PM",
+        "status": "completed",
+        "note": "Deterministic Gates 0-8 executed: Score 62.7/100 (Ambiguous fit. Human judgment required.). Flagged for recruiter review."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "In Progress",
+        "status": "active",
+        "note": "Recruiter is evaluating transferable portfolio."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Pending",
+        "status": "pending",
+        "note": "Awaiting recruiter portfolio review and interview scheduling."
+      }
+    ]
+  },
+  {
+    "id": "APP-pa_d-2040",
+    "jobId": "pa_director",
+    "jobTitle": "Personal Assistant (PA) to the Director",
+    "company": "Executive Office",
+    "status": "Shortlisted",
+    "appliedDate": "Oct 17, 2026",
+    "fitScore": 97.4,
+    "decision": "AUTO_ADVANCE",
+    "resumeFile": "riya_sharma.pdf",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 12:57 PM",
+        "status": "completed",
+        "note": "Application received with updated resume (riya_sharma.pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 12:57 PM",
+        "status": "completed",
+        "note": "Deterministic Gates 0-8 PASSED: Score 97.4/100. Auto-Advance rule triggered (Score >= 75.0)."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Completed",
+        "status": "completed",
+        "note": "Candidate auto-advanced to shortlist by AI screening policy."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Congratulations! You have been shortlisted for technical interview."
+      }
+    ]
+  },
+  {
+    "id": "APP-pa_d-1974",
+    "jobId": "pa_director",
+    "jobTitle": "Personal Assistant (PA) to the Director",
+    "company": "Executive Office",
+    "status": "Shortlisted",
+    "appliedDate": "Oct 17, 2026",
+    "fitScore": 97.4,
+    "decision": "AUTO_ADVANCE",
+    "resumeFile": "riya_sharma.pdf",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 12:56 PM",
+        "status": "completed",
+        "note": "Application received with updated resume (riya_sharma.pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 12:56 PM",
+        "status": "completed",
+        "note": "Deterministic Gates 0-8 PASSED: Score 97.4/100. Auto-Advance rule triggered (Score >= 75.0)."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Completed",
+        "status": "completed",
+        "note": "Candidate auto-advanced to shortlist by AI screening policy."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Congratulations! You have been shortlisted for technical interview."
+      }
+    ]
+  },
+  {
+    "id": "APP-pa_d-1256",
+    "jobId": "pa_director",
+    "jobTitle": "Personal Assistant (PA) to the Director",
+    "company": "Executive Office",
+    "status": "Shortlisted",
+    "appliedDate": "Oct 17, 2026",
+    "fitScore": 97.4,
+    "decision": "AUTO_ADVANCE",
+    "resumeFile": "riya_sharma.pdf",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 12:44 PM",
+        "status": "completed",
+        "note": "Application received with updated resume (riya_sharma.pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 12:44 PM",
+        "status": "completed",
+        "note": "Deterministic Gates 0-8 PASSED: Score 97.4/100. Auto-Advance rule triggered (Score >= 75.0)."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Completed",
+        "status": "completed",
+        "note": "Candidate auto-advanced to shortlist by AI screening policy."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Congratulations! You have been shortlisted for technical interview."
+      }
+    ]
+  },
+  {
+    "id": "APP-pa_d-0811",
+    "jobId": "pa_director",
+    "jobTitle": "Personal Assistant (PA) to the Director",
+    "company": "Executive Office",
+    "status": "Under Review",
+    "appliedDate": "Oct 17, 2026",
+    "fitScore": 42.6,
+    "decision": "ESCALATE",
+    "resumeFile": "riya_sharma.pdf",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 12:36 PM",
+        "status": "completed",
+        "note": "Application received with updated resume (riya_sharma.pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 12:36 PM",
+        "status": "completed",
+        "note": "Deterministic Gates 0-8 executed: Score 42.6/100."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "In Progress",
+        "status": "active",
+        "note": "Recruiter is evaluating transferable portfolio."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Pending",
+        "status": "pending",
+        "note": "Awaiting recruiter decision."
+      }
+    ]
+  },
+  {
+    "id": "APP-cust-9773",
+    "jobId": "custom_218410",
+    "jobTitle": "Lawyer / Legal Associate job",
+    "company": "TechCorp",
+    "status": "Not Shortlisted",
+    "appliedDate": "Oct 17, 2026",
+    "fitScore": 16.2,
+    "decision": "AUTO_REJECT",
+    "resumeFile": "akshu.pdf",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 12:19 PM",
+        "status": "completed",
+        "note": "Application received with resume (akshu.pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 12:19 PM",
+        "status": "completed",
+        "note": "Deterministic Gates 0-8 executed: Score 16.2/100. Below threshold for role criteria."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Completed",
+        "status": "completed",
+        "note": "Candidate fast-tracked to shortlist by policy"
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Application closed. Role technical requirements not met."
+      }
+    ]
+  },
+  {
+    "id": "APP-cust-8526",
+    "jobId": "custom_218410",
+    "jobTitle": "Lawyer / Legal Associate job",
+    "company": "TechCorp",
+    "status": "Not Shortlisted",
+    "appliedDate": "Oct 17, 2026",
+    "fitScore": 31.5,
+    "decision": "AUTO_REJECT",
+    "resumeFile": "Non_Matching_Resume_Frontend_Designer.pdf",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 11:58 AM",
+        "status": "completed",
+        "note": "Application received with resume (Non_Matching_Resume_Frontend_Designer.pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 11:58 AM",
+        "status": "completed",
+        "note": "Deterministic Gates 0-8 executed: Score 31.5/100. Below threshold for role criteria."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Completed",
+        "status": "completed",
+        "note": "Candidate fast-tracked to shortlist by policy"
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Application closed. Role technical requirements not met."
+      }
+    ]
+  },
+  {
+    "id": "APP-pa_d-5529",
+    "jobId": "pa_director",
+    "jobTitle": "Personal Assistant (PA) to the Director",
+    "company": "Executive Office",
+    "status": "Shortlisted",
+    "appliedDate": "Oct 17, 2026",
+    "fitScore": 97.4,
+    "decision": "AUTO_ADVANCE",
+    "resumeFile": "riya_sharma.pdf",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 11:08 AM",
+        "status": "completed",
+        "note": "Application received with resume (riya_sharma.pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 11:08 AM",
+        "status": "completed",
+        "note": "Deterministic Gates 0-8 PASSED: Score 97.4/100. Auto-Advance rule triggered (Score >= 75.0)."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Completed",
+        "status": "completed",
+        "note": "Candidate fast-tracked to shortlist by policy"
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Congratulations! You have been shortlisted for technical interview."
+      }
+    ]
+  },
+  {
+    "id": "APP-pa_d-5335",
+    "jobId": "pa_director",
+    "jobTitle": "Personal Assistant (PA) to the Director",
+    "company": "Executive Office",
+    "status": "Shortlisted",
+    "appliedDate": "Oct 17, 2026",
+    "fitScore": 97.4,
+    "decision": "AUTO_ADVANCE",
+    "resumeFile": "riya_sharma.pdf",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 11:05 AM",
+        "status": "completed",
+        "note": "Application received with resume (riya_sharma.pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 11:05 AM",
+        "status": "completed",
+        "note": "Deterministic Gates 0-8 PASSED: Score 97.4/100. Auto-Advance rule triggered (Score >= 75.0)."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Completed",
+        "status": "completed",
+        "note": "Candidate fast-tracked to shortlist by policy"
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Congratulations! You have been shortlisted for technical interview."
+      }
+    ]
+  },
+  {
+    "id": "APP-cust-1990",
+    "jobId": "custom_211959",
+    "jobTitle": "lawyer",
+    "company": "TechCorp",
+    "status": "Under Review",
+    "appliedDate": "Oct 17, 2026",
+    "fitScore": 53.0,
+    "decision": "ESCALATE",
+    "resumeFile": "Non_Matching_Resume_Frontend_Designer.pdf",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 10:09 AM",
+        "status": "completed",
+        "note": "Application received with resume (Non_Matching_Resume_Frontend_Designer.pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 10:09 AM",
+        "status": "completed",
+        "note": "Deterministic Gates 0-8 executed: Score 53.0/100 (Ambiguous fit. Human judgment required.). Flagged for recruiter review."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "In Progress",
+        "status": "active",
+        "note": "Recruiter is evaluating transferable portfolio."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Pending",
+        "status": "pending",
+        "note": "Awaiting recruiter portfolio review and interview scheduling."
+      }
+    ]
+  },
+  {
+    "id": "APP-cust-1569",
+    "jobId": "custom_209505",
+    "jobTitle": "Freelance Full-Stack Software Engineer",
+    "company": "TechCorp",
+    "status": "Under Review",
+    "appliedDate": "Oct 17, 2026",
+    "fitScore": 53.0,
+    "decision": "ESCALATE",
+    "resumeFile": "Non_Matching_Resume_Frontend_Designer.pdf",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 10:02 AM",
+        "status": "completed",
+        "note": "Application received with resume (Non_Matching_Resume_Frontend_Designer.pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 10:02 AM",
+        "status": "completed",
+        "note": "Deterministic Gates 0-8 executed: Score 53.0/100 (Ambiguous fit. Human judgment required.). Flagged for recruiter review."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "In Progress",
+        "status": "active",
+        "note": "Recruiter is evaluating transferable portfolio."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Pending",
+        "status": "pending",
+        "note": "Awaiting recruiter portfolio review and interview scheduling."
+      }
+    ]
+  },
+  {
+    "id": "APP-2234-1336",
+    "jobId": "2234533717",
+    "jobTitle": "Full Stack Engineer",
+    "company": "Ideando Inc",
+    "status": "Under Review",
+    "appliedDate": "Oct 17, 2026",
+    "fitScore": 42.6,
+    "decision": "ESCALATE",
+    "resumeFile": "aksada.pdf",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 09:58 AM",
+        "status": "completed",
+        "note": "Application received with resume (aksada.pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 09:58 AM",
+        "status": "completed",
+        "note": "Deterministic Gates 0-8 executed: Score 42.6/100 (Ambiguous fit. Human judgment required.). Flagged for recruiter review."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "In Progress",
+        "status": "active",
+        "note": "Recruiter is evaluating transferable portfolio."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Pending",
+        "status": "pending",
+        "note": "Awaiting recruiter portfolio review and interview scheduling."
+      }
+    ]
+  },
+  {
+    "id": "APP-3887-1284",
+    "jobId": "3887497535",
+    "jobTitle": "Associate Software Engineer / Software Engineer",
+    "company": "University of Illinois Urbana-Champaign",
+    "status": "Shortlisted",
+    "appliedDate": "Oct 17, 2026",
+    "fitScore": 92.9,
+    "decision": "AUTO_ADVANCE",
+    "resumeFile": "aksada.pdf",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 09:58 AM",
+        "status": "completed",
+        "note": "Application received with resume (aksada.pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 09:58 AM",
+        "status": "completed",
+        "note": "Deterministic Gates 0-8 PASSED: Score 92.9/100. Auto-Advance rule triggered (Score >= 75.0)."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Completed",
+        "status": "completed",
+        "note": "Candidate fast-tracked to shortlist by policy"
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 17, 2026",
+        "status": "completed",
+        "note": "Congratulations! You have been shortlisted for technical interview."
+      }
+    ]
+  },
+  {
+    "id": "APP-cust-0347",
+    "jobId": "custom_209505",
+    "jobTitle": "Freelance Full-Stack Software Engineer",
+    "company": "TechCorp",
+    "status": "Under Review",
+    "appliedDate": "Oct 17, 2026",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 09:42 AM",
+        "status": "completed",
+        "note": "Application received and attached to profile resume (aksada.pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 09:42 AM",
+        "status": "completed",
+        "note": "AI Pipeline screened: Score 42.6/100 (Transferable skills validated, ESCALATE)."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "In Progress",
+        "status": "active",
+        "note": "Awaiting hiring team portfolio review and interview scheduling."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Pending",
+        "status": "pending",
+        "note": "Will be updated upon recruiter decision."
+      }
+    ]
+  },
+  {
+    "id": "APP-3887-6295",
+    "jobId": "3887497535",
+    "jobTitle": "Associate Software Engineer / Software Engineer",
+    "company": "University of Illinois Urbana-Champaign",
+    "status": "Under Review",
+    "appliedDate": "Oct 17, 2026",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 17, 2026, 08:34 AM",
+        "status": "completed",
+        "note": "Application received and attached to profile resume (aksada.pdf)."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 17, 2026, 08:34 AM",
+        "status": "completed",
+        "note": "AI Pipeline screened: Score 42.6/100 (Transferable skills validated, ESCALATE)."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "In Progress",
+        "status": "active",
+        "note": "Awaiting hiring team portfolio review and interview scheduling."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Pending",
+        "status": "pending",
+        "note": "Will be updated upon recruiter decision."
+      }
+    ]
+  },
+  {
+    "id": "APP-2234-AK01",
+    "jobId": "2234533717",
+    "jobTitle": "Full Stack Software Engineer",
+    "company": "TechCorp",
+    "status": "Under Review",
+    "appliedDate": "Oct 14, 2026",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 14, 2026, 09:10 AM",
+        "status": "completed",
+        "note": "Application received and registered in ATS."
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 14, 2026, 09:45 AM",
+        "status": "completed",
+        "note": "Deterministic Gates 0-8 executed: Score 42.6/100 (ESCALATE)."
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Oct 15, 2026, 02:20 PM",
+        "status": "active",
+        "note": "Recruiter is evaluating transferable React & Node.js portfolio."
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Pending",
+        "status": "pending",
+        "note": "Awaiting recruiter review action."
+      }
+    ]
+  },
+  {
+    "id": "APP-3887-AK02",
+    "jobId": "3887497535",
+    "jobTitle": "Frontend Developer",
+    "company": "Webify",
+    "status": "Shortlisted",
+    "appliedDate": "Oct 10, 2026",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 10, 2026, 09:10 AM",
+        "status": "completed"
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 10, 2026, 09:45 AM",
+        "status": "completed"
+      },
+      {
+        "title": "Under Human Review",
+        "timestamp": "Oct 11, 2026, 11:30 AM",
+        "status": "completed"
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 12, 2026, 09:00 AM",
+        "status": "completed",
+        "note": "Congratulations! You have been shortlisted for this role."
+      }
+    ]
+  },
+  {
+    "id": "APP-3586-AK03",
+    "jobId": "3586167732",
+    "jobTitle": "Data Analyst",
+    "company": "DataWorks",
+    "status": "Not Shortlisted",
+    "appliedDate": "Oct 5, 2026",
+    "timeline": [
+      {
+        "title": "Application Submitted",
+        "timestamp": "Oct 05, 2026, 10:00 AM",
+        "status": "completed"
+      },
+      {
+        "title": "Resume Screening (AI)",
+        "timestamp": "Oct 05, 2026, 10:15 AM",
+        "status": "completed"
+      },
+      {
+        "title": "Final Decision",
+        "timestamp": "Oct 06, 2026, 04:30 PM",
+        "status": "completed",
+        "note": "Role requirements focus on high-throughput streaming systems."
+      }
+    ]
+  }
+]

@@ -7,7 +7,10 @@ const App = {
   currentRoute: "landing",
   currentParams: {},
 
-  init() {
+  async init() {
+    // Sync state with backend on startup
+    await AppData.syncWithBackend();
+
     // Check initial route from hash or default to landing
     const hash = window.location.hash.replace("#/", "") || "landing";
     App.navigate(hash);
@@ -77,11 +80,17 @@ const App = {
         </div>
 
         <div class="navbar-actions">
+          <!-- Backend Connection Status Indicator Badge -->
+          <div class="backend-status-badge ${AppData.isBackendConnected ? 'online' : 'offline'}" onclick="App.reconnectBackend()" title="${AppData.isBackendConnected ? 'Connected to HYT AI ATS Backend (Click to refresh)' : 'Operating in Offline Mode (Click to retry connection)'}">
+            <span class="status-pulse-dot"></span>
+            <span class="status-badge-text">${AppData.isBackendConnected ? 'Backend Online' : 'Offline Mode'}</span>
+          </div>
+
           <!-- Role Switcher Quick Dropdown -->
           <div class="role-selector-wrapper">
             <span class="role-label">Role:</span>
             <select class="form-control role-select-dropdown" onchange="App.switchRole(this.value)">
-              <option value="candidate" ${role === 'candidate' ? 'selected' : ''}>Candidate (Akshada)</option>
+              <option value="candidate" ${role === 'candidate' ? 'selected' : ''}>Candidate (${(AppData.state.currentUser && AppData.state.currentUser.candidate && AppData.state.currentUser.candidate.name) ? AppData.state.currentUser.candidate.name.split(' ')[0] : 'Candidate'})</option>
               <option value="recruiter" ${role === 'recruiter' ? 'selected' : ''}>Recruiter (Rohan)</option>
               <option value="admin" ${role === 'admin' ? 'selected' : ''}>Admin (System)</option>
             </select>
@@ -94,7 +103,7 @@ const App = {
           <!-- User Profile Dropdown -->
           <div class="user-profile-menu" onclick="App.showProfileMenu(event)">
             <div class="avatar-circle avatar-${role}">
-              ${role === 'candidate' ? 'A' : (role === 'recruiter' ? 'HR' : 'AD')}
+              ${role === 'candidate' ? (user.name ? user.name.charAt(0).toUpperCase() : 'C') : (role === 'recruiter' ? 'HR' : 'AD')}
             </div>
             <div class="user-profile-info">
               <div class="user-name">${user.name}</div>
@@ -303,6 +312,125 @@ const App = {
       toast.style.transition = 'all 0.3s ease';
       setTimeout(() => toast.remove(), 300);
     }, 3500);
+  },
+
+  async reconnectBackend() {
+    App.showToast("Syncing with HYT ATS Backend API...", "info");
+    const ok = await AppData.syncWithBackend();
+    const appRoot = document.getElementById("appRoot");
+    if (App.currentRoute !== "landing" && App.currentRoute !== "role-select" && App.currentRoute !== "login") {
+      App.renderShell(appRoot);
+      App.renderRouteContent();
+    }
+    if (ok) {
+      App.showToast("Connected to HYT ATS AI Engine! Live data synchronized.", "success");
+    } else {
+      App.showToast("Backend server not detected at localhost:8000. Operating in offline mode.", "warning");
+    }
+  },
+
+  openPdfModal(filename = "riya_sharma.pdf", title = "Document Preview") {
+    const cleanName = filename ? filename.split("/").pop().split("\\").pop() : "riya_sharma.pdf";
+    const pdfUrl = `/api/pdf/view?file=${encodeURIComponent(cleanName)}`;
+    const downloadUrl = `/api/pdf/download?file=${encodeURIComponent(cleanName)}&download=1`;
+
+    const existingModal = document.getElementById("globalPdfModal");
+    if (existingModal) existingModal.remove();
+
+    const modal = document.createElement("div");
+    modal.id = "globalPdfModal";
+    modal.className = "modal-backdrop";
+    modal.style.zIndex = "9999";
+    modal.onclick = (e) => {
+      if (e.target === modal) App.closePdfModal();
+    };
+
+    modal.innerHTML = `
+      <div class="modal-content modal-full" style="max-width: 1200px; width: 95vw; height: 90vh; display: flex; flex-direction: column; padding: 22px; border-radius: 16px; background: #FFFFFF; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);" onclick="event.stopPropagation()">
+        <div class="modal-header" style="margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="width: 40px; height: 40px; border-radius: 10px; background: #EEF2FF; color: #4F46E5; display: flex; align-items: center; justify-content: center;">
+              ${Icons.fileText(22)}
+            </div>
+            <div>
+              <h3 style="font-size: 18px; font-weight: 800; color: #111827; margin: 0;">${title}</h3>
+              <div style="font-size: 12px; color: #64748B; font-family: var(--font-mono); margin-top: 2px; display: flex; align-items: center; gap: 8px;">
+                <span>File: <strong>${cleanName}</strong></span>
+                <span class="badge badge-indigo" style="font-size: 10px;">PDF Document</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <div class="btn-group" style="display: flex; background: #F1F5F9; padding: 3px; border-radius: 8px; border: 1px solid var(--border);">
+              <button id="pdfTabVisualBtn" class="btn btn-sm btn-primary" onclick="App.switchPdfModalTab('visual', '${cleanName}')">
+                ${Icons.eye(14)} PDF Viewer
+              </button>
+              <button id="pdfTabTextBtn" class="btn btn-sm btn-outline" style="border: none; background: transparent;" onclick="App.switchPdfModalTab('text', '${cleanName}')">
+                ${Icons.code(14)} Extracted Text
+              </button>
+            </div>
+            <a href="${pdfUrl}" target="_blank" class="btn btn-outline btn-sm" title="Open in new dedicated window">
+              ${Icons.externalLink(14)} New Tab
+            </a>
+            <a href="${downloadUrl}" class="btn btn-outline btn-sm" download="${cleanName}" title="Download original PDF file">
+              ${Icons.download(14)} Download
+            </a>
+            <button class="btn btn-outline btn-sm" style="border-radius: 50%; width: 34px; height: 34px; padding: 0;" onclick="App.closePdfModal()" title="Close Preview">
+              ${Icons.x(16)}
+            </button>
+          </div>
+        </div>
+
+        <div style="flex: 1; min-height: 0; position: relative; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: #525659;">
+          <!-- Visual PDF Iframe View -->
+          <iframe id="pdfModalIframe" src="${pdfUrl}#toolbar=1&navpanes=0" style="width: 100%; height: 100%; border: none; background: #525659;"></iframe>
+          
+          <!-- Extracted Text View (Fallback / Alternative) -->
+          <div id="pdfModalTextView" style="display: none; width: 100%; height: 100%; overflow-y: auto; background: #0D1117; color: #E6EDF3; padding: 24px; font-family: var(--font-mono); font-size: 13px; line-height: 1.6; white-space: pre-wrap;">
+            Loading parsed layout text from Gate 1...
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+  },
+
+  closePdfModal() {
+    const m = document.getElementById("globalPdfModal");
+    if (m) m.remove();
+  },
+
+  async switchPdfModalTab(tab, filename) {
+    const ifr = document.getElementById("pdfModalIframe");
+    const txt = document.getElementById("pdfModalTextView");
+    const vBtn = document.getElementById("pdfTabVisualBtn");
+    const tBtn = document.getElementById("pdfTabTextBtn");
+
+    if (tab === "visual") {
+      if (ifr) ifr.style.display = "block";
+      if (txt) txt.style.display = "none";
+      if (vBtn) { vBtn.className = "btn btn-sm btn-primary"; vBtn.style.background = ""; }
+      if (tBtn) { tBtn.className = "btn btn-sm btn-outline"; tBtn.style.border = "none"; tBtn.style.background = "transparent"; }
+    } else {
+      if (ifr) ifr.style.display = "none";
+      if (txt) txt.style.display = "block";
+      if (vBtn) { vBtn.className = "btn btn-sm btn-outline"; vBtn.style.border = "none"; vBtn.style.background = "transparent"; }
+      if (tBtn) { tBtn.className = "btn btn-sm btn-primary"; }
+
+      txt.innerText = "Extracting layout text from backend (Gate 1)...";
+      try {
+        const res = await AppData.apiCall(`/api/resume/content?file=${encodeURIComponent(filename)}`);
+        if (res && res.content) {
+          txt.innerText = res.content;
+        } else {
+          txt.innerText = "No raw text extracted for this document.";
+        }
+      } catch (e) {
+        txt.innerText = "Error loading text content: " + e.message;
+      }
+    }
   }
 };
 
