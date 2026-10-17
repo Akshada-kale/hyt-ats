@@ -441,7 +441,7 @@ const CandidateView = {
         <div id="content-overview" class="detail-tab-content" style="padding-top: 10px;">
           <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 10px;">Job Description</h4>
           <p style="font-size: 14px; color: #475569; line-height: 1.7; margin-bottom: 24px;">
-            ${job.overview}
+            ${CandidateView.formatJobDescriptionText(job.overview || job.raw_description)}
           </p>
 
           <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 12px;">Must Have Skills</h4>
@@ -457,13 +457,9 @@ const CandidateView = {
 
         <!-- Tab 2: Requirements -->
         <div id="content-reqs" class="detail-tab-content" style="display: none; padding-top: 10px;">
-          <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 12px;">Core Technical Competencies</h4>
+          <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 12px;">Role Requirements & Competencies</h4>
           <ul style="padding-left: 20px; font-size: 14px; color: #475569; line-height: 1.8; margin-bottom: 20px;">
-            <li>Minimum ${job.experience} of software engineering experience.</li>
-            <li>Proficiency across modern JavaScript/TypeScript, React, and Node.js.</li>
-            <li>Hands-on relational and NoSQL database modeling (PostgreSQL / MongoDB).</li>
-            <li>Experience implementing scalable RESTful APIs with clean authentication.</li>
-            <li>Understanding of modern version control (Git) and automated CI/CD workflows.</li>
+            ${CandidateView.renderRequirementsList(job)}
           </ul>
         </div>
 
@@ -476,6 +472,42 @@ const CandidateView = {
         </div>
       </div>
     `;
+  },
+
+  formatJobDescriptionText(text) {
+    if (!text) return "Role overview and requirements.";
+    let clean = String(text);
+    const splitIndex = clean.search(/(Key\s+Responsibilities|Responsibilities:|Must-Have\s+Requirements|Requirements:|Key\s+Duties|Duties:)/i);
+    if (splitIndex > 30) {
+      clean = clean.substring(0, splitIndex).trim();
+    }
+    clean = clean.replace(/\r?\n+/g, ' ').replace(/\s{2,}/g, ' ').trim();
+    if (clean.length > 420) {
+      clean = clean.substring(0, 420).trim() + '...';
+    }
+    return clean;
+  },
+
+  renderRequirementsList(job) {
+    const list = [];
+    if (job.experience) {
+      list.push(`Minimum ${job.experience} of relevant industry experience in a professional environment.`);
+    }
+    if (job.mustHaves && job.mustHaves.length > 0) {
+      job.mustHaves.slice(0, 6).forEach(m => {
+        list.push(`Demonstrated hands-on proficiency in ${m}.`);
+      });
+    }
+    if (job.niceToHaves && job.niceToHaves.length > 0) {
+      job.niceToHaves.slice(0, 3).forEach(n => {
+        list.push(`Preferred competency: ${n}.`);
+      });
+    }
+    if (list.length === 0) {
+      list.push("Bachelor's degree in a relevant field or equivalent practical experience.");
+      list.push("Strong written and verbal communication skills with high attention to detail.");
+    }
+    return list.map(item => `<li>${item}</li>`).join('');
   },
 
   switchDetailTab(tabName) {

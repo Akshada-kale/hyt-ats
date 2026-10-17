@@ -410,6 +410,7 @@ def main():
         description="HYT ATS — Evaluation Harness & Benchmark Suite",
     )
     parser.add_argument(
+        "--golden",
         "--golden-path",
         "--golden_path",
         "--golden-dir",

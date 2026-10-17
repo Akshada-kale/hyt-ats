@@ -1,9 +1,9 @@
 [
   {
-    "id": "APP-cust-5C6FE575",
-    "jobId": "custom_b2c12969",
-    "job_id": "custom_b2c12969",
-    "jobTitle": "Personal Assistant (PA) to the Director(d)",
+    "id": "APP-cust-252F46F7",
+    "jobId": "custom_1b02b4a3",
+    "job_id": "custom_1b02b4a3",
+    "jobTitle": "Personal Assistant (PA) to the Director final ",
     "company": "TechCorp",
     "candidateId": "akshada_satish_kale",
     "candidate_id": "akshada_satish_kale",
@@ -36,8 +36,7 @@
       "Missing required must-have skill 'Calendar Management'. Closest resume skill was 'MongoDB' (0.18 similarity vs 0.75 threshold).",
       "Missing required must-have skill 'Travel Planning'. Closest resume skill was 'Git' (0.18 similarity vs 0.75 threshold).",
       "Missing required must-have skill 'Executive Support'. Closest resume skill was 'Git' (0.26 similarity vs 0.75 threshold).",
-      "Missing required must-have skill 'Communication Skills'. Closest resume skill was 'RESTful APIs' (0.22 similarity vs 0.75 threshold).",
-      "Missing required must-have skill 'Time Management'. Closest resume skill was 'Git' (0.27 similarity vs 0.75 threshold).",
+      "Missing required must-have skill 'English Communication'. Closest resume skill was 'Git' (0.29 similarity vs 0.75 threshold).",
       "Experience deficit: candidate has 0.2 years vs 2.0 years required.",
       "Candidate is 1 level below target seniority (entry vs junior).",
       "Candidate degree does not directly match specification; awarded baseline partial credit per non-fatal policy.",
@@ -96,15 +95,8 @@
         "score": 0.0
       },
       {
-        "req": "Must-Have: Communication Skills (TECHNICAL)",
-        "evidence": "Missing required must-have skill 'Communication Skills'. Closest resume skill was 'RESTful APIs' (0.22 similarity vs 0.75 threshold).",
-        "conf": "0.0 pts",
-        "dimension": "TECHNICAL",
-        "score": 0.0
-      },
-      {
-        "req": "Must-Have: Time Management (TECHNICAL)",
-        "evidence": "Missing required must-have skill 'Time Management'. Closest resume skill was 'Git' (0.27 similarity vs 0.75 threshold).",
+        "req": "Must-Have: English Communication (TECHNICAL)",
+        "evidence": "Missing required must-have skill 'English Communication'. Closest resume skill was 'Git' (0.29 similarity vs 0.75 threshold).",
         "conf": "0.0 pts",
         "dimension": "TECHNICAL",
         "score": 0.0
@@ -167,19 +159,11 @@
       },
       {
         "dimension": "technical",
-        "requirement": "Must-Have: Communication Skills",
+        "requirement": "Must-Have: English Communication",
         "evidence": "No direct textual grounding found in resume.",
         "is_verified": false,
         "score_contribution": 0.0,
-        "gap": "Missing required must-have skill 'Communication Skills'. Closest resume skill was 'RESTful APIs' (0.22 similarity vs 0.75 threshold)."
-      },
-      {
-        "dimension": "technical",
-        "requirement": "Must-Have: Time Management",
-        "evidence": "No direct textual grounding found in resume.",
-        "is_verified": false,
-        "score_contribution": 0.0,
-        "gap": "Missing required must-have skill 'Time Management'. Closest resume skill was 'Git' (0.27 similarity vs 0.75 threshold)."
+        "gap": "Missing required must-have skill 'English Communication'. Closest resume skill was 'Git' (0.29 similarity vs 0.75 threshold)."
       },
       {
         "dimension": "experience",
@@ -227,18 +211,18 @@
     "verificationFlags": [],
     "quarantineStatus": "CLEAN",
     "overqualification": "BALANCED",
-    "screeningReport": "+==================================================================================+\n| HYT ATS CANDIDATE EVALUATION AUDIT REPORT -- AKSHADA_KALE(RESUME)                |\n+==================================================================================+\n\n+----------------------------------------------------------------------------------+\n| [SECTION 1] CANDIDATE AND JOB DETAILS                                            |\n+----------------------------------------------------------------------------------+\n  Target Role:             Personal Assistant (PA) to the Director (Job ID: custom_b2c12969)\n  Screening Timestamp:     2026-10-17T21:43:20.381571\n  Final Decision:          [AUTO_REJECT]\n  Decision Justification:  Candidate did not meet baseline technical requirements: 0.0% technical alignment across all 7 core job competencies. Non-compensatory disqualifier applied.\n\n+----------------------------------------------------------------------------------+\n| [SECTION 2] PIPELINE GATES 0-8: INTEGRITY CHECKS & VERIFICATION                  |\n+----------------------------------------------------------------------------------+\n  Integrity Flags:         NONE (Passed all security checks)\n  Verification Flags:      NONE (Verified profile)\n  Quarantine Status:       CLEAN\n  Overqualification:       BALANCED\n\n+----------------------------------------------------------------------------------+\n| [SECTION 3] RECRUITER ASSESSMENT                                                 |\n+----------------------------------------------------------------------------------+\nGROUNDED RECRUITER ASSESSMENT (Gate 8 Audit):\n  [NOTICE] No explanation generated per Rule 8 (Zero token waste on auto-rejected candidates).\n\n+----------------------------------------------------------------------------------+\n| [SECTION 4] RESUME AND JOB REQUIREMENT EVIDENCE: TOP STRENGTHS & CRITICAL GAPS   |\n+----------------------------------------------------------------------------------+\nTOP STRENGTHS (Cited from Ledger):\n  * Minimum 2.0 years of relevant professional experience\n  * Target role seniority: JUNIOR\n\nCRITICAL GAPS (Identified Gaps):\n  * Missing required must-have skill 'Microsoft Office'. Closest resume skill was 'Git' (0.42 similarity vs 0.75 threshold).\n  * Missing required must-have skill 'Google Workspace'. Closest resume skill was 'GitHub' (0.30 similarity vs 0.75 threshold).\n  * Missing required must-have skill 'Calendar Management'. Closest resume skill was 'MongoDB' (0.18 similarity vs 0.75 threshold).\n  * Missing required must-have skill 'Travel Planning'. Closest resume skill was 'Git' (0.18 similarity vs 0.75 threshold).\n  * Missing required must-have skill 'Executive Support'. Closest resume skill was 'Git' (0.26 similarity vs 0.75 threshold).\n\n+----------------------------------------------------------------------------------+\n| [SECTION 5] SCORE BREAKDOWN AND WEIGHTED CONTRIBUTIONS                           |\n+----------------------------------------------------------------------------------+\n5-DIMENSIONAL DETERMINISTIC SCORECARD (0-100 Scale):\n  1. Technical Alignment (40%):    0.00 / 100  (weighted contrib:  0.00)\n  2. Experience Depth    (30%):    3.12 / 100  (weighted contrib:  0.94)\n  3. Seniority Fit       (20%):   70.00 / 100  (weighted contrib: 14.00)\n  4. Education Baseline  ( 5%):   75.00 / 100  (weighted contrib:  3.75)\n  5. Location & Remote   ( 5%):   70.00 / 100  (weighted contrib:  3.50)\n  -------------------------------------------------------------------------\n  FINAL WEIGHTED SCORE:                   22.19 / 100\n\n+----------------------------------------------------------------------------------+\n| [SECTION 6] EVIDENCE LEDGER -- ALL 11 ENTRIES IN FULL                            |\n+----------------------------------------------------------------------------------+\nMANDATORY EVIDENCE LEDGER (11 Immutable Citation Entries):\n\n  ------------------------------------------------------------------------------\n   1. [UNVERIFIED / GAP] Must-Have: Microsoft Office (TECHNICAL)\n      Gap:      Missing required must-have skill 'Microsoft Office'. Closest resume skill was 'Git' (0.42 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   2. [UNVERIFIED / GAP] Must-Have: Google Workspace (TECHNICAL)\n      Gap:      Missing required must-have skill 'Google Workspace'. Closest resume skill was 'GitHub' (0.30 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   3. [UNVERIFIED / GAP] Must-Have: Calendar Management (TECHNICAL)\n      Gap:      Missing required must-have skill 'Calendar Management'. Closest resume skill was 'MongoDB' (0.18 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   4. [UNVERIFIED / GAP] Must-Have: Travel Planning (TECHNICAL)\n      Gap:      Missing required must-have skill 'Travel Planning'. Closest resume skill was 'Git' (0.18 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   5. [UNVERIFIED / GAP] Must-Have: Executive Support (TECHNICAL)\n      Gap:      Missing required must-have skill 'Executive Support'. Closest resume skill was 'Git' (0.26 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   6. [UNVERIFIED / GAP] Must-Have: Communication Skills (TECHNICAL)\n      Gap:      Missing required must-have skill 'Communication Skills'. Closest resume skill was 'RESTful APIs' (0.22 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   7. [UNVERIFIED / GAP] Must-Have: Time Management (TECHNICAL)\n      Gap:      Missing required must-have skill 'Time Management'. Closest resume skill was 'Git' (0.27 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   8. [VERIFIED] Minimum 2.0 years of relevant professional experience (EXPERIENCE)\n      Evidence: \"Candidate has 0.2 total years across 0 chronological positions.\"\n      Gap:      Experience deficit: candidate has 0.2 years vs 2.0 years required.\n      Score Contribution: 3.1 pts\n  ------------------------------------------------------------------------------\n   9. [VERIFIED] Target role seniority: JUNIOR (SENIORITY)\n      Evidence: \"Candidate evaluated at ENTRY level based on titles and career progression.\"\n      Gap:      Candidate is 1 level below target seniority (entry vs junior).\n      Score Contribution: 70.0 pts\n  ------------------------------------------------------------------------------\n  10. [UNVERIFIED / GAP] Education baseline: Bachelor\u2019s degree in Business Administration, Management, Commerce, Arts, or a related field (EDUCATION)\n      Evidence: \"No degree listed on resume.\"\n      Gap:      Candidate degree does not directly match specification; awarded baseline partial credit per non-fatal policy.\n      Score Contribution: 75.0 pts\n  ------------------------------------------------------------------------------\n  11. [UNVERIFIED / GAP] Location requirement: Office-Based (onsite) (LOCATION)\n      Evidence: \"Candidate location: Not specified\"\n      Gap:      Location mismatch (Unknown vs Office-Based); awarded baseline partial credit.\n      Score Contribution: 70.0 pts\n  ------------------------------------------------------------------------------\n\n+==================================================================================+\n| [SECTION 7] FINAL DECISION                                                       |\n+==================================================================================+\n  Final Decision:          [AUTO_REJECT]\n  Decision Justification:  Candidate did not meet baseline technical requirements: 0.0% technical alignment across all 7 core job competencies. Non-compensatory disqualifier applied.\n+==================================================================================+\n",
+    "screeningReport": "+==================================================================================+\n| HYT ATS CANDIDATE EVALUATION AUDIT REPORT -- AKSHADA_KALE(RESUME)                |\n+==================================================================================+\n\n+----------------------------------------------------------------------------------+\n| [SECTION 1] CANDIDATE AND JOB DETAILS                                            |\n+----------------------------------------------------------------------------------+\n  Target Role:             Personal Assistant (PA) to the Director (Job ID: custom_1b02b4a3)\n  Screening Timestamp:     2026-10-17T22:50:32.310465\n  Final Decision:          [AUTO_REJECT]\n  Decision Justification:  Candidate did not meet baseline technical requirements: 0.0% technical alignment across all 6 core job competencies. Non-compensatory disqualifier applied.\n\n+----------------------------------------------------------------------------------+\n| [SECTION 2] PIPELINE GATES 0-8: INTEGRITY CHECKS & VERIFICATION                  |\n+----------------------------------------------------------------------------------+\n  Integrity Flags:         NONE (Passed all security checks)\n  Verification Flags:      NONE (Verified profile)\n  Quarantine Status:       CLEAN\n  Overqualification:       BALANCED\n\n+----------------------------------------------------------------------------------+\n| [SECTION 3] RECRUITER ASSESSMENT                                                 |\n+----------------------------------------------------------------------------------+\nGROUNDED RECRUITER ASSESSMENT (Gate 8 Audit):\n  [NOTICE] No explanation generated per Rule 8 (Zero token waste on auto-rejected candidates).\n\n+----------------------------------------------------------------------------------+\n| [SECTION 4] RESUME AND JOB REQUIREMENT EVIDENCE: TOP STRENGTHS & CRITICAL GAPS   |\n+----------------------------------------------------------------------------------+\nTOP STRENGTHS (Cited from Ledger):\n  * Minimum 2.0 years of relevant professional experience\n  * Target role seniority: JUNIOR\n\nCRITICAL GAPS (Identified Gaps):\n  * Missing required must-have skill 'Microsoft Office'. Closest resume skill was 'Git' (0.42 similarity vs 0.75 threshold).\n  * Missing required must-have skill 'Google Workspace'. Closest resume skill was 'GitHub' (0.30 similarity vs 0.75 threshold).\n  * Missing required must-have skill 'Calendar Management'. Closest resume skill was 'MongoDB' (0.18 similarity vs 0.75 threshold).\n  * Missing required must-have skill 'Travel Planning'. Closest resume skill was 'Git' (0.18 similarity vs 0.75 threshold).\n  * Missing required must-have skill 'Executive Support'. Closest resume skill was 'Git' (0.26 similarity vs 0.75 threshold).\n\n+----------------------------------------------------------------------------------+\n| [SECTION 5] SCORE BREAKDOWN AND WEIGHTED CONTRIBUTIONS                           |\n+----------------------------------------------------------------------------------+\n5-DIMENSIONAL DETERMINISTIC SCORECARD (0-100 Scale):\n  1. Technical Alignment (40%):    0.00 / 100  (weighted contrib:  0.00)\n  2. Experience Depth    (30%):    3.12 / 100  (weighted contrib:  0.94)\n  3. Seniority Fit       (20%):   70.00 / 100  (weighted contrib: 14.00)\n  4. Education Baseline  ( 5%):   75.00 / 100  (weighted contrib:  3.75)\n  5. Location & Remote   ( 5%):   70.00 / 100  (weighted contrib:  3.50)\n  -------------------------------------------------------------------------\n  FINAL WEIGHTED SCORE:                   22.19 / 100\n\n+----------------------------------------------------------------------------------+\n| [SECTION 6] EVIDENCE LEDGER -- ALL 10 ENTRIES IN FULL                            |\n+----------------------------------------------------------------------------------+\nMANDATORY EVIDENCE LEDGER (10 Immutable Citation Entries):\n\n  ------------------------------------------------------------------------------\n   1. [UNVERIFIED / GAP] Must-Have: Microsoft Office (TECHNICAL)\n      Gap:      Missing required must-have skill 'Microsoft Office'. Closest resume skill was 'Git' (0.42 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   2. [UNVERIFIED / GAP] Must-Have: Google Workspace (TECHNICAL)\n      Gap:      Missing required must-have skill 'Google Workspace'. Closest resume skill was 'GitHub' (0.30 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   3. [UNVERIFIED / GAP] Must-Have: Calendar Management (TECHNICAL)\n      Gap:      Missing required must-have skill 'Calendar Management'. Closest resume skill was 'MongoDB' (0.18 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   4. [UNVERIFIED / GAP] Must-Have: Travel Planning (TECHNICAL)\n      Gap:      Missing required must-have skill 'Travel Planning'. Closest resume skill was 'Git' (0.18 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   5. [UNVERIFIED / GAP] Must-Have: Executive Support (TECHNICAL)\n      Gap:      Missing required must-have skill 'Executive Support'. Closest resume skill was 'Git' (0.26 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   6. [UNVERIFIED / GAP] Must-Have: English Communication (TECHNICAL)\n      Gap:      Missing required must-have skill 'English Communication'. Closest resume skill was 'Git' (0.29 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   7. [VERIFIED] Minimum 2.0 years of relevant professional experience (EXPERIENCE)\n      Evidence: \"Candidate has 0.2 total years across 0 chronological positions.\"\n      Gap:      Experience deficit: candidate has 0.2 years vs 2.0 years required.\n      Score Contribution: 3.1 pts\n  ------------------------------------------------------------------------------\n   8. [VERIFIED] Target role seniority: JUNIOR (SENIORITY)\n      Evidence: \"Candidate evaluated at ENTRY level based on titles and career progression.\"\n      Gap:      Candidate is 1 level below target seniority (entry vs junior).\n      Score Contribution: 70.0 pts\n  ------------------------------------------------------------------------------\n   9. [UNVERIFIED / GAP] Education baseline: Bachelor\u2019s degree in Business Administration, Management, Commerce, Arts, or a related field (EDUCATION)\n      Evidence: \"No degree listed on resume.\"\n      Gap:      Candidate degree does not directly match specification; awarded baseline partial credit per non-fatal policy.\n      Score Contribution: 75.0 pts\n  ------------------------------------------------------------------------------\n  10. [UNVERIFIED / GAP] Location requirement: Office-Based (onsite) (LOCATION)\n      Evidence: \"Candidate location: Not specified\"\n      Gap:      Location mismatch (Unknown vs Office-Based); awarded baseline partial credit.\n      Score Contribution: 70.0 pts\n  ------------------------------------------------------------------------------\n\n+==================================================================================+\n| [SECTION 7] FINAL DECISION                                                       |\n+==================================================================================+\n  Final Decision:          [AUTO_REJECT]\n  Decision Justification:  Candidate did not meet baseline technical requirements: 0.0% technical alignment across all 6 core job competencies. Non-compensatory disqualifier applied.\n+==================================================================================+\n",
     "recruiterNotes": "",
     "timeline": [
       {
         "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026, 09:43 PM",
+        "timestamp": "Oct 17, 2026, 10:50 PM",
         "status": "completed",
         "note": "Application received with resume (Akshada_Kale(Resume).pdf)."
       },
       {
         "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026, 09:43 PM",
+        "timestamp": "Oct 17, 2026, 10:50 PM",
         "status": "completed",
         "note": "Deterministic Gates 0-8 executed: Score 22.2/100. AI Recommendation: REJECTED."
       },
@@ -253,212 +237,6 @@
         "timestamp": "Oct 17, 2026",
         "status": "completed",
         "note": "Application closed. Role technical requirements not met."
-      }
-    ]
-  },
-  {
-    "id": "APP-cust-43E22026",
-    "jobId": "custom_89139039",
-    "job_id": "custom_89139039",
-    "jobTitle": "Cloud DevOps Engineer",
-    "company": "HuntYourTribe Tech",
-    "candidateId": "kavya_reddy",
-    "candidate_id": "kavya_reddy",
-    "candidateName": "Kavya Reddy",
-    "candidateDegree": "B.Tech (2022 - 2026)",
-    "candidateEmail": "kavya.reddy@example.com",
-    "candidatePhone": "+91 98765 43210",
-    "candidateLocation": "Pune, India",
-    "resumeFile": "10089434.pdf",
-    "resume_file": "10089434.pdf",
-    "appliedDate": "Oct 17, 2026",
-    "aiRecommendation": "HR_REVIEW",
-    "ai_recommendation": "HR_REVIEW",
-    "decision": "HR_REVIEW",
-    "finalStatus": "Shortlisted",
-    "final_status": "Shortlisted",
-    "status": "Shortlisted",
-    "statusLabel": "Shortlisted",
-    "fitScore": 64.0,
-    "fit_score": 64.0,
-    "decisionReason": "Deterministic Gates 0-8 executed: Score 64.0/100 (Ambiguous fit. Human judgment required.). Flagged for recruiter review.",
-    "decision_reason": "Deterministic Gates 0-8 executed: Score 64.0/100 (Ambiguous fit. Human judgment required.). Flagged for recruiter review.",
-    "matchedSkills": [
-      "AWS",
-      "Minimum 5.0 years of relevant professional experience",
-      "Target role seniority: SENIOR"
-    ],
-    "missingSkills": [
-      "Missing required must-have skill 'Docker'. Closest resume skill was 'Linux' (0.27 similarity vs 0.75 threshold).",
-      "Missing required must-have skill 'Kubernetes'. Closest resume skill was 'Microsoft Azure' (0.24 similarity vs 0.75 threshold).",
-      "Missing required must-have skill 'CI/CD'. Closest resume skill was 'SCCM' (0.33 similarity vs 0.75 threshold).",
-      "Candidate is 1 level below target seniority (mid vs senior)."
-    ],
-    "matchedRequirements": [
-      {
-        "req": "Must-Have: AWS (TECHNICAL)",
-        "evidence": "Creating and managing virtual machines for systems such as domain controllers and Active Directory Federation Services (ADFS) in Microsoft Windows Azure (IaaS).",
-        "conf": "100.0 pts",
-        "dimension": "TECHNICAL",
-        "score": 100.0
-      },
-      {
-        "req": "Minimum 5.0 years of relevant professional experience (EXPERIENCE)",
-        "evidence": "Candidate has 18.0 total years across 0 chronological positions.",
-        "conf": "100.0 pts",
-        "dimension": "EXPERIENCE",
-        "score": 100.0
-      },
-      {
-        "req": "Target role seniority: SENIOR (SENIORITY)",
-        "evidence": "Candidate evaluated at MID level based on titles and career progression.",
-        "conf": "70.0 pts",
-        "dimension": "SENIORITY",
-        "score": 70.0
-      }
-    ],
-    "missingRequirements": [
-      {
-        "req": "Must-Have: Docker (TECHNICAL)",
-        "evidence": "Missing required must-have skill 'Docker'. Closest resume skill was 'Linux' (0.27 similarity vs 0.75 threshold).",
-        "conf": "0.0 pts",
-        "dimension": "TECHNICAL",
-        "score": 0.0
-      },
-      {
-        "req": "Must-Have: Kubernetes (TECHNICAL)",
-        "evidence": "Missing required must-have skill 'Kubernetes'. Closest resume skill was 'Microsoft Azure' (0.24 similarity vs 0.75 threshold).",
-        "conf": "0.0 pts",
-        "dimension": "TECHNICAL",
-        "score": 0.0
-      },
-      {
-        "req": "Must-Have: CI/CD (TECHNICAL)",
-        "evidence": "Missing required must-have skill 'CI/CD'. Closest resume skill was 'SCCM' (0.33 similarity vs 0.75 threshold).",
-        "conf": "0.0 pts",
-        "dimension": "TECHNICAL",
-        "score": 0.0
-      },
-      {
-        "req": "Education baseline: Not specified (EDUCATION)",
-        "evidence": "Missing required skill/qualification in resume.",
-        "conf": "100.0 pts",
-        "dimension": "EDUCATION",
-        "score": 100.0
-      },
-      {
-        "req": "Location requirement: Not specified (remote) (LOCATION)",
-        "evidence": "Missing required skill/qualification in resume.",
-        "conf": "100.0 pts",
-        "dimension": "LOCATION",
-        "score": 100.0
-      }
-    ],
-    "evidenceLedger": [
-      {
-        "dimension": "technical",
-        "requirement": "Must-Have: AWS",
-        "evidence": "Creating and managing virtual machines for systems such as domain controllers and Active Directory Federation Services (ADFS) in Microsoft Windows Azure (IaaS).",
-        "is_verified": true,
-        "score_contribution": 100.0,
-        "gap": "None"
-      },
-      {
-        "dimension": "technical",
-        "requirement": "Must-Have: Docker",
-        "evidence": "No direct textual grounding found in resume.",
-        "is_verified": false,
-        "score_contribution": 0.0,
-        "gap": "Missing required must-have skill 'Docker'. Closest resume skill was 'Linux' (0.27 similarity vs 0.75 threshold)."
-      },
-      {
-        "dimension": "technical",
-        "requirement": "Must-Have: Kubernetes",
-        "evidence": "No direct textual grounding found in resume.",
-        "is_verified": false,
-        "score_contribution": 0.0,
-        "gap": "Missing required must-have skill 'Kubernetes'. Closest resume skill was 'Microsoft Azure' (0.24 similarity vs 0.75 threshold)."
-      },
-      {
-        "dimension": "technical",
-        "requirement": "Must-Have: CI/CD",
-        "evidence": "No direct textual grounding found in resume.",
-        "is_verified": false,
-        "score_contribution": 0.0,
-        "gap": "Missing required must-have skill 'CI/CD'. Closest resume skill was 'SCCM' (0.33 similarity vs 0.75 threshold)."
-      },
-      {
-        "dimension": "experience",
-        "requirement": "Minimum 5.0 years of relevant professional experience",
-        "evidence": "Candidate has 18.0 total years across 0 chronological positions.",
-        "is_verified": true,
-        "score_contribution": 100.0,
-        "gap": "None"
-      },
-      {
-        "dimension": "seniority",
-        "requirement": "Target role seniority: SENIOR",
-        "evidence": "Candidate evaluated at MID level based on titles and career progression.",
-        "is_verified": true,
-        "score_contribution": 70.0,
-        "gap": "Candidate is 1 level below target seniority (mid vs senior)."
-      },
-      {
-        "dimension": "education",
-        "requirement": "Education baseline: Not specified",
-        "evidence": "No degree listed on resume.",
-        "is_verified": false,
-        "score_contribution": 100.0,
-        "gap": "None"
-      },
-      {
-        "dimension": "location",
-        "requirement": "Location requirement: Not specified (remote)",
-        "evidence": "Candidate location: Not specified",
-        "is_verified": false,
-        "score_contribution": 100.0,
-        "gap": "None"
-      }
-    ],
-    "breakdown": {
-      "technical": 25.0,
-      "experience": 100.0,
-      "seniority": 70.0,
-      "education": 100.0,
-      "location": 100.0,
-      "weightedTotal": 64.0,
-      "weighted_total": 64.0
-    },
-    "integrityFlags": [],
-    "verificationFlags": [],
-    "quarantineStatus": "CLEAN",
-    "overqualification": "BALANCED",
-    "screeningReport": "+==================================================================================+\n| HYT ATS CANDIDATE EVALUATION AUDIT REPORT -- 10089434                            |\n+==================================================================================+\n\n+----------------------------------------------------------------------------------+\n| [SECTION 1] CANDIDATE AND JOB DETAILS                                            |\n+----------------------------------------------------------------------------------+\n  Target Role:             Cloud DevOps Engineer (Job ID: custom_89139039)\n  Screening Timestamp:     2026-10-17T21:33:04.121588\n  Final Decision:          [ESCALATE]\n  Decision Justification:  Ambiguous fit. Human judgment required.\n\n+----------------------------------------------------------------------------------+\n| [SECTION 2] PIPELINE GATES 0-8: INTEGRITY CHECKS & VERIFICATION                  |\n+----------------------------------------------------------------------------------+\n  Integrity Flags:         NONE (Passed all security checks)\n  Verification Flags:      NONE (Verified profile)\n  Quarantine Status:       CLEAN\n  Overqualification:       BALANCED\n\n+----------------------------------------------------------------------------------+\n| [SECTION 3] RECRUITER ASSESSMENT                                                 |\n+----------------------------------------------------------------------------------+\nGROUNDED RECRUITER ASSESSMENT (Gate 8 Audit):\n  [1. STRENGTHS] The candidate demonstrates verified strengths in AWS and possesses 18.0 total years of professional experience, though they are currently evaluated at a MID level rather than the required SENIOR seniority.\n  [2. GAPS]      Critical gaps exist for the mandatory must-have skills of Docker, Kubernetes, and CI/CD, with the closest resume matches being Linux, Microsoft Azure, and SCCM respectively.\n  [3. INTERVIEW] The technical interview should focus on live coding or system design questions to assess the candidate's ability to implement containerization and CI/CD pipelines, specifically addressing the absence of Docker and Kubernetes experience.\n\n+----------------------------------------------------------------------------------+\n| [SECTION 4] RESUME AND JOB REQUIREMENT EVIDENCE: TOP STRENGTHS & CRITICAL GAPS   |\n+----------------------------------------------------------------------------------+\nTOP STRENGTHS (Cited from Ledger):\n  * AWS\n  * Minimum 5.0 years of relevant professional experience\n  * Target role seniority: SENIOR\n\nCRITICAL GAPS (Identified Gaps):\n  * Missing required must-have skill 'Docker'. Closest resume skill was 'Linux' (0.27 similarity vs 0.75 threshold).\n  * Missing required must-have skill 'Kubernetes'. Closest resume skill was 'Microsoft Azure' (0.24 similarity vs 0.75 threshold).\n  * Missing required must-have skill 'CI/CD'. Closest resume skill was 'SCCM' (0.33 similarity vs 0.75 threshold).\n  * Candidate is 1 level below target seniority (mid vs senior).\n\n+----------------------------------------------------------------------------------+\n| [SECTION 5] SCORE BREAKDOWN AND WEIGHTED CONTRIBUTIONS                           |\n+----------------------------------------------------------------------------------+\n5-DIMENSIONAL DETERMINISTIC SCORECARD (0-100 Scale):\n  1. Technical Alignment (40%):   25.00 / 100  (weighted contrib: 10.00)\n  2. Experience Depth    (30%):  100.00 / 100  (weighted contrib: 30.00)\n  3. Seniority Fit       (20%):   70.00 / 100  (weighted contrib: 14.00)\n  4. Education Baseline  ( 5%):  100.00 / 100  (weighted contrib:  5.00)\n  5. Location & Remote   ( 5%):  100.00 / 100  (weighted contrib:  5.00)\n  -------------------------------------------------------------------------\n  FINAL WEIGHTED SCORE:                   64.00 / 100\n\n+----------------------------------------------------------------------------------+\n| [SECTION 6] EVIDENCE LEDGER -- ALL 8 ENTRIES IN FULL                             |\n+----------------------------------------------------------------------------------+\nMANDATORY EVIDENCE LEDGER (8 Immutable Citation Entries):\n\n  ------------------------------------------------------------------------------\n   1. [VERIFIED] Must-Have: AWS (TECHNICAL)\n      Evidence: \"Creating and managing virtual machines for systems such as domain controllers and Active Directory Federation Services (ADFS) in Microsoft Windows Azure (IaaS).\"\n      Score Contribution: 100.0 pts\n  ------------------------------------------------------------------------------\n   2. [UNVERIFIED / GAP] Must-Have: Docker (TECHNICAL)\n      Gap:      Missing required must-have skill 'Docker'. Closest resume skill was 'Linux' (0.27 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   3. [UNVERIFIED / GAP] Must-Have: Kubernetes (TECHNICAL)\n      Gap:      Missing required must-have skill 'Kubernetes'. Closest resume skill was 'Microsoft Azure' (0.24 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   4. [UNVERIFIED / GAP] Must-Have: CI/CD (TECHNICAL)\n      Gap:      Missing required must-have skill 'CI/CD'. Closest resume skill was 'SCCM' (0.33 similarity vs 0.75 threshold).\n      Score Contribution: 0.0 pts\n  ------------------------------------------------------------------------------\n   5. [VERIFIED] Minimum 5.0 years of relevant professional experience (EXPERIENCE)\n      Evidence: \"Candidate has 18.0 total years across 0 chronological positions.\"\n      Score Contribution: 100.0 pts\n  ------------------------------------------------------------------------------\n   6. [VERIFIED] Target role seniority: SENIOR (SENIORITY)\n      Evidence: \"Candidate evaluated at MID level based on titles and career progression.\"\n      Gap:      Candidate is 1 level below target seniority (mid vs senior).\n      Score Contribution: 70.0 pts\n  ------------------------------------------------------------------------------\n   7. [UNVERIFIED / GAP] Education baseline: Not specified (EDUCATION)\n      Evidence: \"No degree listed on resume.\"\n      Score Contribution: 100.0 pts\n  ------------------------------------------------------------------------------\n   8. [UNVERIFIED / GAP] Location requirement: Not specified (remote) (LOCATION)\n      Evidence: \"Candidate location: Not specified\"\n      Score Contribution: 100.0 pts\n  ------------------------------------------------------------------------------\n\n+==================================================================================+\n| [SECTION 7] FINAL DECISION                                                       |\n+==================================================================================+\n  Final Decision:          [ESCALATE]\n  Decision Justification:  Ambiguous fit. Human judgment required.\n+==================================================================================+\n",
-    "recruiterNotes": "Strong background in cloud infrastructure, container orchestration, and continuous deployment.",
-    "timeline": [
-      {
-        "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026, 09:33 PM",
-        "status": "completed",
-        "note": "Application received with resume (10089434.pdf)."
-      },
-      {
-        "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026, 09:33 PM",
-        "status": "completed",
-        "note": "Deterministic Gates 0-8 executed: Score 64.0/100. AI Recommendation: HR_REVIEW."
-      },
-      {
-        "title": "Under Human Review",
-        "timestamp": "In Progress",
-        "status": "active",
-        "note": "Recruiter is evaluating transferable portfolio."
-      },
-      {
-        "title": "Final Decision",
-        "timestamp": "Oct 17, 2026, 09:33 PM",
-        "status": "completed",
-        "note": "Recruiter Rohan (HR) set status to Shortlisted: Exceptional hands-on AWS and Linux expertise verified in portfolio interview."
       }
     ]
   },
@@ -771,80 +549,6 @@
         "timestamp": "Pending",
         "status": "pending",
         "note": "Awaiting recruiter portfolio review and interview scheduling."
-      }
-    ]
-  },
-  {
-    "id": "APP-cust-62F1F7",
-    "jobId": "custom_224188",
-    "job_id": "custom_224188",
-    "jobTitle": "Chef / Cook",
-    "company": "TechCorp",
-    "candidateId": "aksada",
-    "candidate_id": "aksada",
-    "candidateName": "Akshada Kale",
-    "candidateDegree": "B.Tech (2022 - 2026)",
-    "candidateEmail": "akshada@example.com",
-    "candidatePhone": "+91 98765 43210",
-    "candidateLocation": "Pune, India",
-    "resumeFile": "aksada.pdf",
-    "resume_file": "aksada.pdf",
-    "appliedDate": "Oct 17, 2026",
-    "aiRecommendation": "REJECTED",
-    "ai_recommendation": "REJECTED",
-    "decision": "REJECTED",
-    "finalStatus": "Rejected",
-    "final_status": "Rejected",
-    "status": "Rejected",
-    "statusLabel": "Rejected",
-    "fitScore": 22.2,
-    "fit_score": 22.2,
-    "decisionReason": "Score 22.2/100: Missing all essential culinary domain qualifications.",
-    "decision_reason": "Score 22.2/100: Missing all essential culinary domain qualifications.",
-    "matchedSkills": [
-      "Food Preparation",
-      "Hygiene"
-    ],
-    "missingSkills": [
-      "Culinary Management",
-      "Inventory",
-      "Menu Planning",
-      "Sous Chef Experience"
-    ],
-    "matchedRequirements": [],
-    "missingRequirements": [],
-    "evidenceLedger": [],
-    "breakdown": {},
-    "integrityFlags": [],
-    "verificationFlags": [],
-    "quarantineStatus": "CLEAN",
-    "overqualification": "BALANCED",
-    "screeningReport": "",
-    "recruiterNotes": "Interested in role.",
-    "timeline": [
-      {
-        "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026",
-        "status": "completed",
-        "note": "Application received and registered."
-      },
-      {
-        "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026",
-        "status": "completed",
-        "note": "Screening evaluation complete. AI Recommendation: REJECTED."
-      },
-      {
-        "title": "Under Human Review",
-        "timestamp": "Oct 17, 2026",
-        "status": "completed",
-        "note": "Human recruiter evaluated portfolio."
-      },
-      {
-        "title": "Final Decision",
-        "timestamp": "Oct 17, 2026",
-        "status": "completed",
-        "note": "Final Application Status: Rejected"
       }
     ]
   },
@@ -1464,72 +1168,6 @@
         "timestamp": "Oct 17, 2026",
         "status": "pending",
         "note": "Final Application Status: Under Review"
-      }
-    ]
-  },
-  {
-    "id": "APP-cust-87C526",
-    "jobId": "custom_224188",
-    "job_id": "custom_224188",
-    "jobTitle": "Chef / Cook",
-    "company": "TechCorp",
-    "candidateId": "riya_sharma",
-    "candidate_id": "riya_sharma",
-    "candidateName": "Riya Sharma",
-    "candidateDegree": "4.5 yrs - Professional",
-    "candidateEmail": "riya.sharma@example.com",
-    "candidatePhone": "+91 98200 12345",
-    "candidateLocation": "Not specified",
-    "resumeFile": "aksada.pdf",
-    "resume_file": "aksada.pdf",
-    "appliedDate": "Oct 17, 2026",
-    "aiRecommendation": "HR_REVIEW",
-    "ai_recommendation": "HR_REVIEW",
-    "decision": "HR_REVIEW",
-    "finalStatus": "Rejected",
-    "final_status": "Rejected",
-    "status": "Rejected",
-    "statusLabel": "Rejected",
-    "fitScore": 22.2,
-    "fit_score": 22.2,
-    "decisionReason": "Evaluated by Gates 0-8: Score 22.2/100",
-    "decision_reason": "Evaluated by Gates 0-8: Score 22.2/100",
-    "matchedSkills": [],
-    "missingSkills": [],
-    "matchedRequirements": [],
-    "missingRequirements": [],
-    "evidenceLedger": [],
-    "breakdown": {},
-    "integrityFlags": [],
-    "verificationFlags": [],
-    "quarantineStatus": "CLEAN",
-    "overqualification": "BALANCED",
-    "screeningReport": null,
-    "recruiterNotes": null,
-    "timeline": [
-      {
-        "title": "Application Submitted",
-        "timestamp": "Oct 17, 2026",
-        "status": "completed",
-        "note": "Application received and registered."
-      },
-      {
-        "title": "Resume Screening (AI)",
-        "timestamp": "Oct 17, 2026",
-        "status": "completed",
-        "note": "Screening evaluation complete. AI Recommendation: HR_REVIEW."
-      },
-      {
-        "title": "Under Human Review",
-        "timestamp": "Oct 17, 2026",
-        "status": "completed",
-        "note": "Human recruiter evaluated portfolio."
-      },
-      {
-        "title": "Final Decision",
-        "timestamp": "Oct 17, 2026",
-        "status": "completed",
-        "note": "Final Application Status: Rejected"
       }
     ]
   },

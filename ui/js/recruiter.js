@@ -859,18 +859,18 @@ const RecruiterView = {
       </div>
 
       <!-- Applicants Table with Strict Separation of AI Decision and Final Status -->
-      <div class="table-wrapper" style="margin-bottom: 28px; border: 1px solid var(--border); border-radius: 12px; background: white; box-shadow: var(--shadow-sm);">
-        <table class="data-table" id="recruiterApplicantsTable">
+      <div class="table-wrapper" style="margin-bottom: 28px; border: 1px solid var(--border); border-radius: 12px; background: white; box-shadow: var(--shadow-sm); overflow-x: auto;">
+        <table class="data-table" id="recruiterApplicantsTable" style="min-width: 1050px; width: 100%;">
           <thead>
             <tr>
-              <th style="width: 40px;">#</th>
-              <th>Candidate</th>
-              <th>Fit Score</th>
-              <th>AI Recommendation</th>
-              <th>Final Application Status</th>
-              <th>Criteria Match</th>
-              <th>Applied On</th>
-              <th style="text-align: right;">Action</th>
+              <th style="width: 48px; text-align: center;">#</th>
+              <th style="min-width: 250px; width: 260px;">Candidate</th>
+              <th style="min-width: 110px; width: 110px; white-space: nowrap;">Fit Score</th>
+              <th style="min-width: 160px; width: 160px; white-space: nowrap;">AI Recommendation</th>
+              <th style="min-width: 180px; width: 180px; white-space: nowrap;">Final Application Status</th>
+              <th style="min-width: 120px; width: 120px; white-space: nowrap;">Criteria Match</th>
+              <th style="min-width: 110px; width: 120px; white-space: nowrap;">Applied On</th>
+              <th style="min-width: 140px; text-align: right; white-space: nowrap;">Action</th>
             </tr>
           </thead>
           <tbody id="applicantTableBody">
@@ -895,44 +895,44 @@ const RecruiterView = {
 
               return `
                 <tr class="applicant-row" data-name="${cand.name.toLowerCase()}" data-skills="${(cand.matchedSkills || []).join(' ').toLowerCase()}" data-degree="${(cand.degree || '').toLowerCase()}" data-id="${cand.id}" data-score="${scoreVal}" data-ai="${aiRec}" data-status="${finalSt}">
-                  <td style="color: #64748B; font-weight: 600;">${idx + 1}</td>
-                  <td>
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                      <div class="avatar-circle avatar-candidate" style="width: 36px; height: 36px; font-size: 14px; font-weight: 700; background: #EEF2FF; color: #4F46E5;">
+                  <td style="color: #64748B; font-weight: 600; text-align: center;">${idx + 1}</td>
+                  <td style="min-width: 250px;">
+                    <div style="display: flex; align-items: center; gap: 12px; min-width: 220px;">
+                      <div class="avatar-circle avatar-candidate" style="width: 38px; height: 38px; min-width: 38px; font-size: 14px; font-weight: 700; background: #EEF2FF; color: #4F46E5; flex-shrink: 0;">
                         ${cand.name.charAt(0)}
                       </div>
-                      <div>
-                        <div style="font-weight: 700; color: #111827; font-size: 14px;">${cand.name}</div>
-                        <div style="font-size: 12px; color: #64748B;">${cand.degree || 'Degree'} • ${cand.location || 'Pune, India'}</div>
+                      <div style="min-width: 0;">
+                        <div style="font-weight: 700; color: #111827; font-size: 14px; white-space: nowrap;">${cand.name}</div>
+                        <div style="font-size: 12px; color: #64748B; white-space: nowrap;">${cand.degree || 'Degree'} • ${cand.location || 'Pune, India'}</div>
                       </div>
                     </div>
                   </td>
-                  <td>
-                    <div style="display: flex; align-items: center; gap: 8px;">
+                  <td style="min-width: 110px; white-space: nowrap;">
+                    <div style="display: inline-flex; align-items: baseline; gap: 6px; white-space: nowrap;">
                       <strong style="color: ${scoreColor}; font-size: 16px; font-family: var(--font-mono);">${cand.fitScore}</strong>
-                      <span style="font-size: 11px; color: #94A3B8;">/100</span>
+                      <span style="font-size: 12px; color: #94A3B8;">/ 100</span>
                     </div>
                   </td>
-                  <td>
-                    <span class="badge ${aiBadgeClass}" style="font-weight: 700; font-family: var(--font-mono); font-size: 11px;">
+                  <td style="min-width: 160px; white-space: nowrap;">
+                    <span class="badge ${aiBadgeClass}" style="font-weight: 700; font-family: var(--font-mono); font-size: 11px; white-space: nowrap;">
                       ${aiRec}
                     </span>
                   </td>
-                  <td>
-                    <div style="display: flex; flex-direction: column; gap: 3px; align-items: flex-start;">
-                      <span class="badge ${finalBadgeClass}" style="font-weight: 700; font-size: 12px;">
+                  <td style="min-width: 180px; white-space: nowrap;">
+                    <div style="display: flex; flex-direction: column; gap: 4px; align-items: flex-start;">
+                      <span class="badge ${finalBadgeClass}" style="font-weight: 700; font-size: 12px; white-space: nowrap;">
                         ${finalSt}
                       </span>
                       ${isOverridden ? `
-                        <span style="font-size: 10px; font-weight: 700; color: #4338CA; background: #EEF2FF; padding: 2px 6px; border-radius: 4px; border: 1px solid #C7D2FE;" title="Overridden by recruiter: ${cand.overrideReason || ''}">
+                        <span style="font-size: 10px; font-weight: 700; color: #4338CA; background: #EEF2FF; padding: 2px 6px; border-radius: 4px; border: 1px solid #C7D2FE; white-space: nowrap;" title="Overridden by recruiter: ${cand.overrideReason || ''}">
                           Overridden by Recruiter
                         </span>
                       ` : ''}
                     </div>
                   </td>
-                  <td style="color: #475569; font-weight: 600; font-size: 13px;">${cand.skillsMatch || 'N/A'}</td>
-                  <td style="color: #64748B; font-size: 13px;">${cand.appliedDate || 'Oct 17, 2026'}</td>
-                  <td style="text-align: right; white-space: nowrap;">
+                  <td style="color: #475569; font-weight: 600; font-size: 13px; white-space: nowrap;">${cand.skillsMatch || 'N/A'}</td>
+                  <td style="color: #64748B; font-size: 13px; white-space: nowrap;">${cand.appliedDate || 'Oct 17, 2026'}</td>
+                  <td style="text-align: right; white-space: nowrap; min-width: 140px;">
                     <div style="display: flex; gap: 6px; justify-content: flex-end;">
                       <button class="btn btn-outline btn-sm" onclick="App.openPdfModal('${cand.resumeFile || '10089434.pdf'}', 'Resume PDF: ${cand.name}')">
                         ${Icons.fileText(14)} PDF

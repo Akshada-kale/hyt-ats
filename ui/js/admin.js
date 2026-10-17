@@ -1009,7 +1009,7 @@ ${cand.assessment?.gaps || 'No hard deficits detected.'}
                 <td><strong>${l.actor}</strong></td>
                 <td>${l.action}</td>
                 <td style="color: #64748B;">${l.target}</td>
-                <td><span class="badge badge-info">${l.status}</span></td>
+                <td style="min-width: 200px;"><span class="badge badge-info audit-status-badge">${l.status}</span></td>
               </tr>
             `).join('')}
           </tbody>
@@ -1279,7 +1279,7 @@ ${cand.assessment?.gaps || 'No hard deficits detected.'}
                   <td><strong>${l.actor}</strong></td>
                   <td>${l.action}</td>
                   <td style="color: #64748B;">${l.target}</td>
-                  <td><span class="badge badge-info">${l.status}</span></td>
+                  <td style="min-width: 200px;"><span class="badge badge-info audit-status-badge">${l.status}</span></td>
                 </tr>
               `).join('')}
             </tbody>

@@ -25,8 +25,8 @@ from typing import Dict, List, Optional, Any, Tuple
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 DATA_DIR = PROJECT_ROOT / "data"
 JDS_DIR = DATA_DIR / "jds"
-RESUMES_DIR = DATA_DIR / "resumes"
 RESUME_DIR = DATA_DIR / "resume"
+RESUMES_DIR = RESUME_DIR  # Standardized alias pointing strictly to data/resume
 LOGS_DIR = PROJECT_ROOT / "logs"
 DB_PATH = DATA_DIR / "ats.db"
 APPLICATIONS_FILE = DATA_DIR / "applications.json"
@@ -34,7 +34,6 @@ OVERRIDES_FILE = LOGS_DIR / "overrides.jsonl"
 
 # Ensure directories exist
 DATA_DIR.mkdir(parents=True, exist_ok=True)
-RESUMES_DIR.mkdir(parents=True, exist_ok=True)
 RESUME_DIR.mkdir(parents=True, exist_ok=True)
 JDS_DIR.mkdir(parents=True, exist_ok=True)
 LOGS_DIR.mkdir(parents=True, exist_ok=True)
@@ -647,23 +646,16 @@ class ATSDatabase:
     @staticmethod
     def save_stored_resume(candidate_id: str, filename: str, file_bytes: bytes, extracted_text: str = "", metadata: dict = None) -> str:
         """
-        Saves candidate uploaded resume into permanent data/resume/<filename> and data/resumes/<filename>
+        Saves candidate uploaded resume into permanent data/resume/<filename>
         and creates companion JSON metadata matching the exact structure of data/jds/!
         """
         import hashlib
-        RESUMES_DIR.mkdir(parents=True, exist_ok=True)
         RESUME_DIR.mkdir(parents=True, exist_ok=True)
         safe_name = Path(filename).name
-        target_path = RESUMES_DIR / safe_name
-        target_path_singular = RESUME_DIR / safe_name
+        target_path = RESUME_DIR / safe_name
         
         with open(target_path, "wb") as f:
             f.write(file_bytes)
-        try:
-            with open(target_path_singular, "wb") as sf:
-                sf.write(file_bytes)
-        except Exception as e:
-            print(f"Warning writing to data/resume: {e}")
 
         sha = hashlib.sha256(file_bytes).hexdigest()
         size_str = f"{max(len(file_bytes)//1024, 1)} KB"
@@ -688,14 +680,9 @@ class ATSDatabase:
         }
 
         stem = Path(safe_name).stem
-        json_path = RESUMES_DIR / f"resume_{stem}.json"
+        json_path = RESUME_DIR / f"resume_{stem}.json"
         with open(json_path, "w", encoding="utf-8") as jf:
             json.dump(companion_data, jf, indent=2)
-        try:
-            with open(RESUME_DIR / f"resume_{stem}.json", "w", encoding="utf-8") as sjf:
-                json.dump(companion_data, sjf, indent=2)
-        except Exception:
-            pass
 
         # Update SQLite table
         conn = get_db_connection()

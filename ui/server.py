@@ -35,13 +35,12 @@ if str(PROJECT_ROOT) not in sys.path:
 UI_DIR = Path(__file__).resolve().parent
 DATA_DIR = PROJECT_ROOT / "data"
 JDS_DIR = DATA_DIR / "jds"
-RESUMES_DIR = DATA_DIR / "resumes"
 RESUME_DIR = DATA_DIR / "resume"
+RESUMES_DIR = RESUME_DIR  # Standardized alias pointing strictly to data/resume
 LOGS_DIR = PROJECT_ROOT / "logs"
 APPLICATIONS_FILE = DATA_DIR / "applications.json"
 
 # Ensure directories exist
-RESUMES_DIR.mkdir(parents=True, exist_ok=True)
 RESUME_DIR.mkdir(parents=True, exist_ok=True)
 JDS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -210,12 +209,10 @@ def run_screening_for_candidate(
     from src.pipeline import process_candidate
     from src.utils.output import format_candidate_record
 
-    # Resolve resume path - prioritize data/resume/, data/resumes/, then DATA_DIR/sample, then PROJECT_ROOT
+    # Resolve resume path - prioritize data/resume/, then DATA_DIR/sample, then PROJECT_ROOT
     candidates_to_try = [
         RESUME_DIR / resume_name,
         RESUME_DIR / f"{resume_name}.pdf",
-        RESUMES_DIR / resume_name,
-        RESUMES_DIR / f"{resume_name}.pdf",
         DATA_DIR / "sample" / resume_name,
         DATA_DIR / "sample" / f"{resume_name}.pdf",
         PROJECT_ROOT / resume_name,
@@ -226,7 +223,7 @@ def run_screening_for_candidate(
     if not resume_path:
         # Pick any available pdf in sample
         sample_pdfs = list((DATA_DIR / "sample").glob("*.pdf"))
-        resume_path = sample_pdfs[0] if sample_pdfs else RESUMES_DIR / resume_name
+        resume_path = sample_pdfs[0] if sample_pdfs else RESUME_DIR / resume_name
 
     jd_path = resolve_jd_path(str(job_id))
     record = process_candidate(resume_path, jd_path, force_refresh=force_refresh, use_cache=not force_refresh)
@@ -669,7 +666,6 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
 
             search_paths = [
                 RESUME_DIR / clean_name,
-                RESUMES_DIR / clean_name,
                 DATA_DIR / "sample" / clean_name,
                 DATA_DIR / "jds" / clean_name,
                 PROJECT_ROOT / clean_name,
@@ -681,8 +677,6 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
             if not pdf_file:
                 for fb_name in ["10089434.pdf", "PA_to_Director_Matching_Resume.pdf", "pa_director.pdf", "10219099.pdf"]:
                     fb = RESUME_DIR / fb_name
-                    if not fb.exists():
-                        fb = RESUMES_DIR / fb_name
                     if not fb.exists():
                         fb = DATA_DIR / "sample" / fb_name
                     if not fb.exists():
@@ -1087,10 +1081,8 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
             raw_text = data.get("raw_text", "")
 
             RESUME_DIR.mkdir(parents=True, exist_ok=True)
-            RESUMES_DIR.mkdir(parents=True, exist_ok=True)
             DATA_DIR.joinpath("sample").mkdir(parents=True, exist_ok=True)
             saved_resume_path = RESUME_DIR / filename
-            saved_resumes_path = RESUMES_DIR / filename
             saved_path = DATA_DIR / "sample" / filename
             root_path = PROJECT_ROOT / filename
 
@@ -1098,7 +1090,7 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
             if content_base64:
                 try:
                     file_bytes = base64.b64decode(content_base64)
-                    for target in [saved_resume_path, saved_resumes_path, saved_path, root_path]:
+                    for target in [saved_resume_path, saved_path, root_path]:
                         try:
                             with open(target, "wb") as f:
                                 f.write(file_bytes)
@@ -1267,9 +1259,20 @@ class HYTServerHandler(SimpleHTTPRequestHandler):
         yoe = d.get("min_years_experience", 2)
         exp_str = f"{int(yoe)}+ years" if isinstance(yoe, (int, float)) else "2-5 years"
 
-        overview = d.get("raw_description", "")
-        if len(overview) > 420:
-            overview = overview[:420] + "..."
+        raw_desc = d.get("raw_description", "")
+        overview = d.get("overview")
+        if not overview or not str(overview).strip():
+            overview = raw_desc
+
+        if overview:
+            split_match = re.search(r"(?i)\n\s*(Key\s+Responsibilities|Responsibilities:|Must-Have\s+Requirements|Requirements:|Key\s+Duties|Duties:)", str(overview))
+            if split_match and split_match.start() > 30:
+                overview = str(overview)[:split_match.start()].strip()
+            overview = " ".join([l.strip() for l in str(overview).split("\n") if l.strip()])
+            if len(overview) > 420:
+                overview = overview[:420].rstrip() + "..."
+        else:
+            overview = "Full-stack software engineering position building resilient cloud applications."
 
         # Calculate live applicant counts strictly from persisted applications
         apps = ATSDatabase.get_applications(job_id=str(job_id))

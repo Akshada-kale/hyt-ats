@@ -127,9 +127,16 @@
   3. **Explanation Quality:** LLM-as-Judge 3-pillar rubric with Cohen's Kappa agreement against calibrated human ground truth (achieving 1.0000 near-perfect agreement).
   4. **Counterfactual Fairness:** Perturbed names, gender cues, and university prestige across 324 variants, empirically proving 0.0000 mean score delta and 0.0% decision flip rate (100% statistical parity).
   5. **Adversarial Resilience:** 15 synthetic adversarial attack vectors (white text, off-page coordinates, sub-2pt font, metadata stuffing, direct JD copying, delimiter escapes, prompt injections, and shallow spam), achieving 100.0% detection and quarantine.
-* **Why Non-Obvious:** Independent modular auditing separates deterministic mathematical fairness from LLM linguistic quality. Proving zero score delta across counterfactual demographic perturbations mathematically guarantees that PII stripping and deterministic scoring eliminate adverse impact by construction rather than probabilistic alignment.
+---
 
+### Decision 18: Single Standardized Resume Storage (`data/resume/`)
+* **Context:** ATS projects often accumulate parallel directories (e.g. `data/resumes/` vs `data/resume/` or `data/sample/`), leading to path drift, fragmented updates, and upload confusion.
+* **Decision:** We standardized strictly and globally on `data/resume/` across all database utilities (`src/utils/database.py`), server endpoints (`ui/server.py`), and evaluation benchmarks. The redundant `data/resumes/` folder was permanently purged from the codebase.
+* **Why Non-Obvious:** Eliminating path duplicity ensures that candidate uploads, manual resume additions, and benchmark sidecar JSON files always resolve through a single authoritative filesystem location without symlink overhead or synchronization race conditions.
 
+---
 
-
-
+### Decision 19: Unified SQLite Database with 4-Portal Interactive Web Platform
+* **Context:** While early CLI prototypes relied on ad-hoc JSON files, modern talent acquisition requires instant synchronization between candidate applications, recruiter reviews, and compliance audit ledgers.
+* **Decision:** Unified all state persistence into a zero-dependency, standard-library SQLite database (`data/ats.db`) with WAL mode concurrency, serving 4 tailored interactive web portals (Landing, Candidate, Recruiter HR Panel, Admin Deep-Dive) over a native REST API.
+* **Why Non-Obvious:** SQLite provides zero-setup, cross-platform persistence that runs instantly on any developer machine without external database server dependencies, while providing true ACID transactions, live applicant count aggregation, and immutable tamper-evident audit logging.
